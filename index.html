@@ -1,0 +1,1387 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SK Hynix · 深度调研报告 — 卖给 AI 算力时代的镐头</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f3ec;
+  --bg-paper:#fbf9f4;
+  --bg-card:#ffffff;
+  --bg-dark:#14110d;
+  --bg-dark2:#1f1b16;
+  --ink:#14110d;
+  --ink-2:#2c2620;
+  --muted:#6e6358;
+  --light:#a39787;
+  --rule:#14110d;
+  --rule-light:#d8d1c2;
+  --accent-warn:#a73121;
+  --accent-data:#1c4d6b;
+  --accent-pos:#2c5e3f;
+  --accent-yellow:#c89a2c;
+  --serif:"Source Serif 4","Source Serif Pro","Charter","Iowan Old Style",Georgia,serif;
+  --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  --mono:"JetBrains Mono","SF Mono","Menlo","Consolas",monospace;
+  --max-w:820px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);
+  background:var(--bg);
+  color:var(--ink);
+  font-size:16px;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ===== top bar ===== */
+.topbar{
+  border-bottom:1px solid var(--rule-light);
+  background:var(--bg-paper);
+  padding:10px 32px;
+  font-family:var(--mono);
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:0.08em;
+  color:var(--muted);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.topbar .tb-left{color:var(--ink)}
+.topbar .tb-left b{color:var(--accent-warn)}
+
+/* ===== layout ===== */
+.shell{display:grid;grid-template-columns:200px 1fr;gap:60px;max-width:1280px;margin:0 auto;padding:60px 40px}
+nav.toc{position:sticky;top:40px;align-self:start;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.08em;line-height:2}
+nav.toc .toc-title{color:var(--accent-warn);font-weight:600;margin-bottom:14px;border-bottom:1px solid var(--ink);padding-bottom:6px}
+nav.toc a{color:var(--muted);text-decoration:none;display:block;padding:3px 0;transition:color .12s}
+nav.toc a:hover{color:var(--ink)}
+.main{max-width:var(--max-w);min-width:0}
+
+/* ===== hero ===== */
+.hero{display:grid;grid-template-columns:1fr 220px;gap:40px;align-items:start;padding-bottom:48px;margin-bottom:0;border-bottom:2px solid var(--ink)}
+.eyebrow{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--accent-warn);font-weight:600;margin-bottom:24px;display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";display:inline-block;width:36px;height:1px;background:var(--accent-warn)}
+h1.hero-title{font-family:var(--serif);font-weight:600;font-size:78px;line-height:1.0;letter-spacing:-0.03em;margin-bottom:22px;color:var(--ink)}
+h1.hero-title em{font-style:italic;color:var(--accent-warn);font-weight:600}
+.hero-sub{font-family:var(--serif);font-style:italic;font-size:22px;line-height:1.45;color:var(--muted);max-width:640px}
+.hero-meta dl{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.06em;line-height:1.7}
+.hero-meta dt{color:var(--muted);margin-top:14px}
+.hero-meta dt:first-child{margin-top:0}
+.hero-meta dd{color:var(--ink);font-weight:600}
+
+/* ===== quick facts ===== */
+.qf{background:var(--bg-dark);color:#f6f3ec;padding:48px 40px;margin-top:0}
+.qf-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent-yellow);margin-bottom:14px}
+.qf h2{font-family:var(--serif);font-weight:400;font-style:italic;font-size:36px;line-height:1.1;margin-bottom:36px;color:#fbf9f4}
+.qf-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:rgba(255,255,255,0.10)}
+.qf-cell{background:var(--bg-dark);padding:22px 18px;min-height:130px;display:flex;flex-direction:column;justify-content:space-between}
+.qf-cell .qf-label{font-family:var(--mono);font-size:9.5px;text-transform:uppercase;letter-spacing:0.10em;color:#a39787;margin-bottom:8px}
+.qf-cell .qf-num{font-family:var(--serif);font-size:34px;font-weight:600;line-height:1;color:#fbf9f4;letter-spacing:-0.02em}
+.qf-cell .qf-num .qf-unit{font-size:14px;font-weight:400;color:#a39787;margin-left:4px}
+.qf-cell .qf-sub{font-size:11px;color:#a39787;margin-top:6px;line-height:1.4}
+.qf-cell.verdict{background:var(--accent-warn);color:#fff;word-break:keep-all}
+.qf-cell.verdict .qf-label{color:rgba(255,255,255,0.75)}
+.qf-cell.verdict .qf-num{color:#fff;font-size:17px;line-height:1.3;word-break:keep-all}
+.qf-cell.verdict .qf-sub{color:rgba(255,255,255,0.85);word-break:keep-all}
+.qf-cell{word-break:keep-all}
+.qf-cell .qf-sub{word-break:keep-all}
+
+/* ===== sections ===== */
+section{padding-top:80px;scroll-margin-top:30px}
+.sec-num{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--accent-warn);font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:14px}
+.sec-num::before{content:"";display:inline-block;width:36px;height:1px;background:var(--accent-warn)}
+h2.sec-h{font-family:var(--serif);font-weight:600;font-size:44px;line-height:1.1;letter-spacing:-0.02em;margin-bottom:28px}
+h2.sec-h em{font-style:italic;color:var(--accent-warn)}
+h3.sub-h{font-family:var(--serif);font-weight:600;font-size:24px;line-height:1.25;margin:36px 0 14px;letter-spacing:-0.01em}
+p{margin-bottom:18px;color:var(--ink-2)}
+p+p{margin-top:0}
+.lede{font-family:var(--serif);font-size:20px;line-height:1.55;color:var(--ink);margin-bottom:24px}
+.lede em{font-style:italic;color:var(--accent-warn)}
+
+/* ===== TL;DR ===== */
+.tldr{background:var(--bg-dark);color:#f6f3ec;padding:40px;margin:14px 0 24px;position:relative;border-radius:0}
+.tldr .ribbon{position:absolute;top:-12px;left:24px;background:var(--accent-warn);color:#fff;padding:6px 14px;font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;font-weight:700}
+.tldr h3{font-family:var(--serif);font-weight:400;font-style:italic;font-size:24px;line-height:1.3;color:#fbf9f4;margin-bottom:20px}
+.tldr ol{list-style:none;counter-reset:tldr-c}
+.tldr ol li{counter-increment:tldr-c;display:flex;gap:14px;align-items:flex-start;margin-bottom:18px;color:rgba(251,249,244,0.85);font-size:15px;line-height:1.65}
+.tldr ol li::before{content:counter(tldr-c,decimal-leading-zero);font-family:var(--mono);font-size:11px;color:var(--accent-yellow);font-weight:600;letter-spacing:0.1em;padding-top:5px;flex:0 0 32px;line-height:1}
+.tldr ol li b{color:#fbf9f4;font-weight:600}
+
+/* ===== stats grid ===== */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--rule);margin:24px 0}
+.stats > div{padding:20px 18px;border-right:1px solid var(--rule-light)}
+.stats > div:last-child{border-right:none}
+.stats .s-label{font-family:var(--mono);font-size:10px;letter-spacing:0.10em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.stats .s-num{font-family:var(--serif);font-size:36px;font-weight:600;line-height:1;letter-spacing:-0.02em;color:var(--ink)}
+.stats .s-num.warn{color:var(--accent-warn)}
+.stats .s-num.data{color:var(--accent-data)}
+.stats .s-num.pos{color:var(--accent-pos)}
+.stats .s-sub{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.4}
+
+/* ===== metric list (financial) ===== */
+.metric{border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);margin:24px 0}
+.metric .m-row{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:baseline;padding:14px 0;border-top:1px solid var(--rule-light)}
+.metric .m-row:first-child{border-top:none}
+.m-label{font-family:var(--sans);font-size:14px;color:var(--ink-2)}
+.m-label .m-src{font-size:11px;color:var(--light);margin-left:8px;font-family:var(--mono)}
+.m-val{font-family:var(--serif);font-size:22px;font-weight:600;color:var(--ink);letter-spacing:-0.01em}
+.m-val.warn{color:var(--accent-warn)}
+.m-val.pos{color:var(--accent-pos)}
+
+/* ===== two-col cards ===== */
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:24px 0}
+.tc-card{background:var(--bg-card);padding:22px;border:1px solid var(--rule-light)}
+.tc-card h4{font-family:var(--serif);font-weight:600;font-size:18px;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.tc-card h4::before{content:"";display:inline-block;width:14px;height:14px;border-radius:50%}
+.tc-card.pos h4::before{background:var(--accent-pos);content:"\2713";color:#fff;font-size:10px;text-align:center;line-height:14px}
+.tc-card.warn h4::before{background:var(--accent-warn);content:"!";color:#fff;font-size:10px;font-weight:700;text-align:center;line-height:14px}
+.tc-card ul{list-style:none}
+.tc-card li{font-size:14px;color:var(--ink-2);padding:6px 0;border-top:1px solid var(--rule-light);line-height:1.5}
+.tc-card li:first-child{border-top:none}
+.tc-card li b{color:var(--ink);font-weight:600}
+
+/* ===== quote ===== */
+.quote{border-left:3px solid var(--accent-warn);padding:8px 0 8px 18px;margin:24px 0;font-family:var(--serif);font-style:italic;font-size:18px;line-height:1.55;color:var(--ink-2)}
+.quote .attr{display:block;margin-top:10px;font-style:normal;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted)}
+.quote .attr::before{content:"— "}
+
+/* ===== compare table ===== */
+.table-wrap{overflow-x:auto;margin:24px 0}
+table.cmp{width:100%;min-width:600px;border-collapse:collapse;font-size:14px}
+table.cmp thead th{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:0.10em;color:var(--ink);font-weight:600;text-align:left;padding:12px 14px 10px;border-bottom:2px solid var(--ink)}
+table.cmp tbody td{padding:14px 14px;border-bottom:1px solid var(--rule-light);vertical-align:top;line-height:1.5}
+table.cmp tbody tr:last-child td{border-bottom:1px solid var(--ink)}
+table.cmp .product-name{font-family:var(--serif);font-weight:700;font-size:15px}
+table.cmp .tag{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:0.08em;text-transform:uppercase;background:var(--accent-warn);color:#fff;padding:2px 6px;margin-left:8px;border-radius:2px;vertical-align:middle}
+table.cmp tr.highlight{background:rgba(167,49,33,0.04)}
+table.cmp tr.highlight .product-name{color:var(--accent-warn)}
+.num-cell{font-family:var(--serif);font-weight:600;font-size:18px;letter-spacing:-0.01em}
+
+/* ===== callout ===== */
+.callout{border-left:3px solid var(--ink);background:var(--bg-paper);padding:16px 20px;margin:18px 0}
+.callout.warn{border-color:var(--accent-warn)}
+.callout.data{border-color:var(--accent-data)}
+.callout.pos{border-color:var(--accent-pos)}
+.callout .co-label{font-family:var(--mono);font-size:10px;letter-spacing:0.10em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;font-weight:600}
+.callout.warn .co-label{color:var(--accent-warn)}
+.callout.data .co-label{color:var(--accent-data)}
+.callout.pos .co-label{color:var(--accent-pos)}
+.callout .co-quote{font-family:var(--serif);font-style:italic;font-size:17px;line-height:1.5;color:var(--ink)}
+.callout .co-quote em{font-weight:600;font-style:italic;color:var(--accent-warn)}
+.callout .co-body{font-size:14px;color:var(--ink-2);line-height:1.6}
+
+/* ===== timeline ===== */
+.timeline{margin:24px 0;position:relative}
+.tl-row{display:grid;grid-template-columns:120px 24px 1fr;gap:16px;align-items:start;padding:12px 0;position:relative}
+.tl-date{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);text-align:right;padding-top:6px;font-weight:600}
+.tl-dot{position:relative;height:24px;display:flex;align-items:center;justify-content:center}
+.tl-dot::before{content:"";position:absolute;top:-12px;bottom:-12px;width:1px;background:var(--rule-light);left:50%;transform:translateX(-50%)}
+.tl-dot::after{content:"";width:11px;height:11px;border-radius:50%;border:2px solid var(--ink);background:#fff;position:relative;z-index:1}
+.tl-row:first-child .tl-dot::before{top:6px}
+.tl-row:last-child .tl-dot::before{bottom:6px}
+.tl-row.warn .tl-dot::after{border-color:var(--accent-warn);background:var(--accent-warn)}
+.tl-row.data .tl-dot::after{border-color:var(--accent-data);background:var(--accent-data)}
+.tl-row.pos .tl-dot::after{border-color:var(--accent-pos);background:var(--accent-pos)}
+.tl-content h5{font-family:var(--serif);font-weight:600;font-size:16px;margin-bottom:4px;line-height:1.3}
+.tl-content p{font-size:13.5px;color:var(--muted);margin-bottom:0;line-height:1.5}
+
+/* ===== scenarios ===== */
+.scn{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:24px 0}
+.scn-card{background:var(--bg-card);border:1px solid var(--rule-light);padding:22px}
+.scn-card .scn-prob{font-family:var(--mono);font-size:11px;letter-spacing:0.10em;text-transform:uppercase;font-weight:600;margin-bottom:10px}
+.scn-card.bull{border-top:4px solid var(--accent-pos)}
+.scn-card.bear{border-top:4px solid var(--accent-warn)}
+.scn-card.neutral{border-top:4px solid var(--accent-yellow)}
+.scn-card.bull .scn-prob{color:var(--accent-pos)}
+.scn-card.bear .scn-prob{color:var(--accent-warn)}
+.scn-card.neutral .scn-prob{color:var(--accent-yellow)}
+.scn-card h4{font-family:var(--serif);font-weight:600;font-size:20px;margin-bottom:8px;letter-spacing:-0.01em}
+.scn-card .scn-body{font-size:13px;line-height:1.55;color:var(--ink-2)}
+.scn-card .scn-body ul{list-style:none;margin-top:8px}
+.scn-card .scn-body ul li{padding:5px 0;border-top:1px solid var(--rule-light)}
+
+/* ===== insights ===== */
+.insights ol{list-style:none;counter-reset:in-c;margin:24px 0}
+.insights ol li{counter-increment:in-c;display:grid;grid-template-columns:60px 1fr;gap:14px;padding:18px 0;border-top:1px solid var(--rule-light)}
+.insights ol li:first-child{border-top:2px solid var(--ink)}
+.insights ol li:last-child{border-bottom:2px solid var(--ink)}
+.insights ol li::before{content:counter(in-c,decimal-leading-zero);font-family:var(--mono);font-size:13px;color:var(--accent-warn);font-weight:700;letter-spacing:0.06em;padding-top:3px}
+.insights .ins-title{font-family:var(--serif);font-weight:600;font-size:18px;line-height:1.35;margin-bottom:6px}
+.insights .ins-body{font-size:14px;color:var(--ink-2);line-height:1.6}
+
+/* ===== verdict block ===== */
+.verdict{background:var(--bg-dark);color:#f6f3ec;padding:48px 40px;margin:30px 0}
+.verdict .v-title{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent-yellow);margin-bottom:14px;font-weight:600}
+.verdict h3{font-family:var(--serif);font-weight:400;font-style:italic;font-size:30px;line-height:1.25;color:#fbf9f4;margin-bottom:18px;letter-spacing:-0.01em}
+.verdict h3 em{font-style:italic;font-weight:600;color:var(--accent-yellow)}
+.verdict p{color:rgba(251,249,244,0.85);font-size:15px;line-height:1.65;margin-bottom:0}
+
+/* ===== divider quote ===== */
+.divq{text-align:center;font-family:var(--serif);font-style:italic;font-size:22px;line-height:1.45;color:var(--muted);margin:60px 0;position:relative;padding:0 20px}
+.divq::before,.divq::after{content:"";display:block;width:40px;height:1px;background:var(--ink);margin:14px auto}
+
+/* ===== footer ===== */
+footer{background:var(--bg-dark);color:#a39787;padding:56px 40px 36px;margin-top:80px}
+footer .ft-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:40px}
+footer h5{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#fbf9f4;margin-bottom:14px;font-weight:600}
+footer ul{list-style:none;font-size:12px;line-height:1.8;font-family:var(--mono);columns:2;column-gap:24px}
+footer ul li{break-inside:avoid}
+footer a{color:#a39787;text-decoration:none;border-bottom:1px dotted rgba(163,151,135,0.4)}
+footer a:hover{color:#fbf9f4}
+footer .ft-meta{margin-top:36px;padding-top:24px;border-top:1px solid #2c2620;font-size:11px;color:#6e6358;font-family:var(--mono);letter-spacing:0.06em;line-height:1.6}
+
+/* ===== responsive ===== */
+@media (max-width:1100px){
+  .shell{grid-template-columns:1fr;gap:0;padding:40px 24px}
+  nav.toc{position:relative;top:0;display:flex;flex-wrap:wrap;gap:6px 18px;padding-bottom:24px;margin-bottom:24px;border-bottom:1px solid var(--rule-light);line-height:1.4}
+  nav.toc .toc-title{width:100%;border-bottom:none;padding-bottom:0;margin-bottom:6px}
+  .qf-grid{grid-template-columns:repeat(3,1fr)}
+  .stats{grid-template-columns:1fr}
+  .stats > div{border-right:none;border-bottom:1px solid var(--rule-light)}
+  .stats > div:last-child{border-bottom:none}
+  .twocol,.scn{grid-template-columns:1fr}
+  .hero{grid-template-columns:1fr}
+}
+@media (max-width:720px){
+  h1.hero-title{font-size:48px}
+  h2.sec-h{font-size:32px}
+  .qf-grid{grid-template-columns:repeat(2,1fr)}
+  .qf,.verdict,.tldr,footer{padding-left:24px;padding-right:24px}
+  .insights ol li{grid-template-columns:40px 1fr}
+  .tl-row{grid-template-columns:80px 20px 1fr;gap:10px}
+  .tl-date{font-size:10px}
+}
+
+/* ===== PDF / paged-media 跨页保护（屏幕上不可见，仅在打印/PDF 时生效）===== */
+.qf-cell,
+.stats > div,
+.tc-card,
+.callout,
+.quote,
+.scn-card,
+.tl-row,
+.metric .m-row,
+.divq,
+.tldr,
+.verdict,
+.hero,
+.lede,
+table.cmp tr,
+.insights ol li{
+  break-inside:avoid;
+  page-break-inside:avoid;
+}
+h1.hero-title,
+h2.sec-h,
+h3.sub-h,
+.sec-num,
+.qf-eyebrow,
+.v-title{
+  break-after:avoid;
+  page-break-after:avoid;
+}
+p{orphans:3;widows:3}
+
+@media print{
+  .topbar,nav.toc,footer{display:none}
+  body{background:#fff}
+  .qf,.verdict,.tldr{background:#fff;color:#000;border:1px solid #000;padding:24px}
+  .qf h2,.verdict h3,.tldr h3{color:#000}
+  .qf-cell,.qf-cell.verdict{background:#fff;color:#000}
+  .qf-cell .qf-num,.qf-cell.verdict .qf-num{color:#000}
+  a{color:#000;text-decoration:none}
+  section{break-inside:avoid;page-break-inside:avoid}
+  .hero{break-after:page}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="tb-left">SK Hynix · Deep Research Report &nbsp;·&nbsp; <b>v1.0</b></div>
+  <div>2026 · 05 · 10 &nbsp;|&nbsp; Ray Deep Research Engine</div>
+</div>
+
+<div class="shell">
+
+<nav class="toc" aria-label="Table of contents">
+  <div class="toc-title">Contents</div>
+  <a href="#hero">00 · Hero</a>
+  <a href="#qf">01 · Facts</a>
+  <a href="#tldr">02 · TL;DR</a>
+  <a href="#profile">03 · 公司画像</a>
+  <a href="#hbm">04 · HBM 战略</a>
+  <a href="#money">05 · 财务与股价</a>
+  <a href="#wars">06 · 三国杀</a>
+  <a href="#timeline">07 · 大事年表</a>
+  <a href="#risks">08 · 风险地图</a>
+  <a href="#scenarios">09 · 12-24 月场景</a>
+  <a href="#insights">10 · 决策建议</a>
+</nav>
+
+<main class="main">
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <div class="hero">
+    <div>
+      <div class="eyebrow">Deep Research · 2026 春</div>
+      <h1 class="hero-title">卖给 AI<br>算力时代的<em>镐头</em></h1>
+      <p class="hero-sub">
+        在英伟达狂卖铲子的金矿狂潮里，海力士不挖金子——它给铲子装上了最贵的那根柄。
+        三年前还在亏 9.1 万亿韩元的存储老二，现在以单季 72% 营业利润率
+        成为半导体史上最赚钱的公司。问题只剩一个：这个故事还能讲多久。
+      </p>
+    </div>
+    <aside class="hero-meta">
+      <dl>
+        <dt>调研对象</dt><dd>SK Hynix Inc.</dd>
+        <dt>韩交所代码</dt><dd>KRX:000660</dd>
+        <dt>调研深度</dt><dd>4 子 Agent 并行</dd>
+        <dt>覆盖来源</dt><dd>官方 IR / TrendForce / Counterpoint / Reuters / KED / TrendForce</dd>
+        <dt>报告字数</dt><dd>约 15,000 字</dd>
+        <dt>读者</dt><dd>非技术 · 想理解 AI 时代<br>战略地位 + 投资视角</dd>
+      </dl>
+    </aside>
+  </div>
+</section>
+
+<!-- ===== QUICK FACTS ===== -->
+<section id="qf" class="qf">
+  <div class="qf-eyebrow">SK Hynix at a Glance</div>
+  <h2>速览板 · 12 个最值得记住的数字</h2>
+  <div class="qf-grid">
+    <div class="qf-cell">
+      <div class="qf-label">Founded</div>
+      <div><span class="qf-num">1983</span></div>
+      <div class="qf-sub">前身现代电子<br>2012 并入 SK 集团</div>
+    </div>
+    <div class="qf-cell">
+      <div class="qf-label">Market Cap</div>
+      <div><span class="qf-num">$810<span class="qf-unit">B</span></span></div>
+      <div class="qf-sub">全球第 16 位<br>= 三星市值的 76%</div>
+    </div>
+    <div class="qf-cell">
+      <div class="qf-label">52w Return</div>
+      <div><span class="qf-num">+784<span class="qf-unit">%</span></span></div>
+      <div class="qf-sub">从 ₩186K 到 ₩1.69M<br>13 个月涨 9 倍</div>
+    </div>
+    <div class="qf-cell">
+      <div class="qf-label">Q1'26 营业利润率</div>
+      <div><span class="qf-num">72<span class="qf-unit">%</span></span></div>
+      <div class="qf-sub">半导体行业历史新高<br>比台积电毛利率还夸张</div>
+    </div>
+    <div class="qf-cell">
+      <div class="qf-label">Q1'26 净利润</div>
+      <div><span class="qf-num">₩40.4<span class="qf-unit">兆</span></span></div>
+      <div class="qf-sub">≈ $277 亿<br>YoY +398%</div>
+    </div>
+    <div class="qf-cell">
+      <div class="qf-label">HBM 市占率</div>
+      <div><span class="qf-num">57<span class="qf-unit">%</span></span></div>
+      <div class="qf-sub">Q4'25 全球<br>(Counterpoint 营收口径)</div>
+    </div>
+    <div class="qf-cell">
+      <div class="qf-label">NVIDIA HBM4 配额</div>
+      <div><span class="qf-num">~70<span class="qf-unit">%</span></span></div>
+      <div class="qf-sub">Vera Rubin 平台<br>Samsung + Micron 分剩余</div>
+    </div>
+    <div class="qf-cell">
+      <div class="qf-label">Forward P/E</div>
+      <div><span class="qf-num">5.3<span class="qf-unit">x</span></span></div>
+      <div class="qf-sub">基于 2026E EPS<br>看似便宜，但赌的是不腰斩</div>
+    </div>
+    <div class="qf-cell">
+      <div class="qf-label">ROE / ROIC</div>
+      <div><span class="qf-num">61<span class="qf-unit">% / 52%</span></span></div>
+      <div class="qf-sub">资本回报率冠绝<br>全球大型科技公司</div>
+    </div>
+    <div class="qf-cell">
+      <div class="qf-label">净现金</div>
+      <div><span class="qf-num">₩35<span class="qf-unit">兆</span></span></div>
+      <div class="qf-sub">≈ $240 亿<br>CEO 称年内可达 ₩100 兆</div>
+    </div>
+    <div class="qf-cell">
+      <div class="qf-label">外资持股</div>
+      <div><span class="qf-num">56<span class="qf-unit">%</span></span></div>
+      <div class="qf-sub">接近历史高点<br>已是全球 AI 配置标的</div>
+    </div>
+    <div class="qf-cell verdict">
+      <div class="qf-label">My Take</div>
+      <div><span class="qf-num">结构红利 ×<br>周期顶 × 单点依赖</span></div>
+      <div class="qf-sub">2026 仍是顺风年<br>但任意两点恶化<br>就滑入熊市场景</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TL;DR ===== -->
+<section id="tldr">
+  <div class="sec-num">02 · The bottom line</div>
+  <h2 class="sec-h">如果只有 60 秒，<em>读这段</em></h2>
+
+  <div class="tldr">
+    <div class="ribbon">TL;DR</div>
+    <h3>三层判断 · 一页纸结论</h3>
+    <ol>
+      <li><b>现状是真红利。</b>HBM 不是普通存储——它是 AI 训练机的发动机。SK Hynix 凭借 NVIDIA 主供 + HBM4 首发量产 + 工艺领先（1c DRAM、MR-MUF 封装）获得了 57% 全球份额和 72% 单季营业利润率。三年内从亏 9 万亿到净利 43 万亿，这是真正的 fortune flip。</li>
+      <li><b>关键张力是脆弱的"E"。</b>Forward P/E 仅 5.3x 看似极便宜，但市场已经隐含了 2026 利润不会大幅回落的假设。Samsung HBM4 已通过 NVIDIA 11Gbps 测试，领先优势从 6 个月缩至 1 个季度；高盛警告 2026 年 HBM 价格可能双位数下跌；2027-2028 是潜在产能过剩窗口。</li>
+      <li><b>核心建议是看信号，不看故事。</b>三件事同时发生即周期拐点确认：NVIDIA Rubin 出货延期 + Samsung HBM4 全面拿到等量等价订单 + 高盛 HBM 价格下跌兑现。在这三件事同时发生之前，2026 年仍是结构性顺风为主——但要警觉地分批兑现，不要在历史高点一次性追入。</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===== PROFILE ===== -->
+<section id="profile">
+  <div class="sec-num">03 · The Company</div>
+  <h2 class="sec-h">公司画像 · <em>三明治结构</em></h2>
+
+  <p class="lede">
+    SK Hynix（韩文：SK 하이닉스）是韩国 SK 集团旗下半导体公司，
+    2012 年从破产边缘的现代电子（Hyundai Electronics）改头换面而来。<em>它的故事不是渐进的，
+    是阶跃的</em>——三年前它还是被视作"周期股老二"的存储厂，今天它是 AI 算力链上最锋利的一把利刃。
+  </p>
+
+  <div class="metric">
+    <div class="m-row">
+      <div class="m-label">成立年份 <span class="m-src">1983 / 现代电子</span></div>
+      <div class="m-val">42 年</div>
+    </div>
+    <div class="m-row">
+      <div class="m-label">总部 <span class="m-src">Icheon · 京畿道</span></div>
+      <div class="m-val">韩国利川</div>
+    </div>
+    <div class="m-row">
+      <div class="m-label">控股股东 <span class="m-src">SK Square 持股</span></div>
+      <div class="m-val">20.07%</div>
+    </div>
+    <div class="m-row">
+      <div class="m-label">CEO <span class="m-src">材料工程博士 · 任期至 2028</span></div>
+      <div class="m-val">郭鲁正</div>
+    </div>
+    <div class="m-row">
+      <div class="m-label">员工总数 <span class="m-src">2024 年末</span></div>
+      <div class="m-val">~35,000</div>
+    </div>
+    <div class="m-row">
+      <div class="m-label">FY25 营收 <span class="m-src">YoY +47%</span></div>
+      <div class="m-val pos">₩97.15 兆</div>
+    </div>
+    <div class="m-row">
+      <div class="m-label">FY25 营业利润 <span class="m-src">YoY +101%</span></div>
+      <div class="m-val pos">₩47.21 兆</div>
+    </div>
+    <div class="m-row">
+      <div class="m-label">FY23 营业利润 <span class="m-src">两年前 · 周期底亏损</span></div>
+      <div class="m-val warn">−₩7.73 兆</div>
+    </div>
+  </div>
+
+  <h3 class="sub-h">业务结构（2025 年估算）</h3>
+  <div class="stats">
+    <div>
+      <div class="s-label">DRAM (含 HBM)</div>
+      <div class="s-num">~68%</div>
+      <div class="s-sub">全球第一<br>HBM 是单品类增速冠军</div>
+    </div>
+    <div>
+      <div class="s-label">NAND (含 Solidigm)</div>
+      <div class="s-num">~27%</div>
+      <div class="s-sub">2025 H1 首次扭亏<br>QLC eSSD 在 AI 推理走俏</div>
+    </div>
+    <div>
+      <div class="s-label">其他</div>
+      <div class="s-num data">~5%</div>
+      <div class="s-sub">CIS 图像传感器<br>+ 模组 + 服务</div>
+    </div>
+  </div>
+
+  <h3 class="sub-h">全球工厂三 hub 战略</h3>
+  <div class="twocol">
+    <div class="tc-card pos">
+      <h4>韩国本土（核心）</h4>
+      <ul>
+        <li><b>利川 (Icheon)</b>：M10 / M14 / M16，R&amp;D 总部，HBM3E 主产</li>
+        <li><b>清州 (Cheongju)</b>：M11 / M12 / M15，<b>M15X 在建</b> 2026 全年爬产 HBM4</li>
+        <li><b>清州 P&amp;T7</b>：$130 亿先进封装专属厂，2027 完工</li>
+        <li><b>龙仁 (Yongin) 集群</b>：未来 10 年最大产能锚点（用电只锁定 60%）</li>
+      </ul>
+    </div>
+    <div class="tc-card warn">
+      <h4>海外（地缘对冲）</h4>
+      <ul>
+        <li><b>中国无锡</b>：占公司 DRAM 产出 40%、全球 DRAM 产能 15%</li>
+        <li><b>中国大连</b>：原 Intel NAND 厂，2025 改名 SK hynix，受出口管制锁在 192 层</li>
+        <li><b>美国印第安纳 West Lafayette</b>：$38.7 亿先进封装厂，<b>2H28 投产</b></li>
+        <li>中国厂自 2025-12-27 失去 VEU，转为<b>年度许可证</b>制</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divq">
+  "Memory is no longer a commodity — it's compute infrastructure."<br>
+  — 2026 年存储行业最常被引用的一句话
+</div>
+
+<!-- ===== HBM ===== -->
+<section id="hbm">
+  <div class="sec-num">04 · The HBM Story</div>
+  <h2 class="sec-h">HBM · <em>故事的全部</em></h2>
+
+  <p class="lede">
+    要理解海力士今天的位置，只需要理解一个事实：<em>训练 GPT-5 一类的模型，瓶颈不是算力，是带宽</em>。
+    NVIDIA H100 / B200 / Rubin 这些 AI 加速器，每块卡上焊着 6-8 颗 HBM——
+    而全球 HBM 的 57% 出自海力士，HBM4 的 70% NVIDIA 订单也归海力士。
+    这就是为什么这家公司从 2024 到 2026 年市值翻了近 10 倍。
+  </p>
+
+  <h3 class="sub-h">HBM 全球份额三国杀（Counterpoint 营收口径）</h3>
+  <div class="table-wrap">
+    <table class="cmp">
+      <thead>
+        <tr><th>厂商</th><th>Q4 2024</th><th>Q1 2025</th><th>Q2 2025</th><th>Q3 2025</th><th>Q4 2025</th></tr>
+      </thead>
+      <tbody>
+        <tr class="highlight">
+          <td><span class="product-name">SK Hynix</span><span class="tag">王者</span></td>
+          <td class="num-cell">51%</td>
+          <td class="num-cell">69%</td>
+          <td class="num-cell">64%</td>
+          <td class="num-cell">56%</td>
+          <td class="num-cell">57%</td>
+        </tr>
+        <tr>
+          <td><span class="product-name">Samsung</span></td>
+          <td class="num-cell">40%</td>
+          <td class="num-cell">13%</td>
+          <td class="num-cell">15%</td>
+          <td class="num-cell">23%</td>
+          <td class="num-cell">22%</td>
+        </tr>
+        <tr>
+          <td><span class="product-name">Micron</span></td>
+          <td class="num-cell">9%</td>
+          <td class="num-cell">18%</td>
+          <td class="num-cell">21%</td>
+          <td class="num-cell">21%</td>
+          <td class="num-cell">21%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p>关键信号：Samsung 在 2025 Q1 从 40% 跌到 13%，是因为 NVIDIA 把订单转给 SK Hynix + Micron——<b>HBM3E 12-Hi NVIDIA 认证 Samsung 推迟了 18 个月，直到 2025 年 9 月才通过</b>。这 18 个月的窗口，让海力士拿走了 AI 时代第一波最丰厚的利润。</p>
+
+  <h3 class="sub-h">HBM4 路线图：领先优势从 6 个月缩至 1 季度</h3>
+  <div class="table-wrap">
+    <table class="cmp">
+      <thead>
+        <tr><th>厂商</th><th>HBM4 量产时间</th><th>数据率</th><th>堆叠</th><th>NVIDIA Rubin 配额</th></tr>
+      </thead>
+      <tbody>
+        <tr class="highlight">
+          <td><span class="product-name">SK Hynix</span></td>
+          <td>2026-02 首产里程碑</td>
+          <td>10 Gbps（测 11）</td>
+          <td>16-Hi 48GB CES 首发</td>
+          <td class="num-cell">~70%</td>
+        </tr>
+        <tr>
+          <td><span class="product-name">Samsung</span></td>
+          <td>2026-02（与 SK 同步）</td>
+          <td>11 Gbps（已过测试）</td>
+          <td>12-Hi 优先</td>
+          <td class="num-cell">~28%</td>
+        </tr>
+        <tr>
+          <td><span class="product-name">Micron</span></td>
+          <td>2026-Q2 爬产</td>
+          <td>&gt;11 Gbps</td>
+          <td>12-Hi / 16-Hi 同步</td>
+          <td class="num-cell">较小</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout warn">
+    <div class="co-label">值得警惕的转折</div>
+    <div class="co-quote"><em>Samsung 已通过 NVIDIA 11Gbps HBM4 测试。</em>这意味着海力士"独家供 NVIDIA 半年"的故事不再成立——领先优势从 6 个月缩水至 1 个季度。这是 2026 年 SK Hynix 估值最大的下行变量。</div>
+  </div>
+
+  <h3 class="sub-h">已确认的客户名单</h3>
+  <div class="twocol">
+    <div class="tc-card pos">
+      <h4>主力客户（HBM3E / HBM4）</h4>
+      <ul>
+        <li><b>NVIDIA</b>：H100/B200/Rubin 系列主供，HBM4 ~70% 份额</li>
+        <li><b>Microsoft Maia 200</b>：自研 AI 芯片<b>独家</b> HBM3E 12-Hi 36GB（2026/1 公布）</li>
+        <li><b>Google TPU v7p / v7e</b>：HBM3E 首发供应</li>
+        <li><b>AMD MI300/MI325/MI350</b>：HBM3E 长期客户</li>
+        <li><b>Broadcom</b>：ASIC 客户（细节未披露）</li>
+      </ul>
+    </div>
+    <div class="tc-card pos">
+      <h4>战略合作（晶圆 / 数据中心）</h4>
+      <ul>
+        <li><b>OpenAI Stargate</b>：与 Samsung 合计每月最多 90 万片 DRAM 晶圆</li>
+        <li><b>SK Telecom</b>：在韩国共建 AI 数据中心</li>
+        <li><b>TSMC</b>：HBM4 base die 后段封装合作</li>
+        <li><b>Meta MTIA / AWS Trainium</b>：HBM 持续供应</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MONEY ===== -->
+<section id="money">
+  <div class="sec-num">05 · Show Me The Money</div>
+  <h2 class="sec-h">财务与股价 · <em>反转的速度</em></h2>
+
+  <p class="lede">
+    2023 年这家公司亏损 9.14 万亿韩元。<em>两年后</em>它单季净利润就 40.35 万亿——
+    比一整年的亏损额还多 4 倍。这不是普通的周期反弹，而是结构性的盈利层级跳升。
+  </p>
+
+  <h3 class="sub-h">两年内的反转曲线</h3>
+  <div class="table-wrap">
+    <table class="cmp">
+      <thead>
+        <tr><th>指标</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>YoY (25/24)</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="product-name">营收 (兆韩元)</span></td>
+          <td class="num-cell" style="color:var(--accent-warn)">32.77</td>
+          <td class="num-cell">66.19</td>
+          <td class="num-cell" style="color:var(--accent-pos)">97.15</td>
+          <td class="num-cell">+47%</td>
+        </tr>
+        <tr class="highlight">
+          <td><span class="product-name">营业利润 (兆韩元)</span></td>
+          <td class="num-cell" style="color:var(--accent-warn)">−7.73</td>
+          <td class="num-cell">23.47</td>
+          <td class="num-cell" style="color:var(--accent-pos)">47.21</td>
+          <td class="num-cell">+101%</td>
+        </tr>
+        <tr>
+          <td><span class="product-name">营业利润率</span></td>
+          <td class="num-cell">−24%</td>
+          <td class="num-cell">36%</td>
+          <td class="num-cell">49%</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td><span class="product-name">净利润 (兆韩元)</span></td>
+          <td class="num-cell" style="color:var(--accent-warn)">−9.14</td>
+          <td class="num-cell">19.80</td>
+          <td class="num-cell" style="color:var(--accent-pos)">42.95</td>
+          <td class="num-cell">+117%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="sub-h">Q1 2026 单季：72% 营业利润率破纪录</h3>
+  <div class="stats">
+    <div>
+      <div class="s-label">单季营收</div>
+      <div class="s-num">₩52.6<span style="font-size:18px;color:var(--muted)"> 兆</span></div>
+      <div class="s-sub">QoQ +60% &nbsp;|&nbsp; YoY +198%<br>季度首次破 50 兆</div>
+    </div>
+    <div>
+      <div class="s-label">营业利润</div>
+      <div class="s-num pos">₩37.6<span style="font-size:18px;color:var(--muted)"> 兆</span></div>
+      <div class="s-sub">≈ $257 亿<br>YoY +405%</div>
+    </div>
+    <div>
+      <div class="s-label">营业利润率</div>
+      <div class="s-num warn">72%</div>
+      <div class="s-sub">比台积电毛利率高<br>半导体史上从未出现</div>
+    </div>
+  </div>
+
+  <h3 class="sub-h">股价 · 估值 · 现金</h3>
+  <div class="metric">
+    <div class="m-row">
+      <div class="m-label">当前股价 <span class="m-src">2026-05-08 KRX:000660</span></div>
+      <div class="m-val">₩1,686,000</div>
+    </div>
+    <div class="m-row">
+      <div class="m-label">52 周回报 <span class="m-src">从 ₩186K 到 ₩1.69M</span></div>
+      <div class="m-val pos">+783.65%</div>
+    </div>
+    <div class="m-row">
+      <div class="m-label">RSI <span class="m-src">技术面严重超买</span></div>
+      <div class="m-val warn">85.65</div>
+    </div>
+    <div class="m-row">
+      <div class="m-label">Forward P/E <span class="m-src">基于 2026E EPS</span></div>
+      <div class="m-val">5.3x</div>
+    </div>
+    <div class="m-row">
+      <div class="m-label">Trailing P/E</div>
+      <div class="m-val">15.8x</div>
+    </div>
+    <div class="m-row">
+      <div class="m-label">ROE <span class="m-src">资本回报率冠绝大型科技公司</span></div>
+      <div class="m-val pos">61.17%</div>
+    </div>
+    <div class="m-row">
+      <div class="m-label">ROIC</div>
+      <div class="m-val pos">52.33%</div>
+    </div>
+    <div class="m-row">
+      <div class="m-label">净现金 <span class="m-src">现金 ₩54.3 兆 − 有息负债 ₩19.3 兆</span></div>
+      <div class="m-val">₩35 兆</div>
+    </div>
+    <div class="m-row">
+      <div class="m-label">Debt/Equity</div>
+      <div class="m-val pos">0.12</div>
+    </div>
+    <div class="m-row">
+      <div class="m-label">市值 / 三星市值比 <span class="m-src">2023 年初仅 1/5</span></div>
+      <div class="m-val">0.76</div>
+    </div>
+  </div>
+
+  <div class="callout data">
+    <div class="co-label">三星 30 多年 DRAM 王座的失而复得</div>
+    <div class="co-body">
+      2025 Q1：SK Hynix <b>历史首次</b>在 DRAM 营收上超越三星。
+      2025 Q3 持续保持第一（35% vs 三星 34%）。
+      2025 Q4 三星靠常规 DRAM 价格反弹回归第一（36% vs 32.1%）。
+      关键不是谁第一，而是<b>这两家市值比从 1:5 变成 1:1.3</b>——
+      韩国本地媒体连续数周讨论"SK Hynix 何时市值反超三星"，
+      而这在三年前还不可想象。
+    </div>
+  </div>
+
+  <h3 class="sub-h">分析师目标价 · 隐含上涨已收窄</h3>
+  <div class="twocol">
+    <div class="tc-card pos">
+      <h4>多方核心论点</h4>
+      <ul>
+        <li><b>HBM 紧缺至 2027+</b>：客户已提前 2-3 年预订产能</li>
+        <li><b>HBM4 量产领先半年到一年</b>，工艺壁垒高</li>
+        <li><b>Forward P/E 5.3x</b>：相对 ROE 60%+ 的回报率仍便宜</li>
+        <li><b>科技巨头主动出资</b>建产线买设备锁产能</li>
+        <li><b>Altimeter 等买方</b>大幅加仓海力士</li>
+      </ul>
+    </div>
+    <div class="tc-card warn">
+      <h4>空方核心论点</h4>
+      <ul>
+        <li><b>2027-2028 产能过剩窗口</b>：当前 CapEx 集中变产能</li>
+        <li><b>SK Hynix 已悄悄削减 HBM CapEx</b>：内部模型预警</li>
+        <li><b>盈利腰斩 P/E 立刻翻倍</b>：超级周期的 E 是脆弱的</li>
+        <li><b>RSI 85</b>：技术面严重超买</li>
+        <li><b>Samsung HBM4 已过 NVIDIA 测试</b>：竞争追上更快</li>
+      </ul>
+    </div>
+  </div>
+
+  <p>38 家券商目标价中位数 <b>₩1,790,000</b>，相对当前股价仅有约 6% 的隐含上涨空间——这意味着卖方共识已被股价基本追平，进一步上行需要新的盈利上修。</p>
+
+  <h3 class="sub-h">CapEx 与回报政策</h3>
+  <div class="metric">
+    <div class="m-row">
+      <div class="m-label">2025 实际 CapEx <span class="m-src">较年初指引上调 30%+</span></div>
+      <div class="m-val">₩29 兆</div>
+    </div>
+    <div class="m-row">
+      <div class="m-label">2026 CapEx 区间 <span class="m-src">公司指引</span></div>
+      <div class="m-val">₩30-40 兆</div>
+    </div>
+    <div class="m-row">
+      <div class="m-label">2025 现金股利 <span class="m-src">每股 ₩3,000</span></div>
+      <div class="m-val">₩2.1 兆</div>
+    </div>
+    <div class="m-row">
+      <div class="m-label">2026/1 库藏股注销 <span class="m-src">占总股本 2.1%</span></div>
+      <div class="m-val pos">₩12.2 兆</div>
+    </div>
+    <div class="m-row">
+      <div class="m-label">总股东回报政策 <span class="m-src">2025-2027 适用</span></div>
+      <div class="m-val">50% FCF</div>
+    </div>
+  </div>
+
+  <p><b>潜在估值催化剂：NYSE ADR 上市</b>已在 SEC 审查中。原计划用现有库存股 ADR，因稀释批评取消，现倾向新发股票上 ADR + 用现金回购注销母股——若落地是估值再评级催化剂。</p>
+</section>
+
+<!-- ===== WARS ===== -->
+<section id="wars">
+  <div class="sec-num">06 · The Three-Body War</div>
+  <h2 class="sec-h">三国杀 · <em>Samsung × Micron × 海力士</em></h2>
+
+  <p class="lede">
+    存储行业全球只有三家有先进制程能力的公司：三星、海力士、美光。
+    AI 时代的 HBM，这三家正在打一场<em>战略选择截然不同</em>的战争——
+    海力士 all-in HBM、三星广撒网、美光打地缘牌。
+  </p>
+
+  <h3 class="sub-h">Q1 2026 财务对比</h3>
+  <div class="table-wrap">
+    <table class="cmp">
+      <thead>
+        <tr><th>指标</th><th>SK Hynix</th><th>Samsung DS</th><th>Micron</th></tr>
+      </thead>
+      <tbody>
+        <tr class="highlight">
+          <td><span class="product-name">营收</span></td>
+          <td class="num-cell">$35.6B</td>
+          <td class="num-cell">$55.0B</td>
+          <td class="num-cell">$23.9B</td>
+        </tr>
+        <tr>
+          <td><span class="product-name">营业利润</span></td>
+          <td class="num-cell">$25.4B</td>
+          <td class="num-cell">$36.0B</td>
+          <td class="num-cell">$16.5B</td>
+        </tr>
+        <tr>
+          <td><span class="product-name">营业利润率</span></td>
+          <td class="num-cell" style="color:var(--accent-pos)">72%</td>
+          <td class="num-cell">~66%</td>
+          <td class="num-cell">69%</td>
+        </tr>
+        <tr>
+          <td><span class="product-name">YoY 营收</span></td>
+          <td class="num-cell">+198%</td>
+          <td>—</td>
+          <td class="num-cell">+196%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="sub-h">战略选择对比</h3>
+  <div class="table-wrap">
+    <table class="cmp">
+      <thead>
+        <tr><th></th><th>SK Hynix</th><th>Samsung</th><th>Micron</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>核心赌注</b></td>
+          <td>HBM all-in，绑 NVIDIA</td>
+          <td>DRAM/NAND/Foundry/LSI 多线</td>
+          <td>HBM 后发 + 美国本土制造</td>
+        </tr>
+        <tr>
+          <td><b>优势</b></td>
+          <td>NVIDIA HBM4 ~70% 配额；TSV/MR-MUF 工艺；1c 首发</td>
+          <td>资本最厚；Memory 总市占第一；Google TPU HBM3E 主供</td>
+          <td>业务纯粹无 Foundry 拖累；CHIPS Act 受益最大</td>
+        </tr>
+        <tr>
+          <td><b>劣势</b></td>
+          <td>业务集中周期风险；HBM 单一客户依赖</td>
+          <td>HBM3E NVIDIA 认证延迟 18 月；Foundry 亏损吃利润</td>
+          <td>产能最小；Boise 新厂 2027 才出片</td>
+        </tr>
+        <tr>
+          <td><b>政府补贴</b></td>
+          <td>韩国支持，规模有限</td>
+          <td>韩国 + 美国 Texas Foundry</td>
+          <td><b>CHIPS Act $6.1B + IRA 退税</b></td>
+        </tr>
+        <tr class="highlight">
+          <td><b>2026 标签</b></td>
+          <td>利润率王者 · 最大 AI 受益者</td>
+          <td>体量王者 · HBM 追赶中</td>
+          <td>增长率王者 · 后发但确定性高</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <div class="co-label">战略悖论</div>
+    <div class="co-body">
+      SK Hynix 把所有赌注押在 HBM 上获得了 2024-2026 的超额回报，
+      但意味着 AI 投资周期一旦放缓，<b>它的 leverage 也最大</b>。
+      Samsung 的多元化一直被诟病分散注意力，但反过来也提供了对冲——
+      但实际两者一起弱过。Micron 的优势是地缘政治，但产能扩张周期决定它至少要等到 2027-2028 才能在体量上和韩系两家平起平坐。
+    </div>
+  </div>
+
+  <h3 class="sub-h">中国玩家边际冲击 · 短期不大但中期会咬</h3>
+  <div class="twocol">
+    <div class="tc-card">
+      <h4>CXMT (长鑫存储)</h4>
+      <ul>
+        <li>DRAM 全球份额：~5%（被锁定在中国本土）</li>
+        <li>制程：16nm 量产，15nm 计划 2026 末</li>
+        <li>已展示 DDR5-8000、LPDDR5X-10667</li>
+        <li>HBM2 量产，HBM3 2026 规划 60K wpm 产能</li>
+        <li>技术差距：落后 SK/三星 2-3 年</li>
+      </ul>
+    </div>
+    <div class="tc-card">
+      <h4>YMTC (长江存储)</h4>
+      <ul>
+        <li>NAND 全球份额：~7-8%，目标 2026 末 15%</li>
+        <li>5th Gen TLC 已出货，bit density 接近 SK G9</li>
+        <li>2025-09 起借 TSV 切入 HBM 市场</li>
+        <li>第三厂 2027 投产，50% 产能改 DRAM</li>
+        <li>制裁压力下用国产工具自建产线</li>
+      </ul>
+    </div>
+  </div>
+
+  <p>对三巨头的<b>边际冲击</b>：短期主要在 commodity DRAM/NAND，对高端 HBM/AI 业务无近期威胁；中期可能拖累通用存储价格，<b>对 Samsung/Micron 影响大于 SK Hynix</b>（后者高端 HBM 业务占比最高）。</p>
+</section>
+
+<!-- ===== TIMELINE ===== -->
+<section id="timeline">
+  <div class="sec-num">07 · The Past 12 Months</div>
+  <h2 class="sec-h">大事年表 · <em>2025 春到 2026 夏</em></h2>
+
+  <div class="timeline">
+    <div class="tl-row pos">
+      <div class="tl-date">2025 · 09</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h5>HBM4 量产体系世界首家就位</h5>
+        <p>SK Hynix 完成 HBM4 12-Hi 36GB 量产准备，向 NVIDIA 提供大批量付费样品。同月 Samsung HBM3E 12-Hi 终于通过 NVIDIA 认证（推迟 18 个月）。</p>
+      </div>
+    </div>
+    <div class="tl-row pos">
+      <div class="tl-date">2025 · 10 · 01</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h5>OpenAI Stargate 巨额 LOI</h5>
+        <p>与 Samsung 合计每月最多 90 万片 DRAM 晶圆（约占全球 DRAM 产能 40%）；SK Telecom 拟在韩国共建 AI 数据中心。</p>
+      </div>
+    </div>
+    <div class="tl-row warn">
+      <div class="tl-date">2025 · 12 · 27</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h5>VEU 撤销正式生效</h5>
+        <p>美国 BIS 撤销 SK Hynix 中国厂的"无限期豁免"，转为年度许可证制。无锡 / 大连厂能跑但不能升级。</p>
+      </div>
+    </div>
+    <div class="tl-row pos">
+      <div class="tl-date">2026 · 01 · 13</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h5>清州 $130 亿先进封装厂</h5>
+        <p>宣布在韩国清州建设 130 亿美元先进封装专属 fab，2027 年提升 HBM 后段产能。</p>
+      </div>
+    </div>
+    <div class="tl-row pos">
+      <div class="tl-date">2026 · 01 · 27</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h5>微软 Maia 200 独家 HBM3E</h5>
+        <p>微软发布 Maia 200 自研 AI 芯片，SK Hynix 独家 HBM3E 12-Hi 36GB 供应（Maia 200 用 6 颗 = 216GB）。当日股价创新高。</p>
+      </div>
+    </div>
+    <div class="tl-row data">
+      <div class="tl-date">2026 · 01 · 28</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h5>FY25 业绩 + 12.2 兆库藏股注销</h5>
+        <p>营收 ₩97.15 兆 / 营业利润 ₩47.21 兆（YoY +101%）；公告 ₩1 兆额外分红 + ₩12.2 兆库藏股注销（占 2.1%）。</p>
+      </div>
+    </div>
+    <div class="tl-row pos">
+      <div class="tl-date">2026 · 02</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h5>HBM4 首产里程碑</h5>
+        <p>HBM4 12-Hi 36GB 实现首产里程碑，全球首家。</p>
+      </div>
+    </div>
+    <div class="tl-row data">
+      <div class="tl-date">2026 · 03</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h5>NVIDIA GTC · 会长亲临</h5>
+        <p>SK 集团会长崔泰源 + CEO 郭鲁正双双出席 GTC 2026，与黄仁勋会面深化合作。</p>
+      </div>
+    </div>
+    <div class="tl-row pos">
+      <div class="tl-date">2026 · 04 · 22</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h5>印第安纳厂破土 · 首座美国封装厂</h5>
+        <p>$38.7 亿先进封装厂在 West Lafayette 破土，2H28 投产，是公司在美的"地缘通行证"。</p>
+      </div>
+    </div>
+    <div class="tl-row warn">
+      <div class="tl-date">2026 · 04 · 23</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h5>1Q26 业绩 · 72% 营业利润率</h5>
+        <p>单季营收 ₩52.58 兆（首破 50 兆），营业利润 ₩37.61 兆（YoY +405%），<b>营业利润率 72% 创半导体史上新高</b>。净现金达 ₩35 兆。</p>
+      </div>
+    </div>
+    <div class="tl-row data">
+      <div class="tl-date">2026 · 05 · 08</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h5>大科技主动出资协助扩 fab</h5>
+        <p>Reuters 报道大型科技客户正以"非寻常方式"——包括为 SK Hynix 设备付款、投资新生产线——抢购产能。股价创历史新高 ₩1,686,000。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== RISKS ===== -->
+<section id="risks">
+  <div class="sec-num">08 · The Storm Map</div>
+  <h2 class="sec-h">风险地图 · <em>5 个不可忽视</em></h2>
+
+  <p class="lede">
+    在故事的顶点最需要看清裂缝。<em>不是问"会不会跌"</em>，而是问
+    "哪些信号同时出现意味着拐点确认"。下面 5 条是最值得长期挂在监控板上的。
+  </p>
+
+  <div class="callout warn">
+    <div class="co-label">Risk 01 · 地缘政治 + 出口管制</div>
+    <div class="co-body">
+      中国厂 VEU 已于 2025-12-27 撤销，转为年度许可证。
+      <b>无锡占公司 DRAM 产出 40%</b>，大连 NAND 因升级被堵已变现金牛 + 折旧资产双轨。
+      Solidigm IPO 因此搁置。年度许可证审查是<b>2026 年底大节点</b>。
+    </div>
+  </div>
+
+  <div class="callout warn">
+    <div class="co-label">Risk 02 · 周期顶 + 产能过剩窗口</div>
+    <div class="co-body">
+      高盛 2025 年中曾警告 <b>HBM 价格 2026 双位数下跌</b>，
+      TAM 从 $51B 下修到 $45B。
+      SK Hynix 自己已悄悄削减 HBM-specific CapEx，
+      内部模型担心 <b>2027-2028 供过于求</b>。
+      韩美新建大型 fab（Yongin、Indiana）2027 起开始投产 → 2028-2029 是潜在过剩窗口。
+    </div>
+  </div>
+
+  <div class="callout warn">
+    <div class="co-label">Risk 03 · 单一客户依赖（NVIDIA）</div>
+    <div class="co-body">
+      1H25：<b>NVIDIA 贡献 SK Hynix 约 27% 总营收</b>。
+      HBM 业务上，NVIDIA 约占海力士 HBM 营收 90%。
+      NVIDIA 路线图 / 谈判筹码 / 自研存储任何动作都会被放大。
+      <b>缓解信号</b>：ASIC 客户群（Google TPU、AWS Trainium、Microsoft Maia、Meta MTIA）正在抢 GPU 份额，海力士已成功打入这些 ASIC 客户。
+    </div>
+  </div>
+
+  <div class="callout warn">
+    <div class="co-label">Risk 04 · Samsung HBM4 全面追上</div>
+    <div class="co-body">
+      之前市场估计 SK 在 NVIDIA HBM4 上"独占半年"，
+      现在因 Samsung 提前过测验，<b>领先优势从 6 个月缩至 1 个季度</b>。
+      Samsung 2026 HBM bit 份额预计从 20% 升至 28%；
+      SK 从 59% 降至 50%。这是 2026 年估值最大下行变量。
+    </div>
+  </div>
+
+  <div class="callout warn">
+    <div class="co-label">Risk 05 · 韩国本土电力 / 工资刚性（被严重低估）</div>
+    <div class="co-body">
+      <b>Yongin 半导体集群仅获保 60% 用电</b>：所需 15GW 仅落实 9GW；输电线路在多地遭居民反对。
+      若到 2027 仍未解决，新产能爬坡会被电力卡住。
+      同时 SK Hynix 已落地"营业利润 10% 进员工奖金池"，人均奖金达 ₩70M
+      （约 $50K+），<b>现金流刚性化</b>——HBM 利润再高 → 工资刚性 → 周期下行时利润弹性更差。
+    </div>
+  </div>
+</section>
+
+<!-- ===== SCENARIOS ===== -->
+<section id="scenarios">
+  <div class="sec-num">09 · Looking Forward</div>
+  <h2 class="sec-h">12-24 个月 · <em>三种场景</em></h2>
+
+  <div class="scn">
+    <div class="scn-card bull">
+      <div class="scn-prob">Bull · 概率 ~35%</div>
+      <h4>HBM 紧缺延续到 2027 末</h4>
+      <div class="scn-body">
+        <ul>
+          <li>Hyperscaler 2026 CapEx &gt; $700B 不减</li>
+          <li>HBM bit 份额守住 ≥50%</li>
+          <li>HBM4 16-Hi 优势保持</li>
+          <li>通用 DRAM 因被 HBM 挤产能挺住价格</li>
+          <li>2026 全年 OPM &gt; 70%</li>
+          <li><b>股价上行空间</b>：MS / 大行 ₩3M+ 目标</li>
+        </ul>
+      </div>
+    </div>
+    <div class="scn-card neutral">
+      <div class="scn-prob">Neutral · 概率 ~45%</div>
+      <h4>1H26 是高点 · 2H26 趋稳</h4>
+      <div class="scn-body">
+        <ul>
+          <li>Samsung 在 HBM4 份额从 20% → 28%</li>
+          <li>SK 从 59% → 50%</li>
+          <li>通用 DRAM 价格回调 10-15%</li>
+          <li>NAND 维持高位</li>
+          <li>2026 营收创纪录但增速边际放缓</li>
+          <li>ASIC 客户多元化抵消单点风险</li>
+        </ul>
+      </div>
+    </div>
+    <div class="scn-card bear">
+      <div class="scn-prob">Bear · 概率 ~20%</div>
+      <h4>AI capex 见顶 + 三角夹击</h4>
+      <div class="scn-body">
+        <ul>
+          <li>Hyperscaler 自由现金流转负，订单延迟</li>
+          <li>Samsung HBM4 全面追上 → ASP + 份额双杀</li>
+          <li>CXMT/YMTC 抢中国低端市场</li>
+          <li>2027 HBM 双位数价格下跌兑现</li>
+          <li>印第安纳厂 2028 投产前 CapEx 重 + 利润降剪刀差</li>
+          <li>估值 multiple 双杀</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="sub-h">监控板 · 拐点确认信号</h3>
+  <p>三件事同时发生，即周期拐点确认：</p>
+  <ol class="insights" style="counter-reset:in-c;list-style:none;margin-top:14px">
+    <li style="counter-increment:in-c;display:grid;grid-template-columns:60px 1fr;gap:14px;padding:14px 0;border-top:2px solid var(--ink)">
+      <span style="font-family:var(--mono);color:var(--accent-warn);font-weight:700;padding-top:3px">A</span>
+      <div>
+        <div class="ins-title">NVIDIA Rubin 出货延期</div>
+        <div class="ins-body">任何一次推迟 = 立刻砍 SK Hynix HBM 销量预测。</div>
+      </div>
+    </li>
+    <li style="counter-increment:in-c;display:grid;grid-template-columns:60px 1fr;gap:14px;padding:14px 0;border-top:1px solid var(--rule-light)">
+      <span style="font-family:var(--mono);color:var(--accent-warn);font-weight:700;padding-top:3px">B</span>
+      <div>
+        <div class="ins-title">Samsung HBM4 同价等量进入 NVIDIA</div>
+        <div class="ins-body">SK 溢价权立刻被削。Samsung 已通过 11Gbps 测试，定型只是时间问题。</div>
+      </div>
+    </li>
+    <li style="counter-increment:in-c;display:grid;grid-template-columns:60px 1fr;gap:14px;padding:14px 0;border-top:1px solid var(--rule-light);border-bottom:2px solid var(--ink)">
+      <span style="font-family:var(--mono);color:var(--accent-warn);font-weight:700;padding-top:3px">C</span>
+      <div>
+        <div class="ins-title">高盛 2026 HBM 价格双位数下跌兑现</div>
+        <div class="ins-body">2Q-3Q 的 DRAM 合约价 QoQ 增速首次低于预期 = 周期顶部信号。</div>
+      </div>
+    </li>
+  </ol>
+</section>
+
+<!-- ===== INSIGHTS ===== -->
+<section id="insights" class="insights">
+  <div class="sec-num">10 · Decision Brief</div>
+  <h2 class="sec-h">7 条建议 · <em>看信号，不看故事</em></h2>
+
+  <p class="lede">
+    任何理性的判断不是在"会不会涨"和"会不会跌"之间二选一，
+    而是想清楚<em>什么样的信号意味着叙事改变</em>。
+    下面 7 条 actionable insights 是从数据里抽出来的。
+  </p>
+
+  <ol>
+    <li>
+      <div>
+        <div class="ins-title">把 SK Hynix 当作 AI 算力 CapEx 的"晴雨表"</div>
+        <div class="ins-body">
+          <b>现象</b>：海力士 1Q26 单季营收 $360 亿、营业利润率 72%，
+          直接跟 hyperscaler 2026 CapEx 预期 $725B 同步。
+          <b>解读</b>：买它就是买"AI CapEx 周期还有几年"。
+          <b>行动</b>：把 Microsoft / Google / Meta / Amazon 季度 CapEx 指引设成监控源——
+          任一家下修，海力士需求侧前瞻就转红。
+        </div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="ins-title">真正的拐点信号是 NVIDIA Rubin 出货延期</div>
+        <div class="ins-body">
+          <b>现象</b>：海力士 2026 全年 HBM 已被预订空，70% NVIDIA HBM4 配额。
+          <b>解读</b>：订单的"虚假厚度"风险。
+          <b>行动</b>：盯 NVIDIA 季度财报里 Rubin 出货时间表——
+          任何一次表述从"On track"变成"slight delay"，
+          就是 SK Hynix 估值开始 derate 的第一个信号。
+        </div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="ins-title">Forward P/E 5.3x 看似便宜，但赌的是 2027 利润不腰斩</div>
+        <div class="ins-body">
+          <b>现象</b>：当前估值隐含 2026 是盈利最佳年份，但 2027-2028 EPS 不出现 50%+ 下行。
+          <b>解读</b>：超级周期顶估值都看着便宜——周期股最大的陷阱。
+          <b>行动</b>：如果你认为 AI CapEx 周期是 5 年，2027 见顶；
+          如果你认为是 15 年，海力士 2030 还有翻倍空间。
+          <b>先回答这个问题</b>，再决定仓位。
+        </div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="ins-title">ADR 上市 + 持续回购是最大的近期催化剂</div>
+        <div class="ins-body">
+          <b>现象</b>：2026/1 已注销 ₩12.2 兆库藏股（占 2.1%）；ADR 在 SEC 审查中。
+          <b>解读</b>：从"韩国本地股"变"全球 AI 配置标的"的关键一步。
+          <b>行动</b>：ADR 落地是估值再评级机会；
+          关注 CEO 公开承诺的"年内净现金达 ₩100 兆"是否兑现——若兑现可能再加大回购规模。
+        </div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="ins-title">关注 Samsung HBM4 NVIDIA 11Gbps 测试结果定型</div>
+        <div class="ins-body">
+          <b>现象</b>：Samsung 已通过 11Gbps，但配额尚未定型。
+          <b>解读</b>：Samsung 若以同价等量进入 → SK 溢价权立刻被削。
+          <b>行动</b>：盯韩国本地财经媒体（KED Global / Korea Economic Daily / Pulse），
+          NVIDIA 与 Samsung 任何"配额上调"消息是核心负面拐点信号。
+        </div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="ins-title">留意 Yongin 工厂用电缺口（被严重低估的中期风险）</div>
+        <div class="ins-body">
+          <b>现象</b>：Yongin 集群仅锁定 60% 用电（9GW / 15GW）；
+          输电线路因居民反对建设受阻。
+          <b>解读</b>：2027 起爬坡的新产能可能被电力卡住。
+          <b>行动</b>：盯 Seoul Economic Daily / Digitimes 关于韩国电网建设进度——
+          这是 2027-2028 产能能不能如期到位的关键。
+        </div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="ins-title">CXMT 短期不威胁，但 2027 后会咬通用 DRAM</div>
+        <div class="ins-body">
+          <b>现象</b>：CXMT 已展示 DDR5-8000、LPDDR5X-10667，
+          LPDDR5 在中国手机市场占 30%。HBM2 量产，HBM3 2026 规划 60K wpm。
+          <b>解读</b>：高端 HBM 短期无威胁；中长期可能拖累通用 DRAM 价格。
+          <b>行动</b>：不影响 SK Hynix 高端业务，
+          但 SK 的常规 DRAM 业务（仍占公司大头）会受边际压力。
+        </div>
+      </div>
+    </li>
+  </ol>
+
+  <h3 class="sub-h">不论怎么参与，要避开的 3 个坑</h3>
+  <div class="twocol" style="grid-template-columns:1fr 1fr 1fr">
+    <div class="tc-card warn">
+      <h4>坑 1 · 把 5x P/E 当便宜</h4>
+      <ul>
+        <li>周期顶估值都便宜</li>
+        <li>2027 利润若腰斩，P/E 立刻翻倍</li>
+        <li>看 ROE 60% 和 forward 5x 之前先问"E 多稳"</li>
+      </ul>
+    </div>
+    <div class="tc-card warn">
+      <h4>坑 2 · 忽视单一客户依赖</h4>
+      <ul>
+        <li>NVIDIA 占 HBM 营收 90%</li>
+        <li>NVIDIA 任何变动放大到 SK 估值</li>
+        <li>Microsoft Maia / Google TPU 是缓解信号但短期占比小</li>
+      </ul>
+    </div>
+    <div class="tc-card warn">
+      <h4>坑 3 · 低估 Samsung 资本厚度</h4>
+      <ul>
+        <li>三星 Memory 资本投入仍最大</li>
+        <li>HBM3E 用 18 个月就追上来</li>
+        <li>HBM4 已通过 NVIDIA 测试</li>
+        <li>"竞争锁死"叙事危险</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="verdict">
+    <div class="v-title">Final Verdict</div>
+    <h3>在 AI 算力的金矿狂潮里，<em>海力士不挖金子</em>——它卖镐头。<br>但镐头的价格，最终取决于矿主们还想挖多久。</h3>
+    <p>
+      2026 年仍是结构性顺风为主的年份。Forward P/E 5.3x 看似极便宜，
+      但只有当你确信 AI CapEx 周期是 15 年而不是 5 年时，这个估值才真正便宜。
+      最理性的姿态是：把它当作 AI 算力周期的"晴雨表"，
+      盯着三个拐点信号（Rubin 延期、Samsung 同价拿单、HBM 价格双位数跌）——
+      这三件事同时发生之前都还能拿；之后立刻减仓。
+      <b>故事很好，但故事不是仓位。</b>
+    </p>
+  </div>
+</section>
+
+</main>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="ft-grid">
+    <div>
+      <h5>Primary Sources · 一手</h5>
+      <ul>
+        <li><a href="https://news.skhynix.com/q1-2026-business-results/">SK Hynix Q1 2026</a></li>
+        <li><a href="https://news.skhynix.com/sk-hynix-announces-fy25-financial-results/">SK Hynix FY25</a></li>
+        <li><a href="https://news.skhynix.com/sk-hynix-completes-worlds-first-hbm4-development-and-readies-mass-production/">HBM4 World-First</a></li>
+        <li><a href="https://news.skhynix.com/sk-hynix-showcases-next-generation-ai-memory-innovations-at-ces-2026/">CES 2026</a></li>
+        <li><a href="https://news.skhynix.com/skhynix-at-gtc2026/">GTC 2026</a></li>
+        <li><a href="https://news.skhynix.com/2026-market-outlook-focus-on-the-hbm-led-memory-supercycle/">2026 Outlook</a></li>
+        <li><a href="https://stockanalysis.com/quote/krx/000660/">Stock Analysis 000660</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/SK_Hynix">Wikipedia · SK Hynix</a></li>
+        <li><a href="https://news.skhynix.com/sk-hynix-signs-investment-agreement-of-advanced-chip-packaging-with-indiana/">Indiana Packaging</a></li>
+        <li><a href="https://openai.com/index/samsung-and-sk-join-stargate/">OpenAI Stargate</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Industry &amp; Press · 行业 / 财经</h5>
+      <ul>
+        <li><a href="https://counterpointresearch.com/en/insights/global-dram-and-hbm-market-share/">Counterpoint Q4 2025</a></li>
+        <li><a href="https://www.trendforce.com/news/2026/01/28/news-sk-hynix-reportedly-to-supply-about-two-thirds-of-nvidia-hbm4-samsung-targets-early-delivery/">TrendForce HBM4</a></li>
+        <li><a href="https://www.trendforce.com/news/2026/01/05/news-sk-hynix-2026-outlook-hbm3e-remains-mainstream-hbm4-dual-strategy-amid-triple-market-headwinds/">TrendForce 2026 Outlook</a></li>
+        <li><a href="https://www.trendforce.com/presscenter/news/20260226-12937.html">TrendForce DRAM Q4'25</a></li>
+        <li><a href="https://www.bloomberg.com/news/articles/2025-10-01/samsung-sk-hynix-ink-deal-to-supply-gear-to-openai-s-stargate">Bloomberg Stargate</a></li>
+        <li><a href="https://www.cnbc.com/2026/04/23/sk-hynix-earnings-ai-memory-shortage-hbm-demand.html">CNBC 1Q26</a></li>
+        <li><a href="https://www.koreaherald.com/article/10502835">Korea Herald DRAM Lead</a></li>
+        <li><a href="https://www.kedglobal.com/korean-chipmakers/newsView/ked202601280002">KED HBM4 Maia 200</a></li>
+        <li><a href="https://www.investing.com/news/stock-market-news/sk-hynix-undervalued-as-hbm-pricing-tightens-into-2026-ms-bumps-target-4427763">MS Target Raise</a></li>
+        <li><a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/samsung-and-sk-hynix-warn-ai-driven-memory-shortages-could-last-until-2027-and-beyond-as-hbm-demand-explodes-customers-already-reserving-supply-years-ahead-while-the-wider-dram-market-begins-to-tighten">Tom's Hardware Shortage</a></li>
+        <li><a href="https://en.sedaily.com/finance/2026/04/23/cash-rich-sk-hynix-poised-for-further-share-buybacks">Seoul Economic Daily</a></li>
+        <li><a href="https://blocksandfiles.com/2025/09/01/us-samsung-sk-hynix-china/">Block &amp; Files VEU</a></li>
+        <li><a href="https://www.csis.org/analysis/seismic-shift-new-us-semiconductor-export-controls-and-implications-us-firms-allies-and">CSIS Export Controls</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-meta">
+    Generated 2026-05-10 by Ray Deep Research Engine · 4 sub-agents (基本面 / 财务 / 竞争 / 风险) · 单文件 HTML · 无外部依赖<br>
+    免责声明：本报告仅供研究参考，不构成投资建议。所有数字尽量标注来源；其中市场份额因统计口径不同存在 5-10pp 差异，已在文中说明。
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      document.querySelectorAll('nav.toc a').forEach(link => {
+        link.style.color = '';
+        link.style.fontWeight = '';
+      });
+      const activeLink = document.querySelector(`nav.toc a[href="#${id}"]`);
+      if (activeLink) {
+        activeLink.style.color = 'var(--accent-warn)';
+        activeLink.style.fontWeight = '600';
+      }
+    }
+  });
+}, { rootMargin: '-30% 0px -60% 0px' });
+document.querySelectorAll('section[id]').forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>

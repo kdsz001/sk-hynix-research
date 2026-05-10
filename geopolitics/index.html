@@ -1,0 +1,1012 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SK Hynix · 地缘专题 — 中国厂的下半场</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f3ec;
+  --bg-paper:#fbf9f4;
+  --bg-card:#ffffff;
+  --bg-dark:#14110d;
+  --bg-dark2:#1f1b16;
+  --ink:#14110d;
+  --ink-2:#2c2620;
+  --muted:#6e6358;
+  --light:#a39787;
+  --rule:#14110d;
+  --rule-light:#d8d1c2;
+  --accent-warn:#a73121;
+  --accent-data:#1c4d6b;
+  --accent-pos:#2c5e3f;
+  --accent-yellow:#c89a2c;
+  --serif:"Source Serif 4","Source Serif Pro","Charter","Iowan Old Style",Georgia,serif;
+  --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  --mono:"JetBrains Mono","SF Mono","Menlo","Consolas",monospace;
+  --max-w:820px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+
+.topbar{border-bottom:1px solid var(--rule-light);background:var(--bg-paper);padding:10px 32px;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.topbar .tb-left{color:var(--ink)}
+.topbar .tb-left b{color:var(--accent-warn)}
+
+.shell{display:grid;grid-template-columns:200px 1fr;gap:60px;max-width:1280px;margin:0 auto;padding:60px 40px}
+nav.toc{position:sticky;top:40px;align-self:start;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.08em;line-height:2}
+nav.toc .toc-title{color:var(--accent-warn);font-weight:600;margin-bottom:14px;border-bottom:1px solid var(--ink);padding-bottom:6px}
+nav.toc .toc-back{color:var(--muted);text-decoration:none;display:block;padding-bottom:10px;margin-bottom:6px;border-bottom:1px solid var(--rule-light);font-size:10px}
+nav.toc .toc-back:hover{color:var(--accent-warn)}
+nav.toc a{color:var(--muted);text-decoration:none;display:block;padding:3px 0;transition:color .12s}
+nav.toc a:hover{color:var(--ink)}
+.main{max-width:var(--max-w);min-width:0}
+
+.hero{display:grid;grid-template-columns:1fr 220px;gap:40px;align-items:start;padding-bottom:48px;border-bottom:2px solid var(--ink)}
+.eyebrow{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--accent-warn);font-weight:600;margin-bottom:24px;display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";display:inline-block;width:36px;height:1px;background:var(--accent-warn)}
+h1.hero-title{font-family:var(--serif);font-weight:600;font-size:74px;line-height:1.0;letter-spacing:-0.03em;margin-bottom:22px;color:var(--ink)}
+h1.hero-title em{font-style:italic;color:var(--accent-warn);font-weight:600}
+.hero-sub{font-family:var(--serif);font-style:italic;font-size:22px;line-height:1.45;color:var(--muted);max-width:640px}
+.hero-meta dl{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.06em;line-height:1.7}
+.hero-meta dt{color:var(--muted);margin-top:14px}
+.hero-meta dt:first-child{margin-top:0}
+.hero-meta dd{color:var(--ink);font-weight:600}
+
+.qf{background:var(--bg-dark);color:#f6f3ec;padding:48px 40px;margin-top:0}
+.qf-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent-yellow);margin-bottom:14px}
+.qf h2{font-family:var(--serif);font-weight:400;font-style:italic;font-size:36px;line-height:1.1;margin-bottom:36px;color:#fbf9f4}
+.qf-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:rgba(255,255,255,0.10)}
+.qf-cell{background:var(--bg-dark);padding:22px 18px;min-height:130px;display:flex;flex-direction:column;justify-content:space-between;word-break:keep-all}
+.qf-cell .qf-label{font-family:var(--mono);font-size:9.5px;text-transform:uppercase;letter-spacing:0.10em;color:#a39787;margin-bottom:8px}
+.qf-cell .qf-num{font-family:var(--serif);font-size:28px;font-weight:600;line-height:1.05;color:#fbf9f4;letter-spacing:-0.02em;word-break:keep-all}
+.qf-cell .qf-num .qf-unit{font-size:13px;font-weight:400;color:#a39787;margin-left:4px}
+.qf-cell .qf-sub{font-size:11px;color:#a39787;margin-top:6px;line-height:1.4;word-break:keep-all}
+.qf-cell.verdict{background:var(--accent-warn);color:#fff;word-break:keep-all}
+.qf-cell.verdict .qf-label{color:rgba(255,255,255,0.75)}
+.qf-cell.verdict .qf-num{color:#fff;font-size:17px;line-height:1.3}
+.qf-cell.verdict .qf-sub{color:rgba(255,255,255,0.85)}
+
+section{padding-top:80px;scroll-margin-top:30px}
+.sec-num{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--accent-warn);font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:14px}
+.sec-num::before{content:"";display:inline-block;width:36px;height:1px;background:var(--accent-warn)}
+h2.sec-h{font-family:var(--serif);font-weight:600;font-size:42px;line-height:1.1;letter-spacing:-0.02em;margin-bottom:28px}
+h2.sec-h em{font-style:italic;color:var(--accent-warn)}
+h3.sub-h{font-family:var(--serif);font-weight:600;font-size:24px;line-height:1.25;margin:36px 0 14px;letter-spacing:-0.01em}
+p{margin-bottom:18px;color:var(--ink-2)}
+.lede{font-family:var(--serif);font-size:20px;line-height:1.55;color:var(--ink);margin-bottom:24px}
+.lede em{font-style:italic;color:var(--accent-warn)}
+
+.tldr{background:var(--bg-dark);color:#f6f3ec;padding:40px;margin:14px 0 24px;position:relative}
+.tldr .ribbon{position:absolute;top:-12px;left:24px;background:var(--accent-warn);color:#fff;padding:6px 14px;font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;font-weight:700}
+.tldr h3{font-family:var(--serif);font-weight:400;font-style:italic;font-size:24px;line-height:1.3;color:#fbf9f4;margin-bottom:20px}
+.tldr ol{list-style:none;counter-reset:tldr-c}
+.tldr ol li{counter-increment:tldr-c;display:flex;gap:14px;align-items:flex-start;margin-bottom:18px;color:rgba(251,249,244,0.85);font-size:15px;line-height:1.65}
+.tldr ol li::before{content:counter(tldr-c,decimal-leading-zero);font-family:var(--mono);font-size:11px;color:var(--accent-yellow);font-weight:600;letter-spacing:0.1em;padding-top:5px;flex:0 0 32px;line-height:1}
+.tldr ol li b{color:#fbf9f4;font-weight:600}
+
+.metric{border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);margin:24px 0}
+.metric .m-row{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:baseline;padding:14px 0;border-top:1px solid var(--rule-light)}
+.metric .m-row:first-child{border-top:none}
+.m-label{font-family:var(--sans);font-size:14px;color:var(--ink-2)}
+.m-label .m-src{font-size:11px;color:var(--light);margin-left:8px;font-family:var(--mono)}
+.m-val{font-family:var(--serif);font-size:22px;font-weight:600;color:var(--ink);letter-spacing:-0.01em}
+.m-val.warn{color:var(--accent-warn)}
+.m-val.pos{color:var(--accent-pos)}
+
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:24px 0}
+.threecol{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin:24px 0}
+.tc-card{background:var(--bg-card);padding:22px;border:1px solid var(--rule-light)}
+.tc-card h4{font-family:var(--serif);font-weight:600;font-size:18px;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.tc-card h4::before{content:"";display:inline-block;width:14px;height:14px;border-radius:50%}
+.tc-card.pos h4::before{background:var(--accent-pos);content:"\2713";color:#fff;font-size:10px;text-align:center;line-height:14px}
+.tc-card.warn h4::before{background:var(--accent-warn);content:"!";color:#fff;font-size:10px;font-weight:700;text-align:center;line-height:14px}
+.tc-card.data h4::before{background:var(--accent-data);content:"i";color:#fff;font-size:10px;font-style:italic;text-align:center;line-height:14px}
+.tc-card ul{list-style:none}
+.tc-card li{font-size:14px;color:var(--ink-2);padding:6px 0;border-top:1px solid var(--rule-light);line-height:1.5}
+.tc-card li:first-child{border-top:none}
+.tc-card li b{color:var(--ink);font-weight:600}
+
+.table-wrap{overflow-x:auto;margin:24px 0}
+table.cmp{width:100%;min-width:600px;border-collapse:collapse;font-size:14px}
+table.cmp thead th{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:0.10em;color:var(--ink);font-weight:600;text-align:left;padding:12px 14px 10px;border-bottom:2px solid var(--ink)}
+table.cmp tbody td{padding:14px 14px;border-bottom:1px solid var(--rule-light);vertical-align:top;line-height:1.5}
+table.cmp tbody tr:last-child td{border-bottom:1px solid var(--ink)}
+table.cmp .product-name{font-family:var(--serif);font-weight:700;font-size:15px}
+table.cmp .tag{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:0.08em;text-transform:uppercase;background:var(--accent-warn);color:#fff;padding:2px 6px;margin-left:8px;border-radius:2px;vertical-align:middle}
+table.cmp tr.highlight{background:rgba(167,49,33,0.04)}
+table.cmp tr.highlight .product-name{color:var(--accent-warn)}
+.num-cell{font-family:var(--serif);font-weight:600;font-size:16px;letter-spacing:-0.01em}
+
+.callout{border-left:3px solid var(--ink);background:var(--bg-paper);padding:16px 20px;margin:18px 0}
+.callout.warn{border-color:var(--accent-warn)}
+.callout.data{border-color:var(--accent-data)}
+.callout.pos{border-color:var(--accent-pos)}
+.callout .co-label{font-family:var(--mono);font-size:10px;letter-spacing:0.10em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;font-weight:600}
+.callout.warn .co-label{color:var(--accent-warn)}
+.callout.data .co-label{color:var(--accent-data)}
+.callout.pos .co-label{color:var(--accent-pos)}
+.callout .co-quote{font-family:var(--serif);font-style:italic;font-size:17px;line-height:1.5;color:var(--ink)}
+.callout .co-body{font-size:14px;color:var(--ink-2);line-height:1.6}
+
+.timeline{margin:24px 0;position:relative}
+.tl-row{display:grid;grid-template-columns:120px 24px 1fr;gap:16px;align-items:start;padding:12px 0;position:relative}
+.tl-date{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);text-align:right;padding-top:6px;font-weight:600}
+.tl-dot{position:relative;height:24px;display:flex;align-items:center;justify-content:center}
+.tl-dot::before{content:"";position:absolute;top:-12px;bottom:-12px;width:1px;background:var(--rule-light);left:50%;transform:translateX(-50%)}
+.tl-dot::after{content:"";width:11px;height:11px;border-radius:50%;border:2px solid var(--ink);background:#fff;position:relative;z-index:1}
+.tl-row:first-child .tl-dot::before{top:6px}
+.tl-row:last-child .tl-dot::before{bottom:6px}
+.tl-row.warn .tl-dot::after{border-color:var(--accent-warn);background:var(--accent-warn)}
+.tl-row.data .tl-dot::after{border-color:var(--accent-data);background:var(--accent-data)}
+.tl-row.pos .tl-dot::after{border-color:var(--accent-pos);background:var(--accent-pos)}
+.tl-content h5{font-family:var(--serif);font-weight:600;font-size:16px;margin-bottom:4px;line-height:1.3}
+.tl-content p{font-size:13.5px;color:var(--muted);margin-bottom:0;line-height:1.5}
+
+.scn{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:24px 0}
+.scn-card{background:var(--bg-card);border:1px solid var(--rule-light);padding:22px}
+.scn-card .scn-prob{font-family:var(--mono);font-size:11px;letter-spacing:0.10em;text-transform:uppercase;font-weight:600;margin-bottom:10px}
+.scn-card.bull{border-top:4px solid var(--accent-pos)}
+.scn-card.bear{border-top:4px solid var(--accent-warn)}
+.scn-card.neutral{border-top:4px solid var(--accent-yellow)}
+.scn-card.bull .scn-prob{color:var(--accent-pos)}
+.scn-card.bear .scn-prob{color:var(--accent-warn)}
+.scn-card.neutral .scn-prob{color:var(--accent-yellow)}
+.scn-card h4{font-family:var(--serif);font-weight:600;font-size:19px;margin-bottom:8px;letter-spacing:-0.01em}
+.scn-card .scn-body{font-size:13px;line-height:1.55;color:var(--ink-2)}
+.scn-card .scn-body ul{list-style:none;margin-top:8px}
+.scn-card .scn-body ul li{padding:5px 0;border-top:1px solid var(--rule-light)}
+
+.signals ol{list-style:none;counter-reset:sg-c;margin:24px 0}
+.signals ol li{counter-increment:sg-c;display:grid;grid-template-columns:60px 1fr;gap:14px;padding:18px 0;border-top:1px solid var(--rule-light)}
+.signals ol li:first-child{border-top:2px solid var(--ink)}
+.signals ol li:last-child{border-bottom:2px solid var(--ink)}
+.signals ol li::before{content:counter(sg-c,decimal-leading-zero);font-family:var(--mono);font-size:13px;color:var(--accent-warn);font-weight:700;letter-spacing:0.06em;padding-top:3px}
+.signals .sg-title{font-family:var(--serif);font-weight:600;font-size:18px;line-height:1.35;margin-bottom:6px}
+.signals .sg-body{font-size:14px;color:var(--ink-2);line-height:1.6}
+.signals .sg-meta{font-family:var(--mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+
+.gantt{border:1px solid var(--rule);background:var(--bg-card);padding:0;margin:24px 0;overflow-x:auto}
+.gantt table{width:100%;min-width:680px;border-collapse:collapse;font-size:13px}
+.gantt th{font-family:var(--mono);font-size:10px;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);font-weight:600;padding:10px 12px;background:var(--bg-paper);border-bottom:1px solid var(--rule);text-align:center}
+.gantt th:first-child{text-align:left}
+.gantt td{padding:0;border-bottom:1px solid var(--rule-light);position:relative;height:46px;vertical-align:middle}
+.gantt tr:last-child td{border-bottom:none}
+.gantt td.label{font-family:var(--serif);font-weight:600;padding:0 14px;width:200px;border-right:1px solid var(--rule-light)}
+.gantt td.label .gt-sub{font-family:var(--sans);font-size:11px;color:var(--muted);font-weight:400;display:block;margin-top:2px}
+.gantt .bar{position:absolute;top:50%;transform:translateY(-50%);height:18px;background:var(--ink);border-radius:2px;font-family:var(--mono);font-size:9.5px;letter-spacing:0.04em;text-transform:uppercase;color:#fbf9f4;display:flex;align-items:center;padding:0 8px;white-space:nowrap}
+.gantt .bar.pos{background:var(--accent-pos)}
+.gantt .bar.data{background:var(--accent-data)}
+.gantt .bar.warn{background:var(--accent-warn)}
+.gantt .bar.yellow{background:var(--accent-yellow);color:var(--bg-dark)}
+
+.verdict{background:var(--bg-dark);color:#f6f3ec;padding:48px 40px;margin:30px 0}
+.verdict .v-title{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent-yellow);margin-bottom:14px;font-weight:600}
+.verdict h3{font-family:var(--serif);font-weight:400;font-style:italic;font-size:30px;line-height:1.25;color:#fbf9f4;margin-bottom:18px;letter-spacing:-0.01em}
+.verdict h3 em{font-style:italic;font-weight:600;color:var(--accent-yellow)}
+.verdict p{color:rgba(251,249,244,0.85);font-size:15px;line-height:1.65;margin-bottom:0}
+
+.divq{text-align:center;font-family:var(--serif);font-style:italic;font-size:22px;line-height:1.45;color:var(--muted);margin:60px 0;position:relative;padding:0 20px}
+.divq::before,.divq::after{content:"";display:block;width:40px;height:1px;background:var(--ink);margin:14px auto}
+
+footer{background:var(--bg-dark);color:#a39787;padding:56px 40px 36px;margin-top:80px}
+footer .ft-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:40px}
+footer h5{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#fbf9f4;margin-bottom:14px;font-weight:600}
+footer ul{list-style:none;font-size:12px;line-height:1.8;font-family:var(--mono);columns:2;column-gap:24px}
+footer ul li{break-inside:avoid}
+footer a{color:#a39787;text-decoration:none;border-bottom:1px dotted rgba(163,151,135,0.4)}
+footer a:hover{color:#fbf9f4}
+footer .ft-meta{margin-top:36px;padding-top:24px;border-top:1px solid #2c2620;font-size:11px;color:#6e6358;font-family:var(--mono);letter-spacing:0.06em;line-height:1.6}
+
+/* paged-media 跨页保护（屏幕上不可见，PDF/print 时生效）*/
+.qf-cell,.tc-card,.callout,.scn-card,.tl-row,.metric .m-row,.divq,
+.tldr,.verdict,.hero,.lede,table.cmp tr,.signals ol li,.gantt tr{
+  break-inside:avoid;page-break-inside:avoid;
+}
+h1.hero-title,h2.sec-h,h3.sub-h,.sec-num,.qf-eyebrow,.v-title{
+  break-after:avoid;page-break-after:avoid;
+}
+p{orphans:3;widows:3}
+
+@media (max-width:1100px){
+  .shell{grid-template-columns:1fr;gap:0;padding:40px 24px}
+  nav.toc{position:relative;top:0;display:flex;flex-wrap:wrap;gap:6px 18px;padding-bottom:24px;margin-bottom:24px;border-bottom:1px solid var(--rule-light);line-height:1.4}
+  nav.toc .toc-title{width:100%;border-bottom:none;padding-bottom:0;margin-bottom:6px}
+  nav.toc .toc-back{width:100%;border-bottom:none}
+  .qf-grid{grid-template-columns:repeat(3,1fr)}
+  .twocol,.threecol,.scn{grid-template-columns:1fr}
+  .hero{grid-template-columns:1fr}
+}
+@media (max-width:720px){
+  h1.hero-title{font-size:46px}
+  h2.sec-h{font-size:30px}
+  .qf-grid{grid-template-columns:repeat(2,1fr)}
+  .qf,.verdict,.tldr,footer{padding-left:24px;padding-right:24px}
+  .signals ol li{grid-template-columns:40px 1fr}
+  .tl-row{grid-template-columns:80px 20px 1fr;gap:10px}
+  .tl-date{font-size:10px}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="tb-left">SK Hynix · 地缘专题 — 中国厂的下半场 &nbsp;·&nbsp; <b>v1.0</b></div>
+  <div>2026 · 05 · 10 &nbsp;|&nbsp; 主报告专题深挖</div>
+</div>
+
+<div class="shell">
+
+<nav class="toc" aria-label="Table of contents">
+  <div class="toc-title">Contents</div>
+  <a class="toc-back" href="https://kdsz001.github.io/sk-hynix-research/">← 返回主报告</a>
+  <a href="#hero">00 · Hero</a>
+  <a href="#qf">01 · Facts</a>
+  <a href="#tldr">02 · TL;DR</a>
+  <a href="#veu">03 · VEU 制度</a>
+  <a href="#timeline">04 · 政策时间线</a>
+  <a href="#fabs">05 · 三厂状态</a>
+  <a href="#pivot">06 · 三 hub 替代</a>
+  <a href="#triangle">07 · 韩美中博弈</a>
+  <a href="#trump">08 · Trump 2.0</a>
+  <a href="#fates">09 · 三种命运</a>
+  <a href="#signals">10 · 监控信号</a>
+</nav>
+
+<main class="main">
+
+<section id="hero">
+  <div class="hero">
+    <div>
+      <div class="eyebrow">Geo Deep · 主报告专题深挖</div>
+      <h1 class="hero-title">中国厂的<em>下半场</em></h1>
+      <p class="hero-sub">
+        2025 年 12 月 31 日，SK Hynix 在中国 30-40% 的 DRAM 产能、20% 的 NAND 产能正式失去"无限期豁免"。
+        年度许可证制度让它们活了下来——但只能维护，不能升级。
+        这不是急病，是慢性病。慢性病的死法，是十年内一直能呼吸，但越呼吸越浅。
+      </p>
+    </div>
+    <aside class="hero-meta">
+      <dl>
+        <dt>专题主题</dt><dd>VEU 撤销 + 中国厂未来</dd>
+        <dt>调研深度</dt><dd>2 子 Agent 并行</dd>
+        <dt>覆盖来源</dt><dd>BIS 官方 / Federal Register / CSIS / TrendForce / KED / SCMP</dd>
+        <dt>报告字数</dt><dd>约 8,500 字</dd>
+        <dt>主报告</dt><dd>kdsz001.github.io/<br>sk-hynix-research</dd>
+      </dl>
+    </aside>
+  </div>
+</section>
+
+<section id="qf" class="qf">
+  <div class="qf-eyebrow">The Geopolitical Squeeze · at a Glance</div>
+  <h2>速览板 · 12 个最值得记住的数字</h2>
+  <div class="qf-grid">
+    <div class="qf-cell">
+      <div class="qf-label">VEU 撤销日</div>
+      <div><span class="qf-num">2025<br>12·31</span></div>
+      <div class="qf-sub">联邦公报口径<br>非媒体常说的 12/27</div>
+    </div>
+    <div class="qf-cell">
+      <div class="qf-label">当前许可证</div>
+      <div><span class="qf-num">2026<br>年度</span></div>
+      <div class="qf-sub">2025/12/30 授予<br>仅运营，不升级</div>
+    </div>
+    <div class="qf-cell">
+      <div class="qf-label">下次年审</div>
+      <div><span class="qf-num">2026<br>Q4</span></div>
+      <div class="qf-sub">为 2027 年再申请<br>每年都是新博弈</div>
+    </div>
+    <div class="qf-cell">
+      <div class="qf-label">无锡 DRAM 产能</div>
+      <div><span class="qf-num">~190K<span class="qf-unit">/月</span></span></div>
+      <div class="qf-sub">占公司 DRAM 30-40%<br>占全球 12-15%</div>
+    </div>
+    <div class="qf-cell">
+      <div class="qf-label">大连 NAND 工艺</div>
+      <div><span class="qf-num">192<span class="qf-unit">层</span></span></div>
+      <div class="qf-sub">永久天花板<br>韩国本土已 321 层</div>
+    </div>
+    <div class="qf-cell">
+      <div class="qf-label">中国累计投资</div>
+      <div><span class="qf-num">~$220<span class="qf-unit">亿</span></span></div>
+      <div class="qf-sub">三厂合计<br>Omdia 引用数据</div>
+    </div>
+    <div class="qf-cell">
+      <div class="qf-label">断崖减值估算</div>
+      <div><span class="qf-num">$80-120<span class="qf-unit">亿</span></span></div>
+      <div class="qf-sub">最坏情景<br>无锡占大头</div>
+    </div>
+    <div class="qf-cell">
+      <div class="qf-label">Indiana 替代</div>
+      <div><span class="qf-num">2H<br>2028</span></div>
+      <div class="qf-sub">$39 亿 + CHIPS $4.6 亿<br>美国首座 HBM 封装</div>
+    </div>
+    <div class="qf-cell">
+      <div class="qf-label">Yongin 用电</div>
+      <div><span class="qf-num">3<span class="qf-unit">/6 GW</span></span></div>
+      <div class="qf-sub">SK Hynix 仅锁 50%<br>2027 起爬产受限</div>
+    </div>
+    <div class="qf-cell">
+      <div class="qf-label">M15X 量产</div>
+      <div><span class="qf-num">2026<br>02</span></div>
+      <div class="qf-sub">清州 1b DRAM<br>专做 HBM4</div>
+    </div>
+    <div class="qf-cell">
+      <div class="qf-label">中国稀土暂停</div>
+      <div><span class="qf-num">2026<br>11·10</span></div>
+      <div class="qf-sub">12 个月窗口期<br>到期后随时可重启</div>
+    </div>
+    <div class="qf-cell verdict">
+      <div class="qf-label">My Take</div>
+      <div><span class="qf-num">慢性病<br>不是急病</span></div>
+      <div class="qf-sub">十年内呼吸<br>越来越浅</div>
+    </div>
+  </div>
+</section>
+
+<section id="tldr">
+  <div class="sec-num">02 · The bottom line</div>
+  <h2 class="sec-h">如果只有 60 秒，<em>读这段</em></h2>
+
+  <div class="tldr">
+    <div class="ribbon">TL;DR</div>
+    <h3>三层判断 · 一页纸结论</h3>
+    <ol>
+      <li><b>2025-12-31 不是末日。</b>VEU 撤销后年度许可证机制让中国三厂活下来，2026 年许可证已批，可以买备件、做维护。但许可证明确"不能扩产、不能升级"——这是慢性病而非急病。</li>
+      <li><b>真正的杀伤是工艺天花板。</b>无锡卡在 1a DRAM、大连卡在 192 层 NAND，与韩国本土 1c / 321 层的差距每年扩大。HBM、最新 LPDDR5X、DDR5 高密度产品的订单已全部撤回韩国。客户流失正在发生，不是未来时。</li>
+      <li><b>替代战略已启动但有时差。</b>清州 M15X 2026-02 量产是即时补位，Yongin 集群 2027-05 第一座厂完工但用电只锁 50%，Indiana 2H28 才能投产美国本土 HBM 封装——三 hub 全部到位要到 2029 年。这 3 年是中国厂"慢性下行"和"替代尚未起量"的危险叠加期。</li>
+    </ol>
+  </div>
+</section>
+
+<section id="veu">
+  <div class="sec-num">03 · The Mechanism</div>
+  <h2 class="sec-h">VEU 制度 · <em>白名单的开关</em></h2>
+
+  <p class="lede">
+    VEU（Validated End User，<em>经验证的最终用户</em>）是美国 BIS 在 2007 年创设的"白名单"机制——
+    一旦获批，美国出口商不需要逐次申请就能向其出口受管制的设备和技术。
+    SK Hynix 中国厂在 2023 年 10 月拿到这块"无限期通行证"，2025 年 12 月被收回，转为<em>每年都要重新申请</em>的许可证。
+  </p>
+
+  <div class="callout warn">
+    <div class="co-label">BIS 官方立场（撤销公告原话）</div>
+    <div class="co-quote">VEU 制度是<em>"拜登时代的漏洞"</em>。新政策将批准前 VEU 参与方继续运营其在华现有设施的出口许可申请，但不会用于扩产或技术升级。</div>
+  </div>
+
+  <h3 class="sub-h">"年度许可证"的具体边界</h3>
+  <div class="twocol">
+    <div class="tc-card pos">
+      <h4>✅ 允许做的</h4>
+      <ul>
+        <li>维持当前产能的设备替换</li>
+        <li>买备件 / 做日常维护</li>
+        <li>保持当前节点的良率优化</li>
+        <li>2026 自然年内有效</li>
+      </ul>
+    </div>
+    <div class="tc-card warn">
+      <h4>❌ 明确禁止的</h4>
+      <ul>
+        <li>扩建产能（不能新增晶圆产出）</li>
+        <li>技术节点升级（无锡不能 1c、大连不能 321 层）</li>
+        <li>买更先进的设备（如 EUV）</li>
+        <li>2027 年起每年重新申请</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout data">
+    <div class="co-label">行政成本</div>
+    <div class="co-body">BIS 自己估计 VEU 撤销后年增<b>约 1,000 份</b>许可申请——这意味着每一笔设备运送都要等审批，运营节奏会被拖慢。</div>
+  </div>
+</section>
+
+<section id="timeline">
+  <div class="sec-num">04 · The Timeline</div>
+  <h2 class="sec-h">出口管制 · <em>从首轮到现在</em></h2>
+
+  <p class="lede">
+    四年时间，三个总统、四轮升级、两次缓和、一次撤销 VEU。
+    每一次变化都直接重画了 SK Hynix 中国厂的天花板。
+  </p>
+
+  <div class="timeline">
+    <div class="tl-row warn">
+      <div class="tl-date">2022 · 10 · 07</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h5>BIS 首轮先进芯片管制</h5>
+        <p>DRAM ≤ 18 nm、NAND ≥ 128 层、逻辑 ≤ 14/16 nm 全部列管。韩厂获临时一年豁免。在华美籍人员协助禁令同步生效。</p>
+      </div>
+    </div>
+    <div class="tl-row pos">
+      <div class="tl-date">2023 · 10</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h5>韩厂获无限期 VEU</h5>
+        <p>BIS 第二轮升级中，SK Hynix / Samsung 中国厂 VEU 状态从"临时"升级为"无限期"。这是当年韩厂的最大胜利。</p>
+      </div>
+    </div>
+    <div class="tl-row warn">
+      <div class="tl-date">2024 · 12 · 02</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h5>拜登末期"December Package"</h5>
+        <p>HBM2E 及以上禁运（HBM 内存带宽密度 &gt; 2 GB/s/mm²，HBM2 / HBM3 全部超阈值）。新增 24 类设备 + 3 类 EDA 工具。实体清单加 140 个中国实体。</p>
+      </div>
+    </div>
+    <div class="tl-row data">
+      <div class="tl-date">2025 · 05 · 08</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h5>Trump 撤销 AI Diffusion Rule</h5>
+        <p>Trump 商务部正式撤销拜登末期的"三档分级许可"，改为双边谈判模式。这是 Trump 2.0 政策的第一个明确动作。</p>
+      </div>
+    </div>
+    <div class="tl-row warn">
+      <div class="tl-date">2025 · 08 · 29</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h5>BIS 公示撤销 VEU</h5>
+        <p>三家在华企业（Intel Dalian、Samsung China、SK Hynix China）的 VEU 状态被宣告撤销。BIS 称之为"拜登时代的漏洞"。</p>
+      </div>
+    </div>
+    <div class="tl-row data">
+      <div class="tl-date">2025 · 10 · 09</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h5>中国 MOFCOM 第 61 号公告</h5>
+        <p>稀土全面出口管制 + 中国版 FDPR（域外适用 + 50% 规则）。剑指美国出口管制，韩国半导体 90% 稀土依赖中国。</p>
+      </div>
+    </div>
+    <div class="tl-row pos">
+      <div class="tl-date">2025 · 10 · 29</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h5>Lee-Trump Gyeongju 国事访问</h5>
+        <p>韩国承诺造船业 1,500 亿美元 + 战略投资 2,000 亿美元 MOU。半导体获"对韩条件不次于其他国家"最惠国式承诺。</p>
+      </div>
+    </div>
+    <div class="tl-row pos">
+      <div class="tl-date">2025 · 10 · 30</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h5>Trump-Xi Busan 峰会</h5>
+        <p>科技缓和达成。为 H200 解禁铺路。韩国成为东道主双线斡旋的最大政治受益者。</p>
+      </div>
+    </div>
+    <div class="tl-row pos">
+      <div class="tl-date">2025 · 11 · 07</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h5>中国稀土管制暂停 12 个月</h5>
+        <p>暂停期至 <b>2026-11-10</b>。换取美方让步。这是当下最关键的"缓和窗口期"——到期后随时可重启。</p>
+      </div>
+    </div>
+    <div class="tl-row data">
+      <div class="tl-date">2025 · 12 · 08</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h5>Trump 解禁 NVIDIA H200</h5>
+        <p>允许出口中国，但附 25% "出口费"。首创"出口征税"先例——盟友未来可能面临同等条款。</p>
+      </div>
+    </div>
+    <div class="tl-row pos">
+      <div class="tl-date">2025 · 12 · 30</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h5>BIS 授予 2026 年度许可证</h5>
+        <p>Samsung、SK Hynix 中国厂 2026 年运营许可证获批。仅维护、不升级。</p>
+      </div>
+    </div>
+    <div class="tl-row warn">
+      <div class="tl-date">2025 · 12 · 31</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h5>VEU 撤销正式生效</h5>
+        <p>从此每一年都是新博弈。下次年审窗口 <b>2026-Q4</b>。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="fabs">
+  <div class="sec-num">05 · The Three Fabs</div>
+  <h2 class="sec-h">三厂物理状态 · <em>无锡 / 大连 / 重庆</em></h2>
+
+  <p class="lede">
+    要理解地缘风险的传导路径，先要理解每一颗螺丝在哪里。
+    SK Hynix 在中国有三座工厂，性质完全不同——前两个是命门，第三个相对安全。
+  </p>
+
+  <div class="table-wrap">
+    <table class="cmp">
+      <thead>
+        <tr><th></th><th>无锡 Wuxi</th><th>大连 Dalian</th><th>重庆 Chongqing</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>业务</b></td>
+          <td>DRAM 主力前段</td>
+          <td>NAND 前段（Solidigm 唯一产线）</td>
+          <td>后段封装测试</td>
+        </tr>
+        <tr>
+          <td><b>建成</b></td>
+          <td>2006 投产 / 2019 C2F 扩建</td>
+          <td>2021-12 接管 Intel</td>
+          <td>2014</td>
+        </tr>
+        <tr class="highlight">
+          <td><b>月产能</b></td>
+          <td class="num-cell">~190K 片</td>
+          <td class="num-cell">~100K 片</td>
+          <td>封装产能</td>
+        </tr>
+        <tr>
+          <td><b>占公司份额</b></td>
+          <td>DRAM 30-40%</td>
+          <td>NAND 20%</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td><b>占全球份额</b></td>
+          <td>全球 DRAM 12-15%</td>
+          <td>全球 NAND 5-6%</td>
+          <td>—</td>
+        </tr>
+        <tr class="highlight">
+          <td><b>当前最先进工艺</b></td>
+          <td class="num-cell">1a (10nm 4代)</td>
+          <td class="num-cell">192 层</td>
+          <td>不适用</td>
+        </tr>
+        <tr>
+          <td><b>2026 工艺规划</b></td>
+          <td>维持现状<br>1b/1c 不会引入</td>
+          <td>考虑升到 mid-200<br>238/321 不可能</td>
+          <td>维持现有制程</td>
+        </tr>
+        <tr>
+          <td><b>主要产品</b></td>
+          <td>DDR4/DDR5 通用 + LPDDR4/部分 LPDDR5</td>
+          <td>企业级 PCIe/SATA NAND</td>
+          <td>DRAM 模组、SSD 组装</td>
+        </tr>
+        <tr>
+          <td><b>2026 出口管制</b></td>
+          <td>年度许可证<br>仅维护，不扩产</td>
+          <td>同上</td>
+          <td>影响较小（封装属低端）</td>
+        </tr>
+        <tr class="highlight">
+          <td><b>客户流失</b></td>
+          <td>HBM/最新 LPDDR5X/DDR5 12Gb 已撤回韩国</td>
+          <td>高端 QLC、321 层 SSD 由 Solidigm 韩方调度，但产线被困大连</td>
+          <td>—</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout warn">
+    <div class="co-label">大连厂的"双重诅咒"</div>
+    <div class="co-body">大连 NAND 是 SK Hynix 唯一的 NAND 大型产线（Solidigm 全部产能在此）。<b>不能升级到 238/321 层有两个理由</b>——美方禁止 200 层以上设备出口；同时 Intel 留下的 floating gate 架构与 SK Hynix 自家 charge-trap 架构不兼容，即便允许设备也要全线重做。<b>Solidigm 美国 IPO 路径已事实死亡</b>，2026-01 已 100% 私有化整合（对价 ₩14.4 兆）。如果断崖式退出发生，Solidigm 重建产线估计要 $100-200 亿、用时数年。</div>
+  </div>
+
+  <h3 class="sub-h">累计投资 vs 减值情景</h3>
+  <div class="metric">
+    <div class="m-row">
+      <div class="m-label">累计投资（Omdia 引用） <span class="m-src">三厂合计</span></div>
+      <div class="m-val">~$220 亿</div>
+    </div>
+    <div class="m-row">
+      <div class="m-label">A. 维持现状减值 <span class="m-src">基线情景</span></div>
+      <div class="m-val pos">~$0</div>
+    </div>
+    <div class="m-row">
+      <div class="m-label">B. 渐进退出减值 <span class="m-src">中等概率 / 5-10 年线性</span></div>
+      <div class="m-val">$30-50 亿</div>
+    </div>
+    <div class="m-row">
+      <div class="m-label">C. 断崖式退出减值 <span class="m-src">尾部风险 / 折损 40-60%</span></div>
+      <div class="m-val warn">$80-120 亿</div>
+    </div>
+  </div>
+  <p style="font-size:13px;color:var(--muted);font-style:italic">注：减值数字为推算（按累计投资 × 公允价值折损率）。SK Hynix 财报至今未单独披露中国子公司账面净值。</p>
+</section>
+
+<section id="pivot">
+  <div class="sec-num">06 · The Pivot</div>
+  <h2 class="sec-h">三 hub 替代 · <em>从中国退向哪里</em></h2>
+
+  <p class="lede">
+    海力士的应对不是"减产中国"四个字这么简单。
+    它在打三场不同的战争——<em>清州抢时间</em>、<em>龙仁抢规模</em>、<em>印第安纳抢地缘</em>。
+    每一场都有自己的关键瓶颈。
+  </p>
+
+  <div class="gantt">
+    <table>
+      <thead>
+        <tr>
+          <th>项目</th>
+          <th>2025</th><th>2026</th><th>2027</th><th>2028</th><th>2029</th><th>2030</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="label">清州 M15X<br><span class="gt-sub">1b DRAM / HBM4 主力</span></td>
+          <td colspan="6" style="position:relative">
+            <div class="bar pos" style="left:8%;width:30%">02·26 量产 → Q4'26 50K/月</div>
+            <div class="bar pos" style="left:40%;width:14%">Mid '27 满产</div>
+          </td>
+        </tr>
+        <tr>
+          <td class="label">清州 P&amp;T7<br><span class="gt-sub">$130 亿 HBM4/4E 后段</span></td>
+          <td colspan="6" style="position:relative">
+            <div class="bar data" style="left:22%;width:32%">04·26 动工 → 12·27 完工</div>
+            <div class="bar data" style="left:55%;width:20%">2028+ 量产</div>
+          </td>
+        </tr>
+        <tr>
+          <td class="label">龙仁 Yongin<br><span class="gt-sub">⚠ 用电仅 50%</span></td>
+          <td colspan="6" style="position:relative">
+            <div class="bar warn" style="left:0%;width:42%">02·25 启动 → 05·27 第一座</div>
+            <div class="bar yellow" style="left:42%;width:55%">2042 全 6 座完工愿景</div>
+          </td>
+        </tr>
+        <tr>
+          <td class="label">Indiana W. Lafayette<br><span class="gt-sub">$39 亿 + CHIPS $4.6 亿</span></td>
+          <td colspan="6" style="position:relative">
+            <div class="bar" style="left:18%;width:37%">04·26 破土 → 建设</div>
+            <div class="bar pos" style="left:55%;width:30%">2H'28 量产 HBM 2.5D</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="sub-h">三 hub 各自的关键瓶颈</h3>
+  <div class="threecol">
+    <div class="tc-card pos">
+      <h4>清州 (Cheongju)</h4>
+      <ul>
+        <li><b>抢时间</b>：M15X 比原计划早 4 个月量产</li>
+        <li>1b DRAM 专做 HBM4，配 NVIDIA Rubin</li>
+        <li>P&amp;T7 投资 ₩19 兆（$130 亿）</li>
+        <li>HBM4/4E 后段封装专属</li>
+        <li><b>瓶颈</b>：执行很顺，无明显风险</li>
+      </ul>
+    </div>
+    <div class="tc-card warn">
+      <h4>龙仁 (Yongin)</h4>
+      <ul>
+        <li><b>抢规模</b>：远期 6 座厂，"世界最大 mega fab"</li>
+        <li>第一座 2027-05 完工</li>
+        <li><b>用电缺口 50%</b>：仅锁定 3GW / 6GW 需求</li>
+        <li>输电线遭忠南安城、忠北堤川、全北、光州抗议</li>
+        <li><b>瓶颈</b>：电网不解决，2027 起爬产受限</li>
+      </ul>
+    </div>
+    <div class="tc-card data">
+      <h4>Indiana</h4>
+      <ul>
+        <li><b>抢地缘</b>：CHIPS Act 通行证</li>
+        <li>$3.87 亿 + 联邦 $4.58 亿补贴</li>
+        <li>Purdue Research Park，430,000 sqft</li>
+        <li>美国首座 HBM 2.5D 后段封装</li>
+        <li><b>瓶颈</b>：2H28 才投产——这 3 年是真空期</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divq">
+  替代不是替换。<br>
+  替代是用新的产能填补旧产能慢慢消失留下的空白——<br>
+  时间差是真正的痛点。
+</div>
+
+<section id="triangle">
+  <div class="sec-num">07 · Three-Body Game</div>
+  <h2 class="sec-h">韩美中三角 · <em>每根弦都崩着</em></h2>
+
+  <h3 class="sub-h">韩国对华贸易依赖 · 硬数据</h3>
+  <div class="metric">
+    <div class="m-row">
+      <div class="m-label">2024 韩半导体总出口 <span class="m-src">历史最高</span></div>
+      <div class="m-val">$141.9B</div>
+    </div>
+    <div class="m-row">
+      <div class="m-label">中国大陆占韩芯片出口（2024） <span class="m-src">vs 2020 年 61%</span></div>
+      <div class="m-val warn">32.8%</div>
+    </div>
+    <div class="m-row">
+      <div class="m-label">+ 香港 = 大中华区</div>
+      <div class="m-val warn">51.7%</div>
+    </div>
+    <div class="m-row">
+      <div class="m-label">SK Hynix DRAM 在华产能占全球比 <span class="m-src">无锡</span></div>
+      <div class="m-val warn">~12-15%</div>
+    </div>
+    <div class="m-row">
+      <div class="m-label">SK Hynix NAND 在华产能占全球比 <span class="m-src">大连</span></div>
+      <div class="m-val warn">~5-6%</div>
+    </div>
+    <div class="m-row">
+      <div class="m-label">韩稀土进口对华依赖 <span class="m-src">磁体 / 抛光剂</span></div>
+      <div class="m-val warn">~90%</div>
+    </div>
+    <div class="m-row">
+      <div class="m-label">2025 韩对华芯片出口 YoY <span class="m-src">韩产业部</span></div>
+      <div class="m-val warn">−31.8%</div>
+    </div>
+  </div>
+
+  <h3 class="sub-h">三方各自的工具箱</h3>
+  <div class="threecol">
+    <div class="tc-card warn">
+      <h4>美国 · 施压工具</h4>
+      <ul>
+        <li><b>Section 232 关税</b>：25% 对盟友芯片</li>
+        <li><b>"出口费"模式</b>：H200 卖中国 25% 给美</li>
+        <li><b>CHIPS Act 重谈</b>：拜登签的全部要求重谈</li>
+        <li><b>年度许可证审批</b>：每年都是新博弈</li>
+      </ul>
+    </div>
+    <div class="tc-card data">
+      <h4>韩国 · 对冲工具</h4>
+      <ul>
+        <li><b>"最惠国式条款"</b>：Lee-Trump Gyeongju 协议</li>
+        <li><b>韩美技术联盟</b>：APEC 双线挺多</li>
+        <li><b>K-Chips Act 扩大版</b>：本土投资财政补贴</li>
+        <li><b>李在明对华修复</b>：2026 是"全面恢复元年"</li>
+      </ul>
+    </div>
+    <div class="tc-card warn">
+      <h4>中国 · 反制工具</h4>
+      <ul>
+        <li><b>稀土管制</b>★★★★★ — 韩 90% 依赖</li>
+        <li><b>镓/锗/锑出口管制</b>★★★★</li>
+        <li><b>CAC 网安审查</b>★★★（美光模式可复制）</li>
+        <li><b>市场胁迫</b>★★（旅游 / 文化产业）</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout data">
+    <div class="co-label">为什么中国不轻易动 SK Hynix</div>
+    <div class="co-body">三个现实约束：<b>(1)</b> 半导体严重短缺，中国本土 AI 客户（华为、字节、阿里）真离不开 SK Hynix；<b>(2)</b> 报复 SK Hynix = 把单子送给 Micron，战略反作用；<b>(3)</b> 中韩刚进入修复期，破坏政治轨道得不偿失。但<b>稀土工具完全不同</b>——成本低、范围广、随时可重启，2026-11-10 暂停到期日正好与 2027 年度许可证申请窗口重叠。</div>
+  </div>
+</section>
+
+<section id="trump">
+  <div class="sec-num">08 · The Wildcard</div>
+  <h2 class="sec-h">Trump 2.0 · <em>三种政策走向</em></h2>
+
+  <div class="scn">
+    <div class="scn-card neutral">
+      <div class="scn-prob">基线 · 概率 ~55%</div>
+      <h4>现状延续 + 收费</h4>
+      <div class="scn-body">
+        <ul>
+          <li>每年照常给 2027/2028 年度许可证</li>
+          <li>HBM2E 以上对华禁运维持</li>
+          <li>EUV 完全禁运维持</li>
+          <li>232 条款关税"双边最惠国"对韩</li>
+          <li><b>对 SK 含义</b>：在华厂"老化运转"，CapEx 全砸韩国 + 美国，但不至于关停</li>
+        </ul>
+      </div>
+    </div>
+    <div class="scn-card bear">
+      <div class="scn-prob">升级 · 概率 ~25%</div>
+      <h4>鹰派回潮</h4>
+      <div class="scn-body">
+        <ul>
+          <li>触发：Trump-Xi 关系破裂 / 国会激进对华法案</li>
+          <li>2027 许可证缩减或附严苛条件</li>
+          <li>设备运回美检查 / 限定月度晶圆产出</li>
+          <li>盟友"二级制裁"压力升级</li>
+          <li><b>对 SK 含义</b>：中国厂从"老化运转"压成"逐步关闭"路径</li>
+        </ul>
+      </div>
+    </div>
+    <div class="scn-card bull">
+      <div class="scn-prob">缓和 · 概率 ~20%</div>
+      <h4>"大交易"</h4>
+      <div class="scn-body">
+        <ul>
+          <li>触发：Trump 想 2026/2027 与 Xi 谈成大交易</li>
+          <li>HBM2E 部分解禁 + 设备升级有条件批准</li>
+          <li>换取中国市场准入 / 稀土稳定供给</li>
+          <li><b>对 SK 含义</b>：意外受益，但代价是 Micron 同台公平竞争（不再有 Micron 被禁的政策红利）</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="fates">
+  <div class="sec-num">09 · The Three Fates</div>
+  <h2 class="sec-h">三种命运 · <em>中国厂的 12-24 个月</em></h2>
+
+  <p class="lede">
+    把 Trump 2.0 政策路径和中国反制的概率叠加，三厂的命运分布如下。
+    每一种情景对应不同的资产结果——尾部风险 $80-120 亿减值，正是为什么这是<em>真正值得监控</em>的事。
+  </p>
+
+  <div class="table-wrap">
+    <table class="cmp">
+      <thead>
+        <tr><th>情景</th><th>触发条件</th><th>无锡命运</th><th>大连命运</th><th>资产影响</th></tr>
+      </thead>
+      <tbody>
+        <tr class="highlight">
+          <td><b>A. 维持现状</b><br><span style="font-family:var(--mono);font-size:10px;color:var(--muted)">概率最高</span></td>
+          <td>年审通过 / 中美缓和延续</td>
+          <td>1a 永久天花板，逐渐沦为中国国内通用品工厂</td>
+          <td>192 层永久天花板，订单缩减</td>
+          <td class="num-cell pos">≈ $0 减值</td>
+        </tr>
+        <tr>
+          <td><b>B. 渐进退出</b><br><span style="font-family:var(--mono);font-size:10px;color:var(--muted)">中等概率</span></td>
+          <td>海力士主动减产<br>类似 Samsung 西安 −10%</td>
+          <td>5-10 年线性折旧 + 部分提前减值</td>
+          <td>订单部分被 M14 替代</td>
+          <td class="num-cell" style="color:var(--accent-yellow)">$30-50 亿减值</td>
+        </tr>
+        <tr>
+          <td><b>C. 断崖式退出</b><br><span style="font-family:var(--mono);font-size:10px;color:var(--muted)">尾部风险</span></td>
+          <td>2027 年审被拒 / 关键设备无法替换</td>
+          <td>强制减产 → 关闭 → 商誉减值</td>
+          <td>Solidigm 全部产线消失，重建 $100-200 亿</td>
+          <td class="num-cell warn">$80-120 亿减值</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout warn">
+    <div class="co-label">为什么 2026-2028 是危险窗口</div>
+    <div class="co-body">中国厂的"慢性下行"和替代厂的"尚未起量"在这 3 年同时发生：<b>无锡 1a 工艺 2028 年开始被韩国 1c/1d 拉开 2 代</b>，但 Yongin 第一座 2027-05 完工后还要爬产、Indiana 2H28 才能投产。这是<b>客户流失加速 + 替代产能不足</b>的剪刀差时段。</div>
+  </div>
+</section>
+
+<section id="signals" class="signals">
+  <div class="sec-num">10 · The Watch List</div>
+  <h2 class="sec-h">6 个监控信号 · <em>这些事变了，叙事就变了</em></h2>
+
+  <p class="lede">
+    与其猜测哪种情景会发生，不如把这 6 个具体信号挂在监控板上。
+    任何一个出现明显变化，都意味着<em>从基线情景滑向升级或缓和情景</em>的信号。
+  </p>
+
+  <ol>
+    <li>
+      <div>
+        <div class="sg-title">2026-Q4：BIS 是否如期批 2027 年度许可证</div>
+        <div class="sg-body">最直接的信号。任何拖延、附条件、限量都是恶化预兆。如果年审顺利 → 基线延续；如果附"逐年降低节点上限"条件 → 升级情景启动。</div>
+        <div class="sg-meta">频率：一年一次 · 节点：2026-Q4</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="sg-title">Trump 政府是否调整 HBM2E 阈值</div>
+        <div class="sg-body">调高（放宽）= 缓和（SK Hynix 在华厂可生产更先进 HBM）；调低（收紧）= 升级（连传统 HBM 都不让产）。这是 Trump 政府对华态度的最直观温度计。</div>
+        <div class="sg-meta">频率：不定期 · 媒介：BIS Federal Register</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="sg-title">2026-11-10：中国稀土暂停到期是否续展</div>
+        <div class="sg-body">不续展 = 中美缓和延续；续展即重启 = 韩国磁体 / 半导体抛光供应链立即受冲击。这个日期与 2027 年度许可证申请窗口重叠，是<b>2026 年最关键的单一节点</b>。</div>
+        <div class="sg-meta">频率：单一节点 · 节点：2026-11-10</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="sg-title">Trump 是否对韩 232 关税"另外加码"</div>
+        <div class="sg-body">Lee-Trump Gyeongju 协议中"最惠国条款"是否真兑现的试金石。如果真给韩国 25% 之外的额外条款 → 韩美技术联盟实质性松动。</div>
+        <div class="sg-meta">频率：不定期 · 媒介：白宫公告 / USTR</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="sg-title">CAC 是否启动对 SK Hynix"网络安全审查"</div>
+        <div class="sg-body">黑天鹅信号。一旦启动 = 中国版 Micron 模式登场，杀伤力极大——SK Hynix 在中国市场的销售（约 1/3 营收源头）会受冲击。当前概率低，但要持续监控。</div>
+        <div class="sg-meta">频率：黑天鹅 · 媒介：CAC 公告</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="sg-title">Trump-Xi 第三次峰会议程</div>
+        <div class="sg-body">预计 2026 年中。半导体作为筹码会被放上桌面——对韩厂可能利好（缓和 → 中国厂松口）也可能利空（被牺牲 → 韩厂被迫"主动减产中国"换协议）。</div>
+        <div class="sg-meta">频率：单次 · 预期：2026 年中</div>
+      </div>
+    </li>
+  </ol>
+
+  <div class="verdict">
+    <div class="v-title">Final Verdict</div>
+    <h3>VEU 不是末日，<em>"不能升级"才是</em>。<br>慢性病的痛苦在于——你不会突然死，但每天多跑一公里都吃力。</h3>
+    <p>
+      2025-12-31 撤销 VEU 是地缘风险从"潜在"变"已发生"的拐点。但年度许可证机制让中国三厂活下来——这不是终点，是慢性下行的开始。
+      真正的杀伤是工艺天花板：无锡卡 1a、大连卡 192 层，到 2028 年差距将变得不可弥补。
+      2026-2028 是清州抢时间、龙仁抢规模、Indiana 抢地缘的<b>三场同步赛</b>，
+      也是中国厂客户流失加速 + 替代产能尚未起量的<b>危险剪刀差期</b>。
+      故事不是黑白二选一，而是<b>用什么节奏死，被什么替代</b>。把那 6 个信号挂上监控板，比争论"会不会断崖"更实用。
+    </p>
+  </div>
+</section>
+
+</main>
+</div>
+
+<footer>
+  <div class="ft-grid">
+    <div>
+      <h5>Primary Sources · 政策原文</h5>
+      <ul>
+        <li><a href="https://www.federalregister.gov/documents/2025/09/02/2025-16735/revocation-of-validated-end-user-authorizations-in-the-peoples-republic-of-china">Federal Register · VEU 撤销</a></li>
+        <li><a href="https://www.afslaw.com/perspectives/alerts/bis-revokes-veu-authorizations-foreign-owned-chip-factories-china">ArentFox · BIS Revokes</a></li>
+        <li><a href="https://www.bis.gov/press-release/department-commerce-rescinds-biden-era-artificial-intelligence-diffusion-rule-strengthens-chip-related">BIS · AI Diffusion Rescission</a></li>
+        <li><a href="https://www.whitehouse.gov/fact-sheets/2025/11/joint-fact-sheet-on-president-donald-j-trumps-meeting-with-president-lee-jae-myung/">White House · Lee-Trump Joint Fact Sheet</a></li>
+        <li><a href="https://news.skhynix.com/sk-hynix-board-approves-yongin-semiconductor-cluster-plan/">SK Hynix · Yongin Cluster</a></li>
+        <li><a href="https://news.skhynix.com/corporate/fact-sheet/">SK Hynix · Fact Sheet</a></li>
+        <li><a href="https://cset.georgetown.edu/publication/mofcom-notice-2025-61/">CSET · MOFCOM 第 61 号</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Industry &amp; Press · 行业 / 财经</h5>
+      <ul>
+        <li><a href="https://www.trendforce.com/news/2025/12/30/news-samsung-sk-hynix-escape-worst-case-as-china-veu-ends-annual-review-risks-loom">TrendForce · VEU 撤销</a></li>
+        <li><a href="https://www.trendforce.com/news/2026/03/30/news-samsung-reportedly-advances-xian-to-236-layer-nand-sk-hynix-eyes-dalian-upgrade-amid-tight-supply/">TrendForce · 大连升级</a></li>
+        <li><a href="https://www.koreaherald.com/article/10403974">Korea Herald · ailing China fabs</a></li>
+        <li><a href="https://www.tomshardware.com/tech-industry/intel-dalian-plant-now-officially-sk-hynix">Tom's Hardware · Dalian</a></li>
+        <li><a href="https://www.tomshardware.com/tech-industry/sk-hynix-to-build-first-us-2-5d-packaging-plant-for-hbm">Tom's Hardware · Indiana 2.5D</a></li>
+        <li><a href="https://www.tomshardware.com/tech-industry/us-grants-samsung-and-sk-hynix-2026-licenses-for-chipmaking-tool-shipments-to-china">Tom's Hardware · 2026 Licenses</a></li>
+        <li><a href="https://blocksandfiles.com/2025/09/01/us-samsung-sk-hynix-china/">Blocks &amp; Files · US Clamps Down</a></li>
+        <li><a href="https://en.sedaily.com/finance/2025/12/10/samsung-sk-hynix-secure-only-60-percent-of-power-needed-for">Seoul Economic Daily · Yongin 用电</a></li>
+        <li><a href="https://economy.ac/news/2025/11/202511282986">The Economy · Solidigm Dilemma</a></li>
+        <li><a href="https://www.scmp.com/tech/tech-war/article/3219537/tech-war-sk-hynix-halts-plans-upgrade-chip-tech-wuxi-plant-due-pressure-us-sanctions-china-report">SCMP · Wuxi 升级搁置</a></li>
+        <li><a href="https://www.csis.org/analysis/seismic-shift-new-us-semiconductor-export-controls-and-implications-us-firms-allies-and">CSIS · A Seismic Shift</a></li>
+        <li><a href="https://thediplomat.com/2023/06/chinas-ban-of-micron-puts-south-korea-in-the-worst-of-both-worlds/">The Diplomat · Micron 禁令</a></li>
+        <li><a href="https://keia.org/publication/maximum-flexibility-explaining-the-lee-jae-myung-administrations-china-policy/">KEIA · Maximum Flexibility</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-meta">
+    Generated 2026-05-10 · Ray Deep Research Engine · 主报告专题深挖 · 2 sub-agents (政策机制 / 三厂迁移) · 单文件 HTML<br>
+    免责声明：减值数字为推算（按公开累计投资 × 公允价值折损率），SK Hynix 财报至今未单独披露中国子公司账面净值。所有政策时间节点以联邦公报与官方公告为准。
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      document.querySelectorAll('nav.toc a').forEach(link => {
+        link.style.color = '';
+        link.style.fontWeight = '';
+      });
+      const activeLink = document.querySelector(`nav.toc a[href="#${id}"]`);
+      if (activeLink) {
+        activeLink.style.color = 'var(--accent-warn)';
+        activeLink.style.fontWeight = '600';
+      }
+    }
+  });
+}, { rootMargin: '-30% 0px -60% 0px' });
+document.querySelectorAll('section[id]').forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>

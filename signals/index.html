@@ -1,0 +1,1145 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>存储 · 信号专题 — 看见风口起来之前</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f3ec;--bg-paper:#fbf9f4;--bg-card:#ffffff;--bg-dark:#14110d;--bg-dark2:#1f1b16;
+  --ink:#14110d;--ink-2:#2c2620;--muted:#6e6358;--light:#a39787;
+  --rule:#14110d;--rule-light:#d8d1c2;
+  --accent-warn:#a73121;--accent-data:#1c4d6b;--accent-pos:#2c5e3f;--accent-yellow:#c89a2c;
+  --serif:"Source Serif 4","Source Serif Pro","Charter","Iowan Old Style",Georgia,serif;
+  --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  --mono:"JetBrains Mono","SF Mono","Menlo","Consolas",monospace;
+  --max-w:820px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+
+.topbar{border-bottom:1px solid var(--rule-light);background:var(--bg-paper);padding:10px 32px;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.topbar .tb-left{color:var(--ink)}
+.topbar .tb-left b{color:var(--accent-warn)}
+
+.shell{display:grid;grid-template-columns:200px 1fr;gap:60px;max-width:1280px;margin:0 auto;padding:60px 40px}
+nav.toc{position:sticky;top:40px;align-self:start;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.08em;line-height:2}
+nav.toc .toc-title{color:var(--accent-warn);font-weight:600;margin-bottom:14px;border-bottom:1px solid var(--ink);padding-bottom:6px}
+nav.toc .toc-back{color:var(--muted);text-decoration:none;display:block;padding-bottom:10px;margin-bottom:6px;border-bottom:1px solid var(--rule-light);font-size:10px}
+nav.toc .toc-back:hover{color:var(--accent-warn)}
+nav.toc a{color:var(--muted);text-decoration:none;display:block;padding:3px 0;transition:color .12s}
+nav.toc a:hover{color:var(--ink)}
+.main{max-width:var(--max-w);min-width:0}
+
+.hero{display:grid;grid-template-columns:1fr 220px;gap:40px;align-items:start;padding-bottom:48px;border-bottom:2px solid var(--ink)}
+.eyebrow{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--accent-warn);font-weight:600;margin-bottom:24px;display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";display:inline-block;width:36px;height:1px;background:var(--accent-warn)}
+h1.hero-title{font-family:var(--serif);font-weight:600;font-size:74px;line-height:1.0;letter-spacing:-0.03em;margin-bottom:22px;color:var(--ink)}
+h1.hero-title em{font-style:italic;color:var(--accent-warn);font-weight:600}
+.hero-sub{font-family:var(--serif);font-style:italic;font-size:22px;line-height:1.45;color:var(--muted);max-width:640px}
+.hero-meta dl{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.06em;line-height:1.7}
+.hero-meta dt{color:var(--muted);margin-top:14px}
+.hero-meta dt:first-child{margin-top:0}
+.hero-meta dd{color:var(--ink);font-weight:600}
+
+.qf{background:var(--bg-dark);color:#f6f3ec;padding:48px 40px;margin-top:0}
+.qf-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent-yellow);margin-bottom:14px}
+.qf h2{font-family:var(--serif);font-weight:400;font-style:italic;font-size:36px;line-height:1.1;margin-bottom:36px;color:#fbf9f4}
+.qf-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:rgba(255,255,255,0.10)}
+.qf-cell{background:var(--bg-dark);padding:22px 18px;min-height:130px;display:flex;flex-direction:column;justify-content:space-between;word-break:keep-all}
+.qf-cell .qf-label{font-family:var(--mono);font-size:9.5px;text-transform:uppercase;letter-spacing:0.10em;color:#a39787;margin-bottom:8px}
+.qf-cell .qf-num{font-family:var(--serif);font-size:28px;font-weight:600;line-height:1.05;color:#fbf9f4;letter-spacing:-0.02em;word-break:keep-all}
+.qf-cell .qf-num .qf-unit{font-size:13px;font-weight:400;color:#a39787;margin-left:4px}
+.qf-cell .qf-sub{font-size:11px;color:#a39787;margin-top:6px;line-height:1.4;word-break:keep-all}
+.qf-cell.verdict{background:var(--accent-warn);color:#fff}
+.qf-cell.verdict .qf-label{color:rgba(255,255,255,0.75)}
+.qf-cell.verdict .qf-num{color:#fff;font-size:17px;line-height:1.3}
+.qf-cell.verdict .qf-sub{color:rgba(255,255,255,0.85)}
+
+section{padding-top:80px;scroll-margin-top:30px}
+.sec-num{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--accent-warn);font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:14px}
+.sec-num::before{content:"";display:inline-block;width:36px;height:1px;background:var(--accent-warn)}
+h2.sec-h{font-family:var(--serif);font-weight:600;font-size:42px;line-height:1.1;letter-spacing:-0.02em;margin-bottom:28px}
+h2.sec-h em{font-style:italic;color:var(--accent-warn)}
+h3.sub-h{font-family:var(--serif);font-weight:600;font-size:24px;line-height:1.25;margin:36px 0 14px;letter-spacing:-0.01em}
+p{margin-bottom:18px;color:var(--ink-2)}
+.lede{font-family:var(--serif);font-size:20px;line-height:1.55;color:var(--ink);margin-bottom:24px}
+.lede em{font-style:italic;color:var(--accent-warn)}
+
+.tldr{background:var(--bg-dark);color:#f6f3ec;padding:40px;margin:14px 0 24px;position:relative}
+.tldr .ribbon{position:absolute;top:-12px;left:24px;background:var(--accent-warn);color:#fff;padding:6px 14px;font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;font-weight:700}
+.tldr h3{font-family:var(--serif);font-weight:400;font-style:italic;font-size:24px;line-height:1.3;color:#fbf9f4;margin-bottom:20px}
+.tldr ol{list-style:none;counter-reset:tldr-c}
+.tldr ol li{counter-increment:tldr-c;display:flex;gap:14px;align-items:flex-start;margin-bottom:18px;color:rgba(251,249,244,0.85);font-size:15px;line-height:1.65}
+.tldr ol li::before{content:counter(tldr-c,decimal-leading-zero);font-family:var(--mono);font-size:11px;color:var(--accent-yellow);font-weight:600;letter-spacing:0.1em;padding-top:5px;flex:0 0 32px;line-height:1}
+.tldr ol li b{color:#fbf9f4;font-weight:600}
+
+.metric{border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);margin:24px 0}
+.metric .m-row{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:baseline;padding:14px 0;border-top:1px solid var(--rule-light)}
+.metric .m-row:first-child{border-top:none}
+.m-label{font-family:var(--sans);font-size:14px;color:var(--ink-2)}
+.m-label .m-src{font-size:11px;color:var(--light);margin-left:8px;font-family:var(--mono)}
+.m-val{font-family:var(--serif);font-size:22px;font-weight:600;color:var(--ink);letter-spacing:-0.01em}
+.m-val.warn{color:var(--accent-warn)}
+.m-val.pos{color:var(--accent-pos)}
+
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:24px 0}
+.threecol{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin:24px 0}
+.fourcol{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:24px 0}
+.tc-card{background:var(--bg-card);padding:22px;border:1px solid var(--rule-light)}
+.tc-card h4{font-family:var(--serif);font-weight:600;font-size:18px;margin-bottom:12px}
+.tc-card.pos{border-top:4px solid var(--accent-pos)}
+.tc-card.warn{border-top:4px solid var(--accent-warn)}
+.tc-card.data{border-top:4px solid var(--accent-data)}
+.tc-card.yellow{border-top:4px solid var(--accent-yellow)}
+.tc-card .tc-tag{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:0.10em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;font-weight:600}
+.tc-card ul{list-style:none}
+.tc-card li{font-size:14px;color:var(--ink-2);padding:6px 0;border-top:1px solid var(--rule-light);line-height:1.5}
+.tc-card li:first-child{border-top:none}
+.tc-card li b{color:var(--ink);font-weight:600}
+
+.table-wrap{overflow-x:auto;margin:24px 0}
+table.cmp{width:100%;min-width:600px;border-collapse:collapse;font-size:14px}
+table.cmp thead th{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:0.10em;color:var(--ink);font-weight:600;text-align:left;padding:12px 14px 10px;border-bottom:2px solid var(--ink)}
+table.cmp tbody td{padding:14px 14px;border-bottom:1px solid var(--rule-light);vertical-align:top;line-height:1.5}
+table.cmp tbody tr:last-child td{border-bottom:1px solid var(--ink)}
+table.cmp .product-name{font-family:var(--serif);font-weight:700;font-size:15px}
+table.cmp .tag{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:0.08em;text-transform:uppercase;background:var(--accent-warn);color:#fff;padding:2px 6px;margin-left:8px;border-radius:2px;vertical-align:middle}
+table.cmp tr.highlight{background:rgba(167,49,33,0.04)}
+table.cmp tr.highlight .product-name{color:var(--accent-warn)}
+.num-cell{font-family:var(--serif);font-weight:600;font-size:15px;letter-spacing:-0.01em}
+
+.callout{border-left:3px solid var(--ink);background:var(--bg-paper);padding:16px 20px;margin:18px 0}
+.callout.warn{border-color:var(--accent-warn)}
+.callout.data{border-color:var(--accent-data)}
+.callout.pos{border-color:var(--accent-pos)}
+.callout.yellow{border-color:var(--accent-yellow)}
+.callout .co-label{font-family:var(--mono);font-size:10px;letter-spacing:0.10em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;font-weight:600}
+.callout.warn .co-label{color:var(--accent-warn)}
+.callout.data .co-label{color:var(--accent-data)}
+.callout.pos .co-label{color:var(--accent-pos)}
+.callout.yellow .co-label{color:var(--accent-yellow)}
+.callout .co-quote{font-family:var(--serif);font-style:italic;font-size:17px;line-height:1.5;color:var(--ink)}
+.callout .co-quote em{font-weight:600;font-style:italic;color:var(--accent-warn)}
+.callout .co-body{font-size:14px;color:var(--ink-2);line-height:1.6}
+
+.timeline{margin:24px 0;position:relative}
+.tl-row{display:grid;grid-template-columns:120px 24px 1fr;gap:16px;align-items:start;padding:12px 0;position:relative}
+.tl-date{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);text-align:right;padding-top:6px;font-weight:600}
+.tl-dot{position:relative;height:24px;display:flex;align-items:center;justify-content:center}
+.tl-dot::before{content:"";position:absolute;top:-12px;bottom:-12px;width:1px;background:var(--rule-light);left:50%;transform:translateX(-50%)}
+.tl-dot::after{content:"";width:11px;height:11px;border-radius:50%;border:2px solid var(--ink);background:#fff;position:relative;z-index:1}
+.tl-row:first-child .tl-dot::before{top:6px}
+.tl-row:last-child .tl-dot::before{bottom:6px}
+.tl-row.warn .tl-dot::after{border-color:var(--accent-warn);background:var(--accent-warn)}
+.tl-row.data .tl-dot::after{border-color:var(--accent-data);background:var(--accent-data)}
+.tl-row.pos .tl-dot::after{border-color:var(--accent-pos);background:var(--accent-pos)}
+.tl-row.yellow .tl-dot::after{border-color:var(--accent-yellow);background:var(--accent-yellow)}
+.tl-content h5{font-family:var(--serif);font-weight:600;font-size:16px;margin-bottom:4px;line-height:1.3}
+.tl-content p{font-size:13.5px;color:var(--muted);margin-bottom:0;line-height:1.5}
+.tl-content .tl-tag{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;padding:2px 6px;margin-left:6px;border-radius:2px;vertical-align:1px}
+.tl-content .tl-tag.l0{background:#e6e3da;color:var(--ink)}
+.tl-content .tl-tag.l1{background:rgba(28,77,107,0.15);color:var(--accent-data)}
+.tl-content .tl-tag.l2{background:rgba(44,94,63,0.15);color:var(--accent-pos)}
+.tl-content .tl-tag.l3{background:rgba(200,154,44,0.20);color:#8a6a1d}
+.tl-content .tl-tag.l4{background:rgba(167,49,33,0.15);color:var(--accent-warn)}
+
+/* level layered checklist */
+.layers{display:grid;grid-template-columns:60px 1fr;gap:18px;margin:24px 0}
+.layer-row{display:contents}
+.layer-row .layer-tag{font-family:var(--mono);font-size:14px;font-weight:700;padding-top:6px;letter-spacing:0.04em}
+.layer-row .layer-tag.l0{color:var(--ink)}
+.layer-row .layer-tag.l1{color:var(--accent-data)}
+.layer-row .layer-tag.l2{color:var(--accent-pos)}
+.layer-row .layer-tag.l3{color:#8a6a1d}
+.layer-row .layer-tag.l4{color:var(--accent-warn)}
+.layer-row .layer-content{padding:14px 0;border-top:1px solid var(--rule-light)}
+.layer-row:first-child .layer-content{border-top:2px solid var(--ink);padding-top:14px}
+.layer-row:last-child .layer-content{border-bottom:2px solid var(--ink);padding-bottom:14px}
+.layer-row .layer-content h5{font-family:var(--serif);font-weight:600;font-size:17px;margin-bottom:6px}
+.layer-row .layer-content p{font-size:14px;line-height:1.6;color:var(--ink-2);margin-bottom:0}
+.layer-row .layer-content .layer-detect{font-size:12.5px;color:var(--muted);margin-top:6px;font-style:italic}
+
+/* signal candidates */
+.cand{display:grid;grid-template-columns:90px 1fr 100px 100px 100px;gap:0;margin:24px 0;border:1px solid var(--rule)}
+.cand-head{display:contents}
+.cand-head > div{padding:10px 14px;font-family:var(--mono);font-size:10px;letter-spacing:0.10em;text-transform:uppercase;color:var(--ink);font-weight:700;background:var(--bg-paper);border-bottom:2px solid var(--ink);text-align:left}
+.cand-row{display:contents}
+.cand-row > div{padding:14px;border-bottom:1px solid var(--rule-light);line-height:1.5;font-size:13.5px;background:var(--bg-card)}
+.cand-row:last-child > div{border-bottom:none}
+.cand-row .cand-name{font-family:var(--serif);font-weight:700;font-size:14px}
+.cand-row .cand-desc b{color:var(--ink)}
+.cand-row .cand-meta{font-family:var(--mono);font-size:11px;font-weight:600;text-align:center}
+.cand-row .cand-meta.high{color:var(--accent-pos)}
+.cand-row .cand-meta.mid{color:var(--accent-yellow)}
+.cand-row .cand-meta.low{color:var(--muted)}
+.cand-row .cand-meta.warn{color:var(--accent-warn)}
+
+/* signal row 7 checklist */
+.signals ol{list-style:none;counter-reset:sg-c;margin:24px 0}
+.signals ol li{counter-increment:sg-c;display:grid;grid-template-columns:60px 1fr;gap:14px;padding:18px 0;border-top:1px solid var(--rule-light)}
+.signals ol li:first-child{border-top:2px solid var(--ink)}
+.signals ol li:last-child{border-bottom:2px solid var(--ink)}
+.signals ol li::before{content:counter(sg-c,decimal-leading-zero);font-family:var(--mono);font-size:13px;color:var(--accent-warn);font-weight:700;letter-spacing:0.06em;padding-top:3px}
+.signals .sg-title{font-family:var(--serif);font-weight:600;font-size:18px;line-height:1.35;margin-bottom:6px}
+.signals .sg-body{font-size:14px;color:var(--ink-2);line-height:1.6}
+.signals .sg-meta{font-family:var(--mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+
+.divq{text-align:center;font-family:var(--serif);font-style:italic;font-size:22px;line-height:1.45;color:var(--muted);margin:60px 0;padding:0 20px}
+.divq::before,.divq::after{content:"";display:block;width:40px;height:1px;background:var(--ink);margin:14px auto}
+
+.verdict{background:var(--bg-dark);color:#f6f3ec;padding:48px 40px;margin:30px 0}
+.verdict .v-title{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent-yellow);margin-bottom:14px;font-weight:600}
+.verdict h3{font-family:var(--serif);font-weight:400;font-style:italic;font-size:28px;line-height:1.3;color:#fbf9f4;margin-bottom:18px;letter-spacing:-0.01em}
+.verdict h3 em{font-style:italic;font-weight:600;color:var(--accent-yellow)}
+.verdict p{color:rgba(251,249,244,0.85);font-size:15px;line-height:1.65;margin-bottom:14px}
+.verdict p:last-child{margin-bottom:0}
+
+footer{background:var(--bg-dark);color:#a39787;padding:56px 40px 36px;margin-top:80px}
+footer .ft-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:40px}
+footer h5{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#fbf9f4;margin-bottom:14px;font-weight:600}
+footer ul{list-style:none;font-size:12px;line-height:1.8;font-family:var(--mono);columns:2;column-gap:24px}
+footer ul li{break-inside:avoid}
+footer a{color:#a39787;text-decoration:none;border-bottom:1px dotted rgba(163,151,135,0.4)}
+footer a:hover{color:#fbf9f4}
+footer .ft-meta{margin-top:36px;padding-top:24px;border-top:1px solid #2c2620;font-size:11px;color:#6e6358;font-family:var(--mono);letter-spacing:0.06em;line-height:1.6}
+
+/* paged-media */
+.qf-cell,.tc-card,.callout,.signals ol li,.tldr,.verdict,.hero,.lede,.tl-row,.metric .m-row,.divq,table.cmp tr{
+  break-inside:avoid;page-break-inside:avoid;
+}
+h1.hero-title,h2.sec-h,h3.sub-h,.sec-num{break-after:avoid;page-break-after:avoid}
+p{orphans:3;widows:3}
+
+@media (max-width:1100px){
+  .shell{grid-template-columns:1fr;gap:0;padding:40px 24px}
+  nav.toc{position:relative;top:0;display:flex;flex-wrap:wrap;gap:6px 18px;padding-bottom:24px;margin-bottom:24px;border-bottom:1px solid var(--rule-light);line-height:1.4}
+  nav.toc .toc-title{width:100%;border-bottom:none;padding-bottom:0;margin-bottom:6px}
+  nav.toc .toc-back{width:100%;border-bottom:none}
+  .qf-grid{grid-template-columns:repeat(3,1fr)}
+  .twocol,.threecol,.fourcol{grid-template-columns:1fr}
+  .hero{grid-template-columns:1fr}
+  .cand{grid-template-columns:1fr;border:none}
+  .cand-head{display:none}
+  .cand-row{display:block;border:1px solid var(--rule-light);margin-bottom:12px;padding:14px}
+  .cand-row > div{padding:6px 0;border:none;background:transparent}
+}
+@media (max-width:720px){
+  h1.hero-title{font-size:46px}
+  h2.sec-h{font-size:30px}
+  .qf-grid{grid-template-columns:repeat(2,1fr)}
+  .qf,.verdict,.tldr,footer{padding-left:24px;padding-right:24px}
+  .signals ol li{grid-template-columns:40px 1fr}
+  .layers{grid-template-columns:50px 1fr}
+  .tl-row{grid-template-columns:80px 20px 1fr;gap:10px}
+  .tl-date{font-size:10px}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="tb-left">存储 · 信号专题 — 看见风口起来之前 &nbsp;·&nbsp; <b>v1.0</b></div>
+  <div>2026 · 05 · 10 &nbsp;|&nbsp; Ray Deep Research Engine</div>
+</div>
+
+<div class="shell">
+
+<nav class="toc" aria-label="Table of contents">
+  <div class="toc-title">Contents</div>
+  <a class="toc-back" href="https://kdsz001.github.io/sk-hynix-research/">← 返回主报告</a>
+  <a href="#hero">00 · Hero</a>
+  <a href="#qf">01 · Facts</a>
+  <a href="#tldr">02 · TL;DR</a>
+  <a href="#tech">03 · 技术地图</a>
+  <a href="#moat">04 · 专利护城河</a>
+  <a href="#hindsight">05 · 后视镜信号</a>
+  <a href="#method">06 · 方法论</a>
+  <a href="#candidates">07 · 下一波候选</a>
+  <a href="#watchlist">08 · 监控信号</a>
+  <a href="#verdict">09 · 最终判断</a>
+</nav>
+
+<main class="main">
+
+<section id="hero">
+  <div class="hero">
+    <div>
+      <div class="eyebrow">Signals · 主报告专题深挖</div>
+      <h1 class="hero-title">看见<em>信号</em><br>在风口<br>起来之前</h1>
+      <p class="hero-sub">
+        2022 年 3 月，Chinchilla 论文 + GTC Hopper + A100 缺货 + Stable Diffusion 在 5 个月内同时发生——
+        这就是 AI/HBM 超级周期真正的"信号收敛"时刻。但市场要到 14 个月后（NVIDIA Q1 FY24 业绩日）才确认；
+        大行升评级要再晚 28 个月。这份报告告诉你，下次别错过。
+      </p>
+    </div>
+    <aside class="hero-meta">
+      <dl>
+        <dt>专题主题</dt><dd>技术对比 + 信号回溯<br>+ 下一波风口</dd>
+        <dt>调研深度</dt><dd>3 子 Agent 并行</dd>
+        <dt>覆盖来源</dt><dd>Semianalysis / EpochAI<br>TrendForce / TechInsights<br>ISSCC / VLSI / arxiv</dd>
+        <dt>报告字数</dt><dd>约 18,000 字</dd>
+        <dt>主报告</dt><dd>kdsz001.github.io/<br>sk-hynix-research</dd>
+      </dl>
+    </aside>
+  </div>
+</section>
+
+<section id="qf" class="qf">
+  <div class="qf-eyebrow">The Signal Map · at a Glance</div>
+  <h2>速览板 · 12 个最关键的信号 / 数字</h2>
+  <div class="qf-grid">
+    <div class="qf-cell">
+      <div class="qf-label">信号收敛日</div>
+      <div><span class="qf-num">2022<br>03-08</span></div>
+      <div class="qf-sub">Chinchilla + GTC<br>+ A100 + SD<br>四层信号同向</div>
+    </div>
+    <div class="qf-cell">
+      <div class="qf-label">市场确认延迟</div>
+      <div><span class="qf-num">14<span class="qf-unit">月</span></span></div>
+      <div class="qf-sub">到 2023-05-24<br>NVIDIA Q1 业绩日</div>
+    </div>
+    <div class="qf-cell">
+      <div class="qf-label">大行升级延迟</div>
+      <div><span class="qf-num">41<span class="qf-unit">月</span></span></div>
+      <div class="qf-sub">MS 升 SK Hynix 至<br>2025-09-15</div>
+    </div>
+    <div class="qf-cell">
+      <div class="qf-label">SK MR-MUF</div>
+      <div><span class="qf-num">2x<span class="qf-unit">散热</span></span></div>
+      <div class="qf-sub">vs TC-NCF<br>NAMICS 独家配方</div>
+    </div>
+    <div class="qf-cell">
+      <div class="qf-label">Samsung 1c</div>
+      <div><span class="qf-num">~50<span class="qf-unit">% 良率</span></span></div>
+      <div class="qf-sub">追 80% 目标<br>HBM4 die 短板</div>
+    </div>
+    <div class="qf-cell">
+      <div class="qf-label">Micron HBM3E 能效</div>
+      <div><span class="qf-num">−30<span class="qf-unit">%</span></span></div>
+      <div class="qf-sub">pJ/bit vs 对手<br>1β 节点优势</div>
+    </div>
+    <div class="qf-cell">
+      <div class="qf-label">BiCS10 NAND</div>
+      <div><span class="qf-num">332<span class="qf-unit">层</span></span></div>
+      <div class="qf-sub">2026 量产<br>MSA-CBA 路径千层</div>
+    </div>
+    <div class="qf-cell">
+      <div class="qf-label">CXL 4.0 标准</div>
+      <div><span class="qf-num">2025<br>11</span></div>
+      <div class="qf-sub">128 GT/s<br>Pangea v2 +10.2x</div>
+    </div>
+    <div class="qf-cell">
+      <div class="qf-label">3D DRAM 量产</div>
+      <div><span class="qf-num">2028<br>+</span></div>
+      <div class="qf-sub">Samsung ISSCC 2026<br>16Gb 4F² 试产芯片</div>
+    </div>
+    <div class="qf-cell">
+      <div class="qf-label">SRAM 推理</div>
+      <div><span class="qf-num">$200<span class="qf-unit">亿</span></span></div>
+      <div class="qf-sub">NVIDIA 收购 Groq<br>OpenAI-Cerebras $100亿</div>
+    </div>
+    <div class="qf-cell">
+      <div class="qf-label">2026 Top9 CSP</div>
+      <div><span class="qf-num">$830<span class="qf-unit">B</span></span></div>
+      <div class="qf-sub">CapEx 估算<br>HBM 短期需求锁到 2027</div>
+    </div>
+    <div class="qf-cell verdict">
+      <div class="qf-label">Next Wave</div>
+      <div><span class="qf-num">CXL · 3D DRAM<br>· SRAM 替代</span></div>
+      <div class="qf-sub">三股力量同时<br>2026-2030</div>
+    </div>
+  </div>
+</section>
+
+<section id="tldr">
+  <div class="sec-num">02 · The bottom line</div>
+  <h2 class="sec-h">如果只有 60 秒，<em>读这段</em></h2>
+
+  <div class="tldr">
+    <div class="ribbon">TL;DR</div>
+    <h3>三层判断 · 一页纸结论</h3>
+    <ol>
+      <li><b>四家技术地图：每家有不可复制的护城河</b>。SK Hynix 的 MR-MUF + NAMICS 独家配方让 12-Hi/16-Hi HBM 散热翻倍；Samsung 是唯一三全栈（DRAM/NAND/HBM）+ 自家 4nm Foundry 做 base die；Micron HBM3E 比对手能效低 30% + 早签 Adeia hybrid bonding 协议（IP 风险最小）+ ASIL-D 车规独家；SanDisk+Kioxia 在 NAND 用 BiCS+CBA 已 demo 1000 层路径。<b>韩国二虎的隐藏短板是 hybrid bonding IP 不在自己手里</b>——一头被 Adeia 卡，一头被 YMTC 卡。</li>
+      <li><b>HBM 周期是后视镜，但信号其实早就在</b>。最早的硬信号是 2022-03 到 2022-08 的"四层收敛"——Chinchilla 论文（理论）+ NVIDIA GTC Hopper（卖方战略）+ A100 缺货（供应链）+ Stable Diffusion（消费产品）同时发生。Dylan Patel 2022-12 起在 Semianalysis 写 HBM 瓶颈，比大行早 28 个月。<b>市场确认日</b>是 2023-05-24 NVIDIA FY24Q1 业绩盘后 +26%。从信号收敛到市场确认 = 14 个月，这是真正的入场窗口。</li>
+      <li><b>下一波信号已经在收敛。CXL（确定增量）+ SRAM 推理替代（HBM 真威胁）+ 3D DRAM（5 年后下一代 HBM 核）三股力量同时在动</b>。最确定的是 CXL（NVIDIA Vera CPU 2026 H2 原生支持 + Samsung Pangea v2 实测 +10.2x），最值得防御的是 SRAM 推理（NVIDIA 200 亿美元收购 Groq + OpenAI-Cerebras 100 亿美元/3 年），最值得长线观察的是 3D DRAM（Samsung ISSCC 2026 已展示 16Gb 4F² VCT）。</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===== TECH MAP ===== -->
+<section id="tech">
+  <div class="sec-num">03 · The Tech Map</div>
+  <h2 class="sec-h">技术地图 · <em>四家的护城河</em></h2>
+
+  <p class="lede">
+    SK Hynix、Samsung、Micron、SanDisk+Kioxia——四家的技术坐标系完全不同。
+    <em>不要把它们当成竞争者，要当成专业化分工</em>：HBM 是韩国二虎与 Micron 的三国杀，
+    NAND 真正的鼻祖是 BiCS（SanDisk+Kioxia）。
+  </p>
+
+  <h3 class="sub-h">HBM4 关键参数对比</h3>
+  <div class="table-wrap">
+    <table class="cmp">
+      <thead>
+        <tr><th>维度</th><th>SK Hynix</th><th>Samsung</th><th>Micron</th><th>Kioxia/SanDisk</th></tr>
+      </thead>
+      <tbody>
+        <tr class="highlight">
+          <td><b>数据率</b></td>
+          <td class="num-cell">&gt;10 Gbps</td>
+          <td class="num-cell">11.7-13 Gbps</td>
+          <td class="num-cell">&gt;11 Gbps</td>
+          <td>不做 HBM</td>
+        </tr>
+        <tr>
+          <td><b>每 stack 带宽</b></td>
+          <td class="num-cell">~2.0 TB/s</td>
+          <td class="num-cell">3.3 TB/s</td>
+          <td class="num-cell">2.8 TB/s</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td><b>DRAM 节点</b></td>
+          <td>1bnm 保守</td>
+          <td>1c 激进</td>
+          <td>1β</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td><b>Base die 工艺</b></td>
+          <td>TSMC 12nm/3nm</td>
+          <td><b>Samsung 自家 4nm</b><br>(垂直整合)</td>
+          <td>TSMC</td>
+          <td>—</td>
+        </tr>
+        <tr class="highlight">
+          <td><b>独家封装工艺</b></td>
+          <td><b>MR-MUF</b><br>+ NAMICS 配方</td>
+          <td>Hybrid Bonding 16-Hi<br>(良率挣扎 ~10%)</td>
+          <td>TC-NCF</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td><b>NVIDIA 配额</b></td>
+          <td>~70%（HBM4）</td>
+          <td>~28%（HBM4 反扑）</td>
+          <td>较小但增长</td>
+          <td>—</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout warn">
+    <div class="co-label">SK Hynix MR-MUF 为什么是真壁垒</div>
+    <div class="co-body">
+      MR-MUF（Mass Reflow-Molded Underfill）一次回流焊整个 stack 的 bumps + 一次注入液态环氧。<b>对比 TC-NCF 一层一层压</b>，MR-MUF 是批处理。
+      关键数字：MR-MUF 用的环氧模塑料（EMC）<b>热导率约为 NCF 的 2 倍</b>；HBM2E 散热较 HBM2 提升 36%；MR-MUF 让 thermal dummy bump 数量比 TC-NCF 多 4 倍。
+      与 NAMICS（日本材料商）联合开发的<b>专属环氧配方</b>——专利 + 材料 + 设备（Hanmi TC bonder）三重绑定。这就是为什么 NVIDIA GB300 12-Hi HBM3E 独家给 SK Hynix。
+    </div>
+  </div>
+
+  <h3 class="sub-h">DRAM 节点：1c 谁先到</h3>
+  <div class="metric">
+    <div class="m-row">
+      <div class="m-label">SK Hynix 1c <span class="m-src">2024 全球首发开发，2025 出货</span></div>
+      <div class="m-val pos">5+ EUV 层</div>
+    </div>
+    <div class="m-row">
+      <div class="m-label">Samsung 1c <span class="m-src">2025 H1 起建产线</span></div>
+      <div class="m-val">6-7 EUV 层（原 8-9 因良率减层）</div>
+    </div>
+    <div class="m-row">
+      <div class="m-label">Micron 1γ <span class="m-src">2025 量产，少 EUV 工程美学</span></div>
+      <div class="m-val">仅 1 EUV 层</div>
+    </div>
+    <div class="m-row">
+      <div class="m-label">High-NA EUV 谁先用 <span class="m-src">2027 落地战场</span></div>
+      <div class="m-val">SK + Samsung 已订 ASML EXE:5000</div>
+    </div>
+  </div>
+
+  <h3 class="sub-h">NAND 主力代次</h3>
+  <div class="table-wrap">
+    <table class="cmp">
+      <thead>
+        <tr><th>厂商</th><th>主力代次</th><th>层数</th><th>架构</th><th>CMOS 接合</th></tr>
+      </thead>
+      <tbody>
+        <tr class="highlight">
+          <td><span class="product-name">Kioxia + SanDisk</span></td>
+          <td>BiCS 8 量产 / 10 (332L) 2026</td>
+          <td class="num-cell">218 / 332</td>
+          <td>CTF（电荷俘获）</td>
+          <td><b>CBA</b> 混合键合</td>
+        </tr>
+        <tr>
+          <td><span class="product-name">Samsung</span></td>
+          <td>V9 / V10 量产</td>
+          <td class="num-cell">~290 / 430+</td>
+          <td>CTF（V-NAND）</td>
+          <td>V9 单片 / V10 BV-NAND</td>
+        </tr>
+        <tr>
+          <td><span class="product-name">Micron</span></td>
+          <td>G9</td>
+          <td class="num-cell">276</td>
+          <td>CTF</td>
+          <td>CuA monolithic</td>
+        </tr>
+        <tr>
+          <td><span class="product-name">Solidigm (SK)</span></td>
+          <td>192 层</td>
+          <td class="num-cell">192</td>
+          <td><b>浮栅</b>（行业唯一）</td>
+          <td>monolithic</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout data">
+    <div class="co-label">应用场景下"谁不可替代"</div>
+    <div class="co-body">
+      • <b>AI 训练</b>：SK Hynix HBM（NVIDIA 验证 + MR-MUF）<br>
+      • <b>AI 推理容量优先</b>：Solidigm QLC eSSD（浮栅密度优势 1.33-1.67Tb）<br>
+      • <b>数据中心 SSD（随机读写）</b>：Kioxia + SanDisk BiCS<br>
+      • <b>手机 LPDDR5X/6</b>：Samsung（iPhone 17/18 主供 + Snapdragon 全验证）<br>
+      • <b>自动驾驶 / 工控</b>：Micron（唯一 ASIL-D + AEC-Q100 + IATF 16949 全认证）<br>
+      • <b>超高密度归档（256TB+）</b>：SanDisk UltraQLC
+    </div>
+  </div>
+</section>
+
+<section id="moat">
+  <div class="sec-num">04 · The IP Map</div>
+  <h2 class="sec-h">专利护城河 · <em>韩国二虎的隐藏短板</em></h2>
+
+  <p class="lede">
+    技术对比表里看不到的一件事：
+    <em>韩国二虎在 HBM 装配 + DRAM 工艺有一手好牌，但 hybrid bonding 基础 IP 不在自己手里</em>——
+    一头被 Adeia（美国）卡，一头被 YMTC（中国）卡。这是 HBM4E 之后的隐藏风险点。
+  </p>
+
+  <div class="fourcol">
+    <div class="tc-card warn">
+      <div class="tc-tag">SK Hynix · 不可复制三件套</div>
+      <h4>1. MR-MUF + NAMICS</h4>
+      <ul>
+        <li>材料级专利 + know-how</li>
+        <li>NAMICS 全球独家供货配方</li>
+        <li>12-Hi/16-Hi 良率天然占优</li>
+        <li>NVIDIA Hopper/Blackwell/Rubin 长期偏好</li>
+      </ul>
+    </div>
+    <div class="tc-card data">
+      <div class="tc-tag">Samsung · 垂直整合</div>
+      <h4>2. Memory + Foundry</h4>
+      <ul>
+        <li>1c DRAM + 4nm Foundry base die</li>
+        <li>无需 TSMC 接刀</li>
+        <li>DTCO 跨部门联合优化</li>
+        <li>iPhone 17/18 LPDDR 主供</li>
+      </ul>
+    </div>
+    <div class="tc-card pos">
+      <div class="tc-tag">Micron · IP 干净 + 能效</div>
+      <h4>3. 早签 Adeia</h4>
+      <ul>
+        <li>2022 年签 hybrid bonding 协议</li>
+        <li>HBM3E 能效 −30% pJ/bit</li>
+        <li>1γ "少 EUV" 工程哲学</li>
+        <li>ASIL-D 车规独家</li>
+      </ul>
+    </div>
+    <div class="tc-card yellow">
+      <div class="tc-tag">SanDisk + Kioxia · NAND 鼻祖</div>
+      <h4>4. BiCS + CBA</h4>
+      <ul>
+        <li>BiCS8 218L 18.3 Gb/mm²（最高）</li>
+        <li>JV 联营 32% 全球 NAND 产能</li>
+        <li>MSA-CBA 路径已 demo 千层</li>
+        <li>HBF（与 SK Hynix 合作）</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout warn">
+    <div class="co-label">韩国二虎的"hybrid bonding IP 风险"</div>
+    <div class="co-body">
+      未来 HBM4E（20+ 层）必走 hybrid bonding，但：<br>
+      • <b>Adeia (前 Xperi)</b>持有 DBI（Direct Bond Interconnect）基础专利——Micron / SK Hynix / Sony / YMTC / UMC 已授权；<b>Samsung 是唯一未明确授权的大厂</b><br>
+      • <b>YMTC（中国）</b>持有量产层面专利量第一——<b>Samsung 据传已向 YMTC 授权</b>用于 V10+ NAND 与 HBM4 16-Hi。这是中国对韩国的反向技术依赖反转<br>
+      • <b>TSMC</b>持有大量 hybrid bonding 设备/工艺专利——韩国厂的 base die 必须经 TSMC 才能用 5nm/3nm
+    </div>
+  </div>
+</section>
+
+<div class="divq">
+  四家技术坐标系不同，<br>
+  但有一件事相同：信号都已经在了，只是当时没人看。
+</div>
+
+<!-- ===== HINDSIGHT ===== -->
+<section id="hindsight">
+  <div class="sec-num">05 · The Hindsight</div>
+  <h2 class="sec-h">后视镜 · <em>HBM 周期的早期信号</em></h2>
+
+  <p class="lede">
+    AI/HBM 超级周期被市场全面确认是 2024-2025，但<em>真正的硬信号</em>早在 2022-03 到 2022-08 就出现了。
+    这一节回溯整条信号传播链——从学术到大众到大行——
+    建立"如何在下次预测前先看到"的方法论。
+  </p>
+
+  <h3 class="sub-h">信号传播链时间表（2017-2025）</h3>
+  <div class="timeline">
+    <div class="tl-row">
+      <div class="tl-date">2017 · 05</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h5>NVIDIA Volta V100 + HBM2 <span class="tl-tag l1">L1 卖方战略</span></h5>
+        <p>Jensen 在 GTC keynote 中说"Moore's Law 已死，AI 是新工业革命"。<b>第一次</b>把 HBM 与 AI 算力革命绑定。市场无反应。</p>
+      </div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-date">2020 · 05</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h5>GPT-3 论文发布 <span class="tl-tag l0">L0 学术</span></h5>
+        <p>175B 参数，训练成本估约 $12M。算力曲线突变点。但 GPT-3 只在 AI 圈引起涟漪。</p>
+      </div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-date">2020 · 11</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h5>NVIDIA A100 长期供不应求 <span class="tl-tag l3">L3 供应链</span></h5>
+        <p>Ian Buck 公开承认 "need months to catch up"。第一手"需求 &gt; 供给"信号已出现。</p>
+      </div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-date">2021 · 06</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h5>Github Copilot Technical Preview <span class="tl-tag l2">L2 商业产品</span></h5>
+        <p>基于 OpenAI Codex。LLM 商业化首次落地的"实证"信号。技术圈第一个"有人愿意付钱"。</p>
+      </div>
+    </div>
+    <div class="tl-row warn">
+      <div class="tl-date">2022 · 03 · 22</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h5>NVIDIA GTC: H100 + Hopper + Transformer Engine <span class="tl-tag l1">L1 卖方战略</span></h5>
+        <p>Jensen 明确把"transformer + AI factory"作为 NVIDIA 战略主轴。<b>卖方公司自己提示了未来</b>，但市场普遍当成"普通 GPU 升级"看待。</p>
+      </div>
+    </div>
+    <div class="tl-row warn">
+      <div class="tl-date">2022 · 03 · 29</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h5>Chinchilla 论文（DeepMind） <span class="tl-tag l0">L0 学术</span></h5>
+        <p>arxiv 2203.15556 证明"模型 × 数据"必须等比扩展。<b>训练总算力需求被重新定价</b>——这是决定性的"理论信号"。</p>
+      </div>
+    </div>
+    <div class="tl-row warn">
+      <div class="tl-date">2022 · 07-08</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h5>DALL-E 2 公开 + Stable Diffusion 开源 <span class="tl-tag l2">L2 商业产品</span></h5>
+        <p>几个月生成 12B+ 张图。<b>生成式 AI 商业可行性的"消费级实证"</b>——比 ChatGPT 早 3 个月，但只在 AI 圈热。</p>
+      </div>
+    </div>
+    <div class="tl-row warn">
+      <div class="tl-date">2022 · Q4</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h5>SK Hynix 量产 HBM3，独家供 NVIDIA H100 <span class="tl-tag l1">L1 基础设施</span></h5>
+        <p>Samsung 完全缺位。<b>供给侧"赢家"已定型</b>，但市场要 18 个月后才识别。</p>
+      </div>
+    </div>
+    <div class="tl-row data">
+      <div class="tl-date">2022 · 11 · 30</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h5>ChatGPT 发布</h5>
+        <p>"市场普及"信号——散户开始入场。但<b>关键</b>：技术圈早在 8 个月前就有了多重信号。</p>
+      </div>
+    </div>
+    <div class="tl-row pos">
+      <div class="tl-date">2022 · 12 · 01</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h5>Dylan Patel "GPT Model Training Competition" <span class="tl-tag l0">L0 专业分析</span></h5>
+        <p>Semianalysis 第一篇深度分析 LLM 训练成本经济学（早 ChatGPT 一天）。半导体专业派开始入场。</p>
+      </div>
+    </div>
+    <div class="tl-row pos">
+      <div class="tl-date">2023 · 07 · 05</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h5>Semianalysis: AI Capacity Constraints — CoWoS &amp; HBM</h5>
+        <p>Dylan Patel <b>第一次把 HBM/CoWoS 描述为 NVIDIA 真实瓶颈</b>。主题正式从"芯片"转向"内存+封装"——这是 SK Hynix 故事的起点。</p>
+      </div>
+    </div>
+    <div class="tl-row warn">
+      <div class="tl-date">2023 · 05 · 24</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h5>NVIDIA FY24Q1 业绩"市场确认日" <span class="tl-tag l4">L4 资本拐点</span></h5>
+        <p>下季度 guidance $11B vs 共识 $7.15B → +54%，盘后 +26%。<b>从信号收敛（2022-03）到市场确认 = 14 个月</b>。</p>
+      </div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-date">2024 · Q1</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h5>Hyperscaler capex 同比 +72%（始于 2023Q2）</h5>
+        <p>Zuckerberg 公开宣布 350,000 H100。<b>巨头资本开支拐点被确认</b>——这才是 SK Hynix 股价开始大幅上涨的真正起点。</p>
+      </div>
+    </div>
+    <div class="tl-row data">
+      <div class="tl-date">2025 · 09</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h5>Morgan Stanley 升 SK Hynix 至 Overweight</h5>
+        <p>Goldman Sachs 2025-10 升 Buy。<b>大行最后才上车——比信号收敛晚 41 个月</b>。这就是滞后指标的本质。</p>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="sub-h">7 个具体可量化的早期信号（2022 vs 2024 对比）</h3>
+  <div class="table-wrap">
+    <table class="cmp">
+      <thead>
+        <tr><th>信号</th><th>2022 年初</th><th>2024-2025</th><th>倍数</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>训练算力 / 6 月翻倍</td><td>4.4× / 年</td><td>4-5× / 年</td><td class="num-cell">持续</td></tr>
+        <tr><td>最大模型训练成本</td><td>~$3.27M</td><td>$80-200M</td><td class="num-cell">30-60×</td></tr>
+        <tr class="highlight"><td>NVIDIA 数据中心营收占比</td><td>~39% (FY22)</td><td>80%+ (FY24)</td><td class="num-cell">业务结构断点</td></tr>
+        <tr><td>A100/H100 lead time</td><td>数月</td><td>8-12 周持续</td><td class="num-cell">数月→年</td></tr>
+        <tr><td>Hyperscaler 5 家合计 capex</td><td>$162B (2022)</td><td>$448B (2025)</td><td class="num-cell">2.8×</td></tr>
+        <tr><td>CoWoS 月产能</td><td>远低于需求</td><td>70-80K wpm (2025)</td><td class="num-cell">5-6×</td></tr>
+        <tr class="highlight"><td>SK Hynix HBM3 市占</td><td>2022Q4 量产</td><td>HBM3 独占 95%+</td><td class="num-cell">独家→寡头</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout pos">
+    <div class="co-label">关键洞察</div>
+    <div class="co-quote">"市场确认"日是单一事件（NVIDIA 2023-05-24 业绩日），但<em>真正的入场窗口</em>是 2022-03 到 2023-05 的 14 个月——多重信号同向收敛但未被定价的窗口期。Dylan Patel 等专业分析师领先大行约 28 个月。</div>
+  </div>
+</section>
+
+<!-- ===== METHODOLOGY ===== -->
+<section id="method">
+  <div class="sec-num">06 · The Framework</div>
+  <h2 class="sec-h">方法论 · <em>识别下场超级周期的 5 层信号</em></h2>
+
+  <p class="lede">
+    回溯告诉我们的最深刻教训：<em>不要追单一爆点，要追"分布式信号同向收敛"</em>。
+    把信号按时间和领域分成 5 层（L0 到 L4），每层有自己的检测方式。
+    理想入场点是 L1-L2 之间，最迟 L3 收敛时。
+  </p>
+
+  <h3 class="sub-h">5 层信号 · 出现顺序与检测方式</h3>
+  <div class="layers">
+    <div class="layer-row">
+      <div class="layer-tag l0">L0</div>
+      <div class="layer-content">
+        <h5>学术 / 理论信号 · 最早，T-3 到 T-1.5 年</h5>
+        <p>当某领域出现一篇"花更多 X 就能换更多 Y"的可量化论文（如 Chinchilla），意味着投入有清晰的 ROI 函数 → 大资本会跟进。</p>
+        <div class="layer-detect"><b>检测方式</b>：盯 arxiv 月度发文增长率突然加速的子领域（cs.LG / cs.CV 等）</div>
+      </div>
+    </div>
+    <div class="layer-row">
+      <div class="layer-tag l1">L1</div>
+      <div class="layer-content">
+        <h5>基础设施供应商信号 · T-2 到 T-1 年</h5>
+        <p>(a) 垄断性上游供应商已经在某产品上"下注式"扩产（如 SK Hynix 在 2022 年明显领先 Samsung 量产 HBM3）。
+        (b) 卖方公司 CEO 反复在 keynote 强调一个新叙事但市场没买账（Jensen 在 2017、2018、2020 反复说 AI factory，到 2023 才反应）。</p>
+        <div class="layer-detect"><b>检测方式</b>：上游设备订单（ASML / Applied Materials / Lam）+ 财报里 capex 指引 + 客户认证状态；keynote 文本做 5 年差分</div>
+      </div>
+    </div>
+    <div class="layer-row">
+      <div class="layer-tag l2">L2</div>
+      <div class="layer-content">
+        <h5>商业可行性信号 · T-1.5 到 T-0.5 年</h5>
+        <p>第一个商业化产品出现，并被一小部分用户重度付费使用：Github Copilot 2021、DALL-E 2 2022-07、Stable Diffusion 2022-08——都先于 ChatGPT 验证了"愿意付钱"。</p>
+        <div class="layer-detect"><b>检测方式</b>：看小型 SaaS 产品的 retention + 单用户付费金额，而不是看注册数</div>
+      </div>
+    </div>
+    <div class="layer-row">
+      <div class="layer-tag l3">L3</div>
+      <div class="layer-content">
+        <h5>供应链张力信号 · T-1 到 T-0 年</h5>
+        <p>(a) lead time 持续延长 + "二手价高于一手价"（A100 在 2021-2022）。
+        (b) 真正的瓶颈从"芯片"转到上游材料 / 封装 / 内存——当大家从"GPU 不够"→"HBM 不够"→"CoWoS 不够"，意味着<b>赢家从下游往上游迁移</b>，上游公司还没被定价，是套利窗口。</p>
+        <div class="layer-detect"><b>检测方式</b>：渠道商财报 + Reddit/HN 求货帖；Semianalysis、SemiWiki、TrendForce、DigiTimes 关键词频率</div>
+      </div>
+    </div>
+    <div class="layer-row">
+      <div class="layer-tag l4">L4</div>
+      <div class="layer-content">
+        <h5>资本拐点信号 · T-0.5 到 T+0 年（"市场确认"前最后窗口）</h5>
+        <p>超大规模厂的 capex 同比增速从 30% 突变到 70%+——Hyperscaler capex 在 2023Q2 起加速，是结构性而非周期性变化，是最强的"现金流确认"。</p>
+        <div class="layer-detect"><b>检测方式</b>：每季度 Alphabet/AWS/Microsoft/Meta/Oracle capex 指引 — 关注<b>指引上调次数</b>比绝对额更重要</div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="sub-h">7 项 Checklist · 每月对一个候选领域做诊断</h3>
+  <div class="signals">
+    <ol>
+      <li>
+        <div>
+          <div class="sg-title">arxiv 月度发文 / 关键词频率突变了吗？</div>
+          <div class="sg-body">L0 信号。突然加速的子领域往往是新周期的种子。例如 2022 年 cs.LG 上 transformer scaling 论文的频率。</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="sg-title">学术界有没有出现"scaling law"型可量化论文？</div>
+          <div class="sg-body">L0 信号。"花 X 换 Y"的清晰 ROI 函数 = 大资本能算账了。Chinchilla 是 HBM 周期的开关。</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="sg-title">卖方公司的 keynote 关键词词频在变化吗？</div>
+          <div class="sg-body">L1 信号。NVIDIA GTC、Apple WWDC、微软 Build、Google I/O 文本做 5 年差分，看哪个词频突然飙升。</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="sg-title">是否有第一个小规模商业产品已经做出 retention？</div>
+          <div class="sg-body">L2 信号。看付费 retention 而非注册数。Github Copilot、Cursor、Perplexity 等是 LLM 周期的早期实证。</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="sg-title">上游设备 / 材料 / 包装公司的 lead time 在拉长吗？</div>
+          <div class="sg-body">L3 信号。ASML、Applied Materials、Lam Research、Tokyo Electron 等的订单簿与交期变化。</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="sg-title">超大规模厂的 capex 指引上调次数在增加吗？</div>
+          <div class="sg-body">L4 信号。频率比绝对额重要——一个季度内多次上调说明真实需求超过预期。</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="sg-title">Semianalysis / 同类深度分析师在写哪些主题？</div>
+          <div class="sg-body">综合信号。Dylan Patel 等专业分析师 28 个月领先大行——他们的写作主题就是早期信号本身。</div>
+        </div>
+      </li>
+    </ol>
+  </div>
+
+  <div class="callout yellow">
+    <div class="co-label">触发阈值</div>
+    <div class="co-body">
+      • <b>3 项以上同向</b>变化 → 进入<b>观察窗口</b><br>
+      • <b>5 项以上</b>同向 → 进入<b>入场窗口</b><br>
+      • <b>6-7 项</b>同向 → 已经是中后期，跑赢市场难度上升<br>
+      • <b>大行升级 / 共识形成</b>= 滞后指标，是减仓信号而非加仓信号
+    </div>
+  </div>
+</section>
+
+<div class="divq">
+  "市场确认"是一次事件。<br>
+  "信号收敛"是一段窗口。<br>
+  钱在窗口里赚，不在事件后追。
+</div>
+
+<!-- ===== CANDIDATES ===== -->
+<section id="candidates">
+  <div class="sec-num">07 · The Next Wave</div>
+  <h2 class="sec-h">下一波 · <em>6 个候选 + 1 个 Wild Card</em></h2>
+
+  <p class="lede">
+    把"识别下场周期"的方法论用到当下——
+    哪些技术在 L0-L2 阶段已经收敛？
+    评估 6 个存储 / AI 内存领域的候选，加 1 个已经发生的 Wild Card。
+  </p>
+
+  <div class="cand">
+    <div class="cand-head">
+      <div>候选</div>
+      <div>核心论点</div>
+      <div>概率</div>
+      <div>颠覆性</div>
+      <div>时点</div>
+    </div>
+
+    <div class="cand-row">
+      <div class="cand-name">A. HBM-PIM</div>
+      <div class="cand-desc">Samsung AiM / SK Hynix AiMX 仍在 PoC 阶段。<b>大概率被 HBM4E logic die 吸收</b>——很可能演化为"HBM 内置加速器"而非独立模块。</div>
+      <div class="cand-meta low">35%</div>
+      <div class="cand-meta low">低</div>
+      <div class="cand-meta">2027-2028</div>
+    </div>
+
+    <div class="cand-row">
+      <div class="cand-name">B. CXL 池化</div>
+      <div class="cand-desc"><b>最确定的近期风口</b>。CXL 4.0 已发（2025-11）；NVIDIA Vera CPU 2026 H2 原生支持 CXL 3.1；Samsung Pangea v2 实测 +10.2x；Microsoft 实测节省 10% DRAM、5% 总服务器成本。寡头分润结构（Samsung+SK+Micron）。</div>
+      <div class="cand-meta high">70%</div>
+      <div class="cand-meta mid">中</div>
+      <div class="cand-meta">2026-2027</div>
+    </div>
+
+    <div class="cand-row">
+      <div class="cand-name">C. 3D DRAM</div>
+      <div class="cand-desc"><b>真正的下一代 HBM 内核</b>。Samsung ISSCC 2026 已展示 16Gb 4F² VCT DRAM（cell 面积从 17% 降到 2.7%）。但真量产要 2028-2030。Micron 专利数 30+ 是潜在黑马。<b>5 年后</b>颠覆 DRAM 成本结构。</div>
+      <div class="cand-meta mid">50%</div>
+      <div class="cand-meta high">极高</div>
+      <div class="cand-meta">2028-2030</div>
+    </div>
+
+    <div class="cand-row">
+      <div class="cand-name">D. 玻璃基板</div>
+      <div class="cand-desc">Intel pilot 2025；TSMC 2026 mini 产线；Samsung Electro-Mechanics 2025-11 与住友合资。<b>更多是封装供应链事件</b>，HBM 厂只是间接受益（拿到更稳的 thermal envelope）。</div>
+      <div class="cand-meta mid">50%</div>
+      <div class="cand-meta low">低-中</div>
+      <div class="cand-meta">2027-2028</div>
+    </div>
+
+    <div class="cand-row">
+      <div class="cand-name">E. CPO 光互联</div>
+      <div class="cand-desc">NVIDIA Quantum-X800 2026 H1 出货。<b>但 Semianalysis 直言 scale-out CPO 的 TCO 收益仅 3%，2027 年前渗透率仍是个位数</b>。这是数据中心架构风口，<b>不是存储风口</b>——HBM 不变，存储厂几乎不直接受益。</div>
+      <div class="cand-meta low">10%</div>
+      <div class="cand-meta low">间接</div>
+      <div class="cand-meta">2028+</div>
+    </div>
+
+    <div class="cand-row">
+      <div class="cand-name">F. SRAM 推理替代</div>
+      <div class="cand-desc"><b>HBM 真威胁</b>。NVIDIA 2025-12 用 200 亿美元收购 Groq；OpenAI 与 Cerebras 签 100 亿美元/3 年/750MW，Q1 2026 起部署。Cerebras Llama3-70B 推理 $0.6/M token vs H100 $2.9/M token。如果 70% AI 算力是推理，HBM 推理份额会被分流。</div>
+      <div class="cand-meta mid">55%</div>
+      <div class="cand-meta high">高</div>
+      <div class="cand-meta">2026-2028</div>
+    </div>
+
+    <div class="cand-row">
+      <div class="cand-name">★ Wild Card</div>
+      <div class="cand-desc"><b>已经发生</b>。OpenAI Stargate 7+GW、Anthropic-AWS $100B/5GW、ByteDance 2026 capex $230 亿、Alibaba 3 年 capex $530 亿。<b>TrendForce 估 2026 全球 Top 9 CSP capex 8300 亿美元</b>——HBM 短期需求被锁到 2027。真正风险是 capex 在 2027-2028 急刹车。</div>
+      <div class="cand-meta high">100%</div>
+      <div class="cand-meta">已发生</div>
+      <div class="cand-meta">现在</div>
+    </div>
+  </div>
+
+  <h3 class="sub-h">下一波"信号收敛"判断（按 5 层框架）</h3>
+  <div class="threecol">
+    <div class="tc-card pos">
+      <div class="tc-tag">CXL 池化</div>
+      <h4>L1-L4 全部已收敛</h4>
+      <ul>
+        <li><b>L0</b>：CXL 论文 + Disaggregated Memory 架构论文充足</li>
+        <li><b>L1</b>：Samsung、SK Hynix、Micron 已扩产 CXL 模块</li>
+        <li><b>L2</b>：Microsoft 实测有 ROI</li>
+        <li><b>L3</b>：CXL 控制器 IP 短缺信号在浮现</li>
+        <li><b>L4</b>：NVIDIA Vera 2026 H2 = 资本拐点</li>
+      </ul>
+    </div>
+    <div class="tc-card warn">
+      <div class="tc-tag">SRAM 推理</div>
+      <h4>L2-L4 已收敛，威胁性最强</h4>
+      <ul>
+        <li><b>L0</b>：长上下文论文激增（2025-2026）</li>
+        <li><b>L1</b>：NVIDIA $200 亿收购 Groq = 卖方战略</li>
+        <li><b>L2</b>：OpenAI-Cerebras $100 亿合同 = 真付费</li>
+        <li><b>L3</b>：Cerebras IPO 申请（2026-04）</li>
+        <li><b>L4</b>：Anthropic 是否跟进 = 关键观察</li>
+      </ul>
+    </div>
+    <div class="tc-card data">
+      <div class="tc-tag">3D DRAM</div>
+      <h4>L0-L1 收敛中，时点 5 年</h4>
+      <ul>
+        <li><b>L0</b>：ISSCC 2026 Samsung 16Gb 4F²</li>
+        <li><b>L0</b>：SK Hynix VLSI 2025 路线图</li>
+        <li><b>L1</b>：Micron 专利 30+ 储备</li>
+        <li><b>L2-L4</b>：未到——需等 2028 量产</li>
+        <li><b>结论</b>：长线观察名单</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WATCHLIST ===== -->
+<section id="watchlist" class="signals">
+  <div class="sec-num">08 · The Watchlist</div>
+  <h2 class="sec-h">监控信号 · <em>当下值得盯的 7 件事</em></h2>
+
+  <p class="lede">
+    把方法论落地到具体监控指标。这 7 个信号每月查一次——
+    <em>触发阈值由信号同向数量决定</em>，不靠主观判断。
+  </p>
+
+  <ol>
+    <li>
+      <div>
+        <div class="sg-title">NVIDIA Vera CPU 实际出货量（2026 Q4）</div>
+        <div class="sg-body">L4 资本拐点信号。NVIDIA 2026 Q4 财报里 Vera 占比 — 这是 CXL 3.1 主流化的 trigger。</div>
+        <div class="sg-meta">来源：NVIDIA 季报 / Networking 分项</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="sg-title">Meta、Google 是否官宣 CXL 池化生产部署</div>
+        <div class="sg-body">L1+L2 信号。Microsoft 已实测，下一家 hyperscaler 大规模部署是 CXL 进入"事实标准"的标志。</div>
+        <div class="sg-meta">来源：公司 blog、re:Invent、Cloud Next</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="sg-title">Cerebras IPO 后客户名单</div>
+        <div class="sg-body">L2 商业实证。OpenAI 之外是否出现 Anthropic、Google、Meta、Microsoft 等正式付费客户 — 任何一家加入 = SRAM 推理叙事确认。</div>
+        <div class="sg-meta">来源：Cerebras S-1、季报、媒体报道</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="sg-title">NVIDIA Groq 整合产品收入占比</div>
+        <div class="sg-body">L4 信号。NVIDIA 季报"Networking + Inference"分项里 Groq 业务的占比变化 — SRAM 推理实际在 NVIDIA 收入里的权重。</div>
+        <div class="sg-meta">来源：NVIDIA 季报分项</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="sg-title">ISSCC 2027 / VLSI 2027 多家 3D DRAM 论文</div>
+        <div class="sg-body">L0 学术信号。retention time、yield 报告 — 决定 3D DRAM 量产时点是 2028 还是 2030。</div>
+        <div class="sg-meta">来源：ISSCC / VLSI Symposium proceedings</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="sg-title">Hyperscaler capex 指引上调次数</div>
+        <div class="sg-body">L4 资本拐点。Alphabet/AWS/Microsoft/Meta/Oracle 季度 capex 指引上调频率 — 任一家单季同比下降是 HBM 需求重估 trigger。</div>
+        <div class="sg-meta">来源：5 大 hyperscaler 季报</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="sg-title">韩国二虎 hybrid bonding IP 谈判进展</div>
+        <div class="sg-body">L3 供应链 + L1 战略。Samsung 是否正式获得 Adeia 授权 / SK Hynix 与 YMTC 是否谈合作 — HBM4E（20+ 层）必走 hybrid bonding，IP 风险点。</div>
+        <div class="sg-meta">来源：Adeia/Xperi 投资者公告、TrendForce</div>
+      </div>
+    </li>
+  </ol>
+
+  <div class="callout warn">
+    <div class="co-label">触发阈值（重申）</div>
+    <div class="co-body"><b>3 项以上同向</b> → 观察窗口；<b>5 项以上</b> → 入场窗口；<b>6-7 项</b> → 已是中后期。<b>大行升级 = 减仓信号而非加仓信号</b>。</div>
+  </div>
+</section>
+
+<!-- ===== VERDICT ===== -->
+<section id="verdict">
+  <div class="sec-num">09 · Final Verdict</div>
+  <h2 class="sec-h">最终判断 · <em>三句话框架</em></h2>
+
+  <div class="verdict">
+    <div class="v-title">Final Verdict</div>
+    <h3>
+      <em>技术地图</em>告诉你谁有真壁垒。<br>
+      <em>后视镜</em>告诉你信号其实早就在。<br>
+      <em>方法论</em>告诉你下次怎么先看到。
+    </h3>
+    <p>
+      <b style="color:#fbf9f4">技术</b>：四家有不可复制的护城河——SK Hynix MR-MUF + NAMICS、Samsung 垂直整合、Micron 能效 + IP 干净、Kioxia/SanDisk BiCS+CBA。
+      <b>韩国二虎的隐藏短板是 hybrid bonding IP 不在自己手里</b>——HBM4E 之后的真正风险点。
+    </p>
+    <p>
+      <b style="color:#fbf9f4">后视镜</b>：HBM 周期真正的"信号收敛日"不是 ChatGPT 时刻（2022-11），而是 2022-03 到 2022-08 的"四层同向"——
+      Chinchilla（理论）+ NVIDIA GTC Hopper（卖方）+ A100 缺货（供应链）+ Stable Diffusion（产品）。
+      到 2023-05 NVIDIA 业绩日确认 = 14 个月窗口。Dylan Patel 比大行早 28 个月。
+    </p>
+    <p>
+      <b style="color:#fbf9f4">下一波</b>：CXL 池化（最确定增量，70%）+ SRAM 推理替代（HBM 真威胁，55%）+ 3D DRAM（5 年后下一代 HBM 核，50%）三股力量同时在动。
+      把 7 项 checklist 挂上监控板——任意 3 项同向 = 观察窗口，5 项 = 入场窗口。
+      <b style="color:#fbf9f4">不要等市场确认。市场确认日是减仓信号。</b>
+    </p>
+  </div>
+
+  <div class="divq">
+    "钱在窗口里赚，<br>
+    不在事件后追。"
+  </div>
+</section>
+
+</main>
+</div>
+
+<footer>
+  <div class="ft-grid">
+    <div>
+      <h5>Primary Sources · 学术 / 一手</h5>
+      <ul>
+        <li><a href="https://newsletter.semianalysis.com/p/ai-capacity-constraints-cowos-and">Semianalysis AI Capacity</a></li>
+        <li><a href="https://newsletter.semianalysis.com/p/scaling-the-memory-wall-the-rise-and-roadmap-of-hbm">Semianalysis HBM Roadmap</a></li>
+        <li><a href="https://newsletter.semianalysis.com/p/co-packaged-optics-cpo-book-scaling">Semianalysis CPO Deep</a></li>
+        <li><a href="https://newsletter.semianalysis.com/p/isscc-2026-nvidia-and-broadcom-cpo">Semianalysis ISSCC 2026</a></li>
+        <li><a href="https://epoch.ai/blog/trends-in-the-dollar-training-cost-of-machine-learning-systems">EpochAI 训练成本</a></li>
+        <li><a href="https://epoch.ai/data-insights/hyperscaler-capex-trend/">EpochAI Hyperscaler CapEx</a></li>
+        <li><a href="https://arxiv.org/abs/2203.15556">Chinchilla 论文</a></li>
+        <li><a href="https://arxiv.org/abs/2005.14165">GPT-3 论文</a></li>
+        <li><a href="https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-first-quarter-fiscal-2024">NVIDIA Q1 FY24 拐点日</a></li>
+        <li><a href="https://news.skhynix.com/rulebreaker-revolutions-mr-muf-unlocks-hbm-heat-control/">SK Hynix MR-MUF 解析</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Industry &amp; Tech · 行业深度</h5>
+      <ul>
+        <li><a href="https://www.eetimes.com/sk-hynixs-mr-muf-innovations-tackle-heat-generation-to-secure-hbm-leadership/">EE Times MR-MUF 散热</a></li>
+        <li><a href="https://www.trendforce.com/news/2025/11/26/news-south-koreas-hbm-lead-reportedly-under-strain-as-tsmc-and-adeia-dominate-hybrid-bonding-ip/">TrendForce hybrid bonding IP</a></li>
+        <li><a href="https://www.knowmade.com/technology-news/semiconductor-news/packaging-news/ymtcs-hybrid-bonding-patents-a-key-competitive-factor-for-memory-chipmakers/">Knowmade YMTC 专利</a></li>
+        <li><a href="https://www.techinsights.com/blog/kioxiawd-bics8-218l-cba-3d-tlc-nand">TechInsights BiCS8 CBA</a></li>
+        <li><a href="https://www.trendforce.com/news/2026/05/04/news-kioxia-sandisk-to-demonstrate-qlc-nand-using-multi-stacked-cell-architecture-targeting-1000-layers">TrendForce MSA-CBA 千层</a></li>
+        <li><a href="https://www.trendforce.com/news/2026/04/28/news-cxl-may-emerge-as-post-hbm-battleground-samsung-reportedly-presents-system-with-10x-performance-gain/">TrendForce CXL +10x</a></li>
+        <li><a href="https://semiwiki.com/forum/threads/isscc-2026-samsung-electronics-demonstrated-a-16gb-dram.24808">SemiWiki ISSCC 4F² DRAM</a></li>
+        <li><a href="https://news.skhynix.com/sk-hynix-presents-future-dram-technology-roadmap-at-ieee-vlsi-2025/">SK Hynix VLSI 2025</a></li>
+        <li><a href="https://www.cnbc.com/2025/12/24/nvidia-buying-ai-chip-startup-groq-for-about-20-billion-biggest-deal.html">CNBC NVIDIA Groq $20B</a></li>
+        <li><a href="https://www.nextplatform.com/2026/01/15/cerebras-inks-transformative-10-billion-inference-deal-with-openai/">Next Platform Cerebras-OpenAI</a></li>
+        <li><a href="https://www.prnewswire.com/news-releases/north-american-ai-data-center-expansion-drives-2026-capex-of-top-nine-csps-to-us830-billion-says-trendforce-302764269.html">TrendForce Top9 CSP $830B</a></li>
+        <li><a href="https://introl.com/blog/ualink-cxl-4-gpu-interconnect-memory-pooling-guide-2025">Introl UALink/CXL4</a></li>
+        <li><a href="https://news.samsung.com/global/samsung-ships-industry-first-commercial-hbm4-with-ultimate-performance-for-ai-computing">Samsung HBM4 商品化首发</a></li>
+        <li><a href="https://semianalysis.com/author/dylanpatel/page/12/">Dylan Patel 历史归档</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-meta">
+    Generated 2026-05-10 · Ray Deep Research Engine · 主报告专题深挖 · 3 sub-agents (技术对比 / 信号回溯 / 下一波候选) · 单文件 HTML<br>
+    免责声明：本报告仅供研究参考，不构成投资建议。所有概率与时点均为基于当前可观察信号的概率性判断；技术演进路径具有不确定性。
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      document.querySelectorAll('nav.toc a').forEach(link => {
+        link.style.color = '';
+        link.style.fontWeight = '';
+      });
+      const activeLink = document.querySelector(`nav.toc a[href="#${id}"]`);
+      if (activeLink) {
+        activeLink.style.color = 'var(--accent-warn)';
+        activeLink.style.fontWeight = '600';
+      }
+    }
+  });
+}, { rootMargin: '-30% 0px -60% 0px' });
+document.querySelectorAll('section[id]').forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>

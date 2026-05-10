@@ -1,0 +1,934 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SK Hynix vs Samsung · 双雄对决 — 投资视角</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f3ec;--bg-paper:#fbf9f4;--bg-card:#ffffff;--bg-dark:#14110d;--bg-dark2:#1f1b16;
+  --ink:#14110d;--ink-2:#2c2620;--muted:#6e6358;--light:#a39787;
+  --rule:#14110d;--rule-light:#d8d1c2;
+  --accent-warn:#a73121;--accent-data:#1c4d6b;--accent-pos:#2c5e3f;--accent-yellow:#c89a2c;
+  --sk-color:#a73121;     /* SK Hynix 红 */
+  --ss-color:#1c4d6b;     /* Samsung 蓝 */
+  --serif:"Source Serif 4","Source Serif Pro","Charter","Iowan Old Style",Georgia,serif;
+  --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  --mono:"JetBrains Mono","SF Mono","Menlo","Consolas",monospace;
+  --max-w:820px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+
+.topbar{border-bottom:1px solid var(--rule-light);background:var(--bg-paper);padding:10px 32px;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.topbar .tb-left{color:var(--ink)}
+.topbar .tb-left b{color:var(--accent-warn)}
+
+.shell{display:grid;grid-template-columns:200px 1fr;gap:60px;max-width:1280px;margin:0 auto;padding:60px 40px}
+nav.toc{position:sticky;top:40px;align-self:start;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.08em;line-height:2}
+nav.toc .toc-title{color:var(--accent-warn);font-weight:600;margin-bottom:14px;border-bottom:1px solid var(--ink);padding-bottom:6px}
+nav.toc .toc-back{color:var(--muted);text-decoration:none;display:block;padding-bottom:10px;margin-bottom:6px;border-bottom:1px solid var(--rule-light);font-size:10px}
+nav.toc .toc-back:hover{color:var(--accent-warn)}
+nav.toc a{color:var(--muted);text-decoration:none;display:block;padding:3px 0;transition:color .12s}
+nav.toc a:hover{color:var(--ink)}
+.main{max-width:var(--max-w);min-width:0}
+
+/* ===== HERO with split tag ===== */
+.hero{display:grid;grid-template-columns:1fr 220px;gap:40px;align-items:start;padding-bottom:48px;border-bottom:2px solid var(--ink)}
+.eyebrow{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--accent-warn);font-weight:600;margin-bottom:24px;display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";display:inline-block;width:36px;height:1px;background:var(--accent-warn)}
+h1.hero-title{font-family:var(--serif);font-weight:600;font-size:74px;line-height:1.0;letter-spacing:-0.03em;margin-bottom:22px;color:var(--ink)}
+h1.hero-title em.sk{font-style:italic;color:var(--sk-color);font-weight:600}
+h1.hero-title em.ss{font-style:italic;color:var(--ss-color);font-weight:600}
+.hero-sub{font-family:var(--serif);font-style:italic;font-size:22px;line-height:1.45;color:var(--muted);max-width:640px}
+.hero-meta dl{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.06em;line-height:1.7}
+.hero-meta dt{color:var(--muted);margin-top:14px}
+.hero-meta dt:first-child{margin-top:0}
+.hero-meta dd{color:var(--ink);font-weight:600}
+
+/* ===== Quick Facts ===== */
+.qf{background:var(--bg-dark);color:#f6f3ec;padding:48px 40px;margin-top:0}
+.qf-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent-yellow);margin-bottom:14px}
+.qf h2{font-family:var(--serif);font-weight:400;font-style:italic;font-size:36px;line-height:1.1;margin-bottom:36px;color:#fbf9f4}
+.qf-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:rgba(255,255,255,0.10)}
+.qf-cell{background:var(--bg-dark);padding:22px 18px;min-height:130px;display:flex;flex-direction:column;justify-content:space-between;word-break:keep-all}
+.qf-cell .qf-label{font-family:var(--mono);font-size:9.5px;text-transform:uppercase;letter-spacing:0.10em;color:#a39787;margin-bottom:8px}
+.qf-cell .qf-num{font-family:var(--serif);font-size:28px;font-weight:600;line-height:1.05;color:#fbf9f4;letter-spacing:-0.02em;word-break:keep-all}
+.qf-cell .qf-num .qf-unit{font-size:13px;font-weight:400;color:#a39787;margin-left:4px}
+.qf-cell .qf-sub{font-size:11px;color:#a39787;margin-top:6px;line-height:1.4;word-break:keep-all}
+.qf-cell.sk{border-top:3px solid var(--sk-color)}
+.qf-cell.ss{border-top:3px solid var(--ss-color)}
+.qf-cell.verdict{background:var(--accent-warn);color:#fff;word-break:keep-all}
+.qf-cell.verdict .qf-label{color:rgba(255,255,255,0.75)}
+.qf-cell.verdict .qf-num{color:#fff;font-size:17px;line-height:1.3}
+.qf-cell.verdict .qf-sub{color:rgba(255,255,255,0.85)}
+
+/* ===== sections ===== */
+section{padding-top:80px;scroll-margin-top:30px}
+.sec-num{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--accent-warn);font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:14px}
+.sec-num::before{content:"";display:inline-block;width:36px;height:1px;background:var(--accent-warn)}
+h2.sec-h{font-family:var(--serif);font-weight:600;font-size:42px;line-height:1.1;letter-spacing:-0.02em;margin-bottom:28px}
+h2.sec-h em{font-style:italic;color:var(--accent-warn)}
+h3.sub-h{font-family:var(--serif);font-weight:600;font-size:24px;line-height:1.25;margin:36px 0 14px;letter-spacing:-0.01em}
+p{margin-bottom:18px;color:var(--ink-2)}
+.lede{font-family:var(--serif);font-size:20px;line-height:1.55;color:var(--ink);margin-bottom:24px}
+.lede em{font-style:italic;color:var(--accent-warn)}
+.lede em.sk{color:var(--sk-color)}
+.lede em.ss{color:var(--ss-color)}
+
+/* ===== TL;DR ===== */
+.tldr{background:var(--bg-dark);color:#f6f3ec;padding:40px;margin:14px 0 24px;position:relative}
+.tldr .ribbon{position:absolute;top:-12px;left:24px;background:var(--accent-warn);color:#fff;padding:6px 14px;font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;font-weight:700}
+.tldr h3{font-family:var(--serif);font-weight:400;font-style:italic;font-size:24px;line-height:1.3;color:#fbf9f4;margin-bottom:20px}
+.tldr ol{list-style:none;counter-reset:tldr-c}
+.tldr ol li{counter-increment:tldr-c;display:flex;gap:14px;align-items:flex-start;margin-bottom:18px;color:rgba(251,249,244,0.85);font-size:15px;line-height:1.65}
+.tldr ol li::before{content:counter(tldr-c,decimal-leading-zero);font-family:var(--mono);font-size:11px;color:var(--accent-yellow);font-weight:600;letter-spacing:0.1em;padding-top:5px;flex:0 0 32px;line-height:1}
+.tldr ol li b{color:#fbf9f4;font-weight:600}
+.tldr ol li b.sk{color:#e88c7d}
+.tldr ol li b.ss{color:#7eb6d1}
+
+/* ===== VS row（双方对照行） ===== */
+.vs-table{margin:24px 0;border:1px solid var(--rule)}
+.vs-row{display:grid;grid-template-columns:1fr 220px 1fr;gap:0;border-top:1px solid var(--rule-light)}
+.vs-row:first-child{border-top:none}
+.vs-row.head{background:var(--bg-paper);border-top:none}
+.vs-row.head .vs-side{padding:14px 16px;font-family:var(--mono);font-size:12px;letter-spacing:0.10em;text-transform:uppercase;font-weight:700}
+.vs-row.head .vs-sk{color:var(--sk-color);text-align:right}
+.vs-row.head .vs-ss{color:var(--ss-color);text-align:left}
+.vs-row.head .vs-mid{font-family:var(--mono);font-size:10px;letter-spacing:0.10em;text-transform:uppercase;color:var(--muted);text-align:center;padding:14px 12px;background:var(--bg-card)}
+.vs-side{padding:14px 18px;line-height:1.4;font-size:14px}
+.vs-side.vs-sk{text-align:right;border-right:1px solid var(--rule-light)}
+.vs-side.vs-ss{text-align:left;border-left:1px solid var(--rule-light)}
+.vs-mid{font-family:var(--mono);font-size:9.5px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);text-align:center;padding:14px 8px;background:var(--bg-card);align-self:center}
+.vs-side .vs-num{font-family:var(--serif);font-size:22px;font-weight:600;letter-spacing:-0.01em;display:block;line-height:1.1}
+.vs-side.vs-sk .vs-num{color:var(--sk-color)}
+.vs-side.vs-ss .vs-num{color:var(--ss-color)}
+.vs-side .vs-sub{font-size:11.5px;color:var(--muted);display:block;margin-top:3px}
+.vs-row.winner-sk{background:linear-gradient(to right,rgba(167,49,33,0.06) 0%,rgba(167,49,33,0.06) 50%,transparent 100%)}
+.vs-row.winner-ss{background:linear-gradient(to right,transparent 0%,rgba(28,77,107,0.06) 50%,rgba(28,77,107,0.06) 100%)}
+.vs-row.winner-tie{background:rgba(0,0,0,0.02)}
+
+/* ===== twocol cards ===== */
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:24px 0}
+.threecol{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin:24px 0}
+.tc-card{background:var(--bg-card);padding:22px;border:1px solid var(--rule-light)}
+.tc-card.sk{border-top:4px solid var(--sk-color)}
+.tc-card.ss{border-top:4px solid var(--ss-color)}
+.tc-card h4{font-family:var(--serif);font-weight:600;font-size:18px;margin-bottom:12px}
+.tc-card.sk h4{color:var(--sk-color)}
+.tc-card.ss h4{color:var(--ss-color)}
+.tc-card .tc-tag{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:0.10em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;font-weight:600}
+.tc-card ul{list-style:none}
+.tc-card li{font-size:14px;color:var(--ink-2);padding:6px 0;border-top:1px solid var(--rule-light);line-height:1.5}
+.tc-card li:first-child{border-top:none}
+.tc-card li b{color:var(--ink);font-weight:600}
+
+/* persona cards */
+.persona{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:24px 0}
+.persona-card{background:var(--bg-card);border:1px solid var(--rule-light);padding:22px}
+.persona-card.cons{border-top:4px solid var(--accent-pos)}
+.persona-card.bal{border-top:4px solid var(--accent-yellow)}
+.persona-card.aggr{border-top:4px solid var(--accent-warn)}
+.persona-card .p-tag{font-family:var(--mono);font-size:11px;letter-spacing:0.10em;text-transform:uppercase;font-weight:600;margin-bottom:10px}
+.persona-card.cons .p-tag{color:var(--accent-pos)}
+.persona-card.bal .p-tag{color:var(--accent-yellow)}
+.persona-card.aggr .p-tag{color:var(--accent-warn)}
+.persona-card h4{font-family:var(--serif);font-weight:600;font-size:20px;margin-bottom:8px;letter-spacing:-0.01em}
+.persona-card .p-rec{font-family:var(--mono);font-size:11px;letter-spacing:0.06em;background:var(--ink);color:#fff;padding:6px 10px;display:inline-block;margin-bottom:14px;font-weight:600}
+.persona-card p{font-size:13.5px;line-height:1.55;color:var(--ink-2)}
+.persona-card ul{list-style:none;margin-top:8px}
+.persona-card li{font-size:13px;line-height:1.55;color:var(--ink-2);padding:5px 0;border-top:1px solid var(--rule-light)}
+
+/* scenario matrix */
+.scn-matrix{margin:24px 0;border:1px solid var(--rule);overflow-x:auto}
+.scn-matrix table{width:100%;min-width:680px;border-collapse:collapse;font-size:13px}
+.scn-matrix th{font-family:var(--mono);font-size:10px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink);font-weight:700;padding:12px 14px;text-align:left;background:var(--bg-paper);border-bottom:2px solid var(--ink)}
+.scn-matrix th.sk{color:var(--sk-color)}
+.scn-matrix th.ss{color:var(--ss-color)}
+.scn-matrix th.winner{text-align:center;width:160px}
+.scn-matrix td{padding:13px 14px;border-bottom:1px solid var(--rule-light);vertical-align:top;line-height:1.45}
+.scn-matrix tr:last-child td{border-bottom:1px solid var(--ink)}
+.scn-matrix .scn-name{font-family:var(--serif);font-weight:700;font-size:14px}
+.scn-matrix .perf-strong-pos{color:var(--accent-pos);font-weight:600}
+.scn-matrix .perf-pos{color:var(--accent-pos)}
+.scn-matrix .perf-neutral{color:var(--muted)}
+.scn-matrix .perf-neg{color:var(--accent-warn)}
+.scn-matrix .perf-strong-neg{color:var(--accent-warn);font-weight:600}
+.scn-matrix .winner-cell{text-align:center;font-family:var(--mono);font-size:10px;letter-spacing:0.06em;font-weight:700;text-transform:uppercase}
+.scn-matrix .winner-cell.sk{color:var(--sk-color)}
+.scn-matrix .winner-cell.ss{color:var(--ss-color)}
+
+/* catalyst calendar */
+.cal{margin:24px 0;border:1px solid var(--rule);overflow-x:auto}
+.cal table{width:100%;min-width:640px;border-collapse:collapse;font-size:13px}
+.cal th{font-family:var(--mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;font-weight:700;padding:12px 14px;text-align:left;background:var(--bg-paper);border-bottom:2px solid var(--ink)}
+.cal th.sk{color:var(--sk-color)}
+.cal th.ss{color:var(--ss-color)}
+.cal td{padding:14px 14px;border-bottom:1px solid var(--rule-light);vertical-align:top;line-height:1.5}
+.cal tr:last-child td{border-bottom:1px solid var(--ink)}
+.cal td.time{font-family:var(--mono);font-size:11px;letter-spacing:0.06em;color:var(--ink);font-weight:700;width:130px}
+.cal td.sk-cat{border-left:3px solid var(--sk-color)}
+.cal td.ss-cat{border-left:3px solid var(--ss-color)}
+
+/* ===== callout ===== */
+.callout{border-left:3px solid var(--ink);background:var(--bg-paper);padding:16px 20px;margin:18px 0}
+.callout.warn{border-color:var(--accent-warn)}
+.callout.data{border-color:var(--accent-data)}
+.callout.pos{border-color:var(--accent-pos)}
+.callout.sk{border-color:var(--sk-color)}
+.callout.ss{border-color:var(--ss-color)}
+.callout .co-label{font-family:var(--mono);font-size:10px;letter-spacing:0.10em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;font-weight:600}
+.callout.warn .co-label{color:var(--accent-warn)}
+.callout.data .co-label{color:var(--accent-data)}
+.callout.sk .co-label{color:var(--sk-color)}
+.callout.ss .co-label{color:var(--ss-color)}
+.callout .co-quote{font-family:var(--serif);font-style:italic;font-size:17px;line-height:1.5;color:var(--ink)}
+.callout .co-body{font-size:14px;color:var(--ink-2);line-height:1.6}
+
+/* divider quote */
+.divq{text-align:center;font-family:var(--serif);font-style:italic;font-size:22px;line-height:1.45;color:var(--muted);margin:60px 0;padding:0 20px}
+.divq::before,.divq::after{content:"";display:block;width:40px;height:1px;background:var(--ink);margin:14px auto}
+
+/* verdict */
+.verdict{background:var(--bg-dark);color:#f6f3ec;padding:48px 40px;margin:30px 0}
+.verdict .v-title{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent-yellow);margin-bottom:14px;font-weight:600}
+.verdict h3{font-family:var(--serif);font-weight:400;font-style:italic;font-size:28px;line-height:1.3;color:#fbf9f4;margin-bottom:18px;letter-spacing:-0.01em}
+.verdict h3 em.sk{font-style:italic;font-weight:600;color:#e88c7d}
+.verdict h3 em.ss{font-style:italic;font-weight:600;color:#7eb6d1}
+.verdict h3 em.tie{font-style:italic;font-weight:600;color:var(--accent-yellow)}
+.verdict p{color:rgba(251,249,244,0.85);font-size:15px;line-height:1.65;margin-bottom:14px}
+.verdict p:last-child{margin-bottom:0}
+
+/* footer */
+footer{background:var(--bg-dark);color:#a39787;padding:56px 40px 36px;margin-top:80px}
+footer .ft-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:40px}
+footer h5{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#fbf9f4;margin-bottom:14px;font-weight:600}
+footer ul{list-style:none;font-size:12px;line-height:1.8;font-family:var(--mono);columns:2;column-gap:24px}
+footer ul li{break-inside:avoid}
+footer a{color:#a39787;text-decoration:none;border-bottom:1px dotted rgba(163,151,135,0.4)}
+footer a:hover{color:#fbf9f4}
+footer .ft-meta{margin-top:36px;padding-top:24px;border-top:1px solid #2c2620;font-size:11px;color:#6e6358;font-family:var(--mono);letter-spacing:0.06em;line-height:1.6}
+
+/* paged-media 跨页保护 */
+.qf-cell,.tc-card,.callout,.persona-card,.tldr,.verdict,.hero,.lede,.vs-row,.scn-matrix tr,.cal tr,.divq{
+  break-inside:avoid;page-break-inside:avoid;
+}
+h1.hero-title,h2.sec-h,h3.sub-h,.sec-num,.qf-eyebrow,.v-title{
+  break-after:avoid;page-break-after:avoid;
+}
+p{orphans:3;widows:3}
+
+@media (max-width:1100px){
+  .shell{grid-template-columns:1fr;gap:0;padding:40px 24px}
+  nav.toc{position:relative;top:0;display:flex;flex-wrap:wrap;gap:6px 18px;padding-bottom:24px;margin-bottom:24px;border-bottom:1px solid var(--rule-light);line-height:1.4}
+  nav.toc .toc-title{width:100%;border-bottom:none;padding-bottom:0;margin-bottom:6px}
+  nav.toc .toc-back{width:100%;border-bottom:none}
+  .qf-grid{grid-template-columns:repeat(3,1fr)}
+  .twocol,.threecol,.persona{grid-template-columns:1fr}
+  .hero{grid-template-columns:1fr}
+  .vs-row{grid-template-columns:1fr 100px 1fr}
+}
+@media (max-width:720px){
+  h1.hero-title{font-size:46px}
+  h2.sec-h{font-size:30px}
+  .qf-grid{grid-template-columns:repeat(2,1fr)}
+  .qf,.verdict,.tldr,footer{padding-left:24px;padding-right:24px}
+  .vs-row{grid-template-columns:1fr;gap:0}
+  .vs-side{text-align:left !important;border:none !important;padding:10px 16px}
+  .vs-mid{border-top:1px solid var(--rule-light);border-bottom:1px solid var(--rule-light);padding:8px 16px;text-align:left}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="tb-left">SK Hynix vs Samsung · 双雄对决 — 投资视角 &nbsp;·&nbsp; <b>v1.0</b></div>
+  <div>2026 · 05 · 10 &nbsp;|&nbsp; Ray Deep Research Engine</div>
+</div>
+
+<div class="shell">
+
+<nav class="toc" aria-label="Table of contents">
+  <div class="toc-title">Contents</div>
+  <a class="toc-back" href="https://kdsz001.github.io/sk-hynix-research/">← 返回主报告</a>
+  <a href="#hero">00 · Hero</a>
+  <a href="#qf">01 · Facts</a>
+  <a href="#tldr">02 · TL;DR</a>
+  <a href="#financials">03 · 财务对比</a>
+  <a href="#valuation">04 · 估值对比</a>
+  <a href="#kospi">05 · KOSPI 动力学</a>
+  <a href="#personas">06 · 三类投资者</a>
+  <a href="#scenarios">07 · 8 种情景</a>
+  <a href="#calendar">08 · 催化剂日历</a>
+  <a href="#verdict">09 · 最终判断</a>
+</nav>
+
+<main class="main">
+
+<section id="hero">
+  <div class="hero">
+    <div>
+      <div class="eyebrow">Deep Compare · 双雄对决</div>
+      <h1 class="hero-title"><em class="sk">弹性</em><br>对决<br><em class="ss">堡垒</em></h1>
+      <p class="hero-sub">
+        2023 年初海力士市值仅为三星的 1/5，今天是 76%。
+        AI 时代把这两家从"师徒"变成了"双雄"——一个用 HBM 押 alpha，一个用现金 + 多元化守 beta。
+        Forward P/E 几乎相同，但代表着两种完全不同的赌注。这份报告告诉你哪个赌注更适合你。
+      </p>
+    </div>
+    <aside class="hero-meta">
+      <dl>
+        <dt>对决主角</dt><dd>SK Hynix · KRX:000660<br>Samsung Electronics<br>· KRX:005930</dd>
+        <dt>调研深度</dt><dd>3 子 Agent 并行</dd>
+        <dt>覆盖来源</dt><dd>双方 IR / Stock Analysis<br>Bloomberg / 韩国券商<br>TrendForce / Counterpoint</dd>
+        <dt>报告字数</dt><dd>约 12,000 字</dd>
+        <dt>主报告</dt><dd>kdsz001.github.io/<br>sk-hynix-research</dd>
+      </dl>
+    </aside>
+  </div>
+</section>
+
+<section id="qf" class="qf">
+  <div class="qf-eyebrow">The Two Champions · at a Glance</div>
+  <h2>速览板 · 12 个最值得记住的对比</h2>
+  <div class="qf-grid">
+    <div class="qf-cell sk">
+      <div class="qf-label">SK Hynix 市值</div>
+      <div><span class="qf-num">$809<span class="qf-unit">B</span></span></div>
+      <div class="qf-sub">₩1,183 兆<br>全球 #16</div>
+    </div>
+    <div class="qf-cell ss">
+      <div class="qf-label">Samsung 市值</div>
+      <div><span class="qf-num">$1.17<span class="qf-unit">T</span></span></div>
+      <div class="qf-sub">₩1,716 兆<br>2026/5/6 破 $1T</div>
+    </div>
+    <div class="qf-cell sk">
+      <div class="qf-label">SK Q1'26 OPM</div>
+      <div><span class="qf-num">72<span class="qf-unit">%</span></span></div>
+      <div class="qf-sub">半导体史最高<br>纯 HBM 杠杆</div>
+    </div>
+    <div class="qf-cell ss">
+      <div class="qf-label">Samsung Q1'26 OPM</div>
+      <div><span class="qf-num">42.7<span class="qf-unit">%</span></span></div>
+      <div class="qf-sub">DS 部门 65.7%<br>整体被多元化拉低</div>
+    </div>
+    <div class="qf-cell sk">
+      <div class="qf-label">SK ROE</div>
+      <div><span class="qf-num">61<span class="qf-unit">%</span></span></div>
+      <div class="qf-sub">资本回报压倒性<br>纯 HBM 故事</div>
+    </div>
+    <div class="qf-cell ss">
+      <div class="qf-label">Samsung ROE</div>
+      <div><span class="qf-num">19<span class="qf-unit">%</span></span></div>
+      <div class="qf-sub">综合电子集团<br>多元化稀释</div>
+    </div>
+    <div class="qf-cell sk">
+      <div class="qf-label">SK Forward P/E</div>
+      <div><span class="qf-num">5.31<span class="qf-unit">x</span></span></div>
+      <div class="qf-sub">基于 2026E EPS<br>和 Samsung 几乎持平</div>
+    </div>
+    <div class="qf-cell ss">
+      <div class="qf-label">Samsung Forward P/E</div>
+      <div><span class="qf-num">5.41<span class="qf-unit">x</span></span></div>
+      <div class="qf-sub">P/B 仅 3.53<br>是 SK 的一半</div>
+    </div>
+    <div class="qf-cell sk">
+      <div class="qf-label">SK 净现金</div>
+      <div><span class="qf-num">₩35<span class="qf-unit">兆</span></span></div>
+      <div class="qf-sub">CEO 称年内可达 ₩100 兆<br>回购收益率 1.46%</div>
+    </div>
+    <div class="qf-cell ss">
+      <div class="qf-label">Samsung 净现金</div>
+      <div><span class="qf-num">₩119<span class="qf-unit">兆</span></span></div>
+      <div class="qf-sub">≈ $81B<br>SK 的 3.4×</div>
+    </div>
+    <div class="qf-cell">
+      <div class="qf-label">KOSPI 双雄占比</div>
+      <div><span class="qf-num">47<span class="qf-unit">%</span></span></div>
+      <div class="qf-sub">2026/5/7 创纪录<br>2025 年初仅 22%</div>
+    </div>
+    <div class="qf-cell verdict">
+      <div class="qf-label">My Take</div>
+      <div><span class="qf-num">Alpha 选 SK<br>Beta 选 Samsung</span></div>
+      <div class="qf-sub">想全要<br>50/50 等权重</div>
+    </div>
+  </div>
+</section>
+
+<section id="tldr">
+  <div class="sec-num">02 · The bottom line</div>
+  <h2 class="sec-h">如果只有 60 秒，<em>读这段</em></h2>
+
+  <div class="tldr">
+    <div class="ribbon">TL;DR</div>
+    <h3>三层判断 · 一页纸结论</h3>
+    <ol>
+      <li><b class="sk">SK Hynix 是纯 alpha。</b> HBM pure-play、ROE 61%、Q1'26 OPM 72% 是半导体史最高，每 1% AI capex 增量直接传导股价。Beta 2.03、52 周涨 +784%、波动剧烈。Forward P/E 5.31x 看似便宜，但赌的是 AI capex 周期还有 5 年以上。</li>
+      <li><b class="ss">Samsung 是堡垒 beta。</b> 净现金 ₩119 兆（$81B，SK 的 3.4×）、业务多元（半导体 + 手机 + Display + Foundry + Harman）、Beta 1.33。Q1'26 单季营业利润 ₩57.2 兆已超过 FY25 全年 ₩43.6 兆——Samsung 也在大爆发，只是被多元化稀释成了"看起来没那么夸张"。Foundry 修复 + ADR 上市 + 库藏股注销三个期权同时打开。</li>
+      <li><b>它们已经是同一只股票的两个 beta。</b> 双雄合计占 KOSPI 47%（创纪录），任何 Korea ETF / EM 基金都自动同时押注；外资在两家上的资金流方向几乎同步。但相关性已从历史 0.7 降到 0.55-0.60——HBM 故事让它们分化。<b>结论</b>：要选边的人选 SK Hynix（赌 AI 持续）或 Samsung（赌防御性）；不想选边的人 50/50 等权重就够了。</li>
+    </ol>
+  </div>
+</section>
+
+<section id="financials">
+  <div class="sec-num">03 · The Numbers</div>
+  <h2 class="sec-h">财务直接对比 · <em>每一项都在说话</em></h2>
+
+  <p class="lede">
+    SK Hynix 是 Samsung DS 部门的"纯化版"。
+    <em class="sk">SK 营收 ₩97 兆、营业利润 ₩47 兆</em> vs <em class="ss">Samsung 营收 ₩334 兆、营业利润 ₩44 兆</em>——
+    Samsung 营收是 SK 的 3.4 倍，营业利润 SK 还<em>反超</em>了。这是 SK Hynix 历史首次在营业利润上超过 Samsung 集团整体。
+  </p>
+
+  <h3 class="sub-h">FY25 全年 + Q1'26 关键数字</h3>
+  <div class="vs-table">
+    <div class="vs-row head">
+      <div class="vs-side vs-sk">SK Hynix</div>
+      <div class="vs-mid">指标</div>
+      <div class="vs-side vs-ss">Samsung</div>
+    </div>
+    <div class="vs-row winner-ss">
+      <div class="vs-side vs-sk"><span class="vs-num">₩97.15 兆</span><span class="vs-sub">$66.5B · YoY +47%</span></div>
+      <div class="vs-mid">FY25 营收</div>
+      <div class="vs-side vs-ss"><span class="vs-num">₩333.6 兆</span><span class="vs-sub">$228B · YoY +11%</span></div>
+    </div>
+    <div class="vs-row winner-sk">
+      <div class="vs-side vs-sk"><span class="vs-num">₩47.21 兆</span><span class="vs-sub">$32.3B · YoY +101%</span></div>
+      <div class="vs-mid">FY25 营业利润</div>
+      <div class="vs-side vs-ss"><span class="vs-num">₩43.60 兆</span><span class="vs-sub">$29.8B · YoY +33%</span></div>
+    </div>
+    <div class="vs-row winner-sk">
+      <div class="vs-side vs-sk"><span class="vs-num">48.6%</span><span class="vs-sub">纯内存玩家</span></div>
+      <div class="vs-mid">FY25 营业利润率</div>
+      <div class="vs-side vs-ss"><span class="vs-num">13.1%</span><span class="vs-sub">综合电子集团</span></div>
+    </div>
+    <div class="vs-row winner-ss">
+      <div class="vs-side vs-sk"><span class="vs-num">₩52.58 兆</span><span class="vs-sub">$35.5B · QoQ +60%</span></div>
+      <div class="vs-mid">Q1'26 营收</div>
+      <div class="vs-side vs-ss"><span class="vs-num">₩133.9 兆</span><span class="vs-sub">$90.1B · QoQ +43%</span></div>
+    </div>
+    <div class="vs-row winner-ss">
+      <div class="vs-side vs-sk"><span class="vs-num">₩37.61 兆</span><span class="vs-sub">$25.4B · YoY +405%</span></div>
+      <div class="vs-mid">Q1'26 营业利润</div>
+      <div class="vs-side vs-ss"><span class="vs-num">₩57.23 兆</span><span class="vs-sub">$38.6B · YoY +755%</span></div>
+    </div>
+    <div class="vs-row winner-sk">
+      <div class="vs-side vs-sk"><span class="vs-num">72%</span><span class="vs-sub">半导体史上最高</span></div>
+      <div class="vs-mid">Q1'26 营业利润率</div>
+      <div class="vs-side vs-ss"><span class="vs-num">42.7%</span><span class="vs-sub">DS 单部门 65.7%</span></div>
+    </div>
+    <div class="vs-row winner-sk">
+      <div class="vs-side vs-sk"><span class="vs-num">61.17%</span></div>
+      <div class="vs-mid">ROE (TTM)</div>
+      <div class="vs-side vs-ss"><span class="vs-num">18.85%</span></div>
+    </div>
+    <div class="vs-row winner-sk">
+      <div class="vs-side vs-sk"><span class="vs-num">52.33%</span></div>
+      <div class="vs-mid">ROIC (TTM)</div>
+      <div class="vs-side vs-ss"><span class="vs-num">22.73%</span></div>
+    </div>
+    <div class="vs-row winner-ss">
+      <div class="vs-side vs-sk"><span class="vs-num">₩35 兆</span><span class="vs-sub">$24B</span></div>
+      <div class="vs-mid">净现金</div>
+      <div class="vs-side vs-ss"><span class="vs-num">₩119 兆</span><span class="vs-sub">$81B · 3.4× SK</span></div>
+    </div>
+    <div class="vs-row winner-tie">
+      <div class="vs-side vs-sk"><span class="vs-num">₩42 兆</span></div>
+      <div class="vs-mid">FCF (TTM)</div>
+      <div class="vs-side vs-ss"><span class="vs-num">₩56 兆</span></div>
+    </div>
+    <div class="vs-row winner-sk">
+      <div class="vs-side vs-sk"><span class="vs-num">21.9%</span><span class="vs-sub">高强度扩 HBM</span></div>
+      <div class="vs-mid">CapEx 强度</div>
+      <div class="vs-side vs-ss"><span class="vs-num">13.5%</span><span class="vs-sub">摊到更宽业务</span></div>
+    </div>
+    <div class="vs-row winner-sk">
+      <div class="vs-side vs-sk"><span class="vs-num">33,626</span><span class="vs-sub">人均利润 ₩2.24B</span></div>
+      <div class="vs-mid">员工 / 人均利润</div>
+      <div class="vs-side vs-ss"><span class="vs-num">128,735</span><span class="vs-sub">人均 ₩647M</span></div>
+    </div>
+  </div>
+
+  <div class="callout sk">
+    <div class="co-label">SK Hynix 视角</div>
+    <div class="co-body">这是<b>历史首次在营业利润上超过 Samsung 集团整体</b>——FY25 SK ₩47.2T vs Samsung ₩43.6T。背后是 HBM 利润率 80%+ 直接拉爆。Q1'26 OPM 72% 在所有半导体公司里独一档（超过 Micron 67.6%、超过 NVIDIA 单季 OPM、超过 TSMC）。</div>
+  </div>
+
+  <div class="callout ss">
+    <div class="co-label">Samsung 视角</div>
+    <div class="co-body">Samsung Q1'26 单季营业利润 ₩57.2T <b>已经超过 FY25 全年</b> ₩43.6T——这是另一种"大爆发"，只是被多元化稀释了。<b>DS 部门单季利润 ₩53.7T 占集团 94%</b>，内部已经"准 SK Hynix 化"。HBM3E 12-Hi 2025-09 通过 NVIDIA 认证后，HBM 故事正在快速追赶。</div>
+  </div>
+</section>
+
+<section id="valuation">
+  <div class="sec-num">04 · The Valuations</div>
+  <h2 class="sec-h">估值对决 · <em>看似一样，实则两种赌注</em></h2>
+
+  <p class="lede">
+    Forward P/E <em class="sk">5.31x</em> vs <em class="ss">5.41x</em>——几乎完全相同。
+    但 P/B 7.20x vs 3.53x、ROE 61% vs 19%——这两个数字告诉你，
+    <em>市场对 SK 的"AI alpha 故事"愿意付 2 倍的账面溢价</em>，对 Samsung 不愿意。
+    这就是 conglomerate discount 的本质。
+  </p>
+
+  <div class="vs-table">
+    <div class="vs-row head">
+      <div class="vs-side vs-sk">SK Hynix</div>
+      <div class="vs-mid">估值倍数</div>
+      <div class="vs-side vs-ss">Samsung</div>
+    </div>
+    <div class="vs-row winner-tie">
+      <div class="vs-side vs-sk"><span class="vs-num">5.31x</span></div>
+      <div class="vs-mid">Forward P/E<br><span style="font-weight:400">基于 2026E</span></div>
+      <div class="vs-side vs-ss"><span class="vs-num">5.41x</span></div>
+    </div>
+    <div class="vs-row winner-ss">
+      <div class="vs-side vs-sk"><span class="vs-num">15.82x</span></div>
+      <div class="vs-mid">Trailing P/E</div>
+      <div class="vs-side vs-ss"><span class="vs-num">21.36x</span></div>
+    </div>
+    <div class="vs-row winner-ss">
+      <div class="vs-side vs-sk"><span class="vs-num">7.20x</span></div>
+      <div class="vs-mid">P/B</div>
+      <div class="vs-side vs-ss"><span class="vs-num">3.53x</span><span class="vs-sub">SK 的一半</span></div>
+    </div>
+    <div class="vs-row winner-ss">
+      <div class="vs-side vs-sk"><span class="vs-num">8.96x</span></div>
+      <div class="vs-mid">P/S</div>
+      <div class="vs-side vs-ss"><span class="vs-num">4.42x</span></div>
+    </div>
+    <div class="vs-row winner-tie">
+      <div class="vs-side vs-sk"><span class="vs-num">12.54x</span></div>
+      <div class="vs-mid">EV/EBITDA</div>
+      <div class="vs-side vs-ss"><span class="vs-num">11.20x</span></div>
+    </div>
+    <div class="vs-row winner-ss">
+      <div class="vs-side vs-sk"><span class="vs-num">0.18%</span></div>
+      <div class="vs-mid">股息收益率</div>
+      <div class="vs-side vs-ss"><span class="vs-num">0.84%</span><span class="vs-sub">SK 的 4.7×</span></div>
+    </div>
+    <div class="vs-row winner-sk">
+      <div class="vs-side vs-sk"><span class="vs-num">+1.46%</span><span class="vs-sub">已注销 ₩12.2T</span></div>
+      <div class="vs-mid">回购收益率</div>
+      <div class="vs-side vs-ss"><span class="vs-num">−0.82%</span><span class="vs-sub">2026H1 计划注销 ₩16T</span></div>
+    </div>
+    <div class="vs-row winner-sk">
+      <div class="vs-side vs-sk"><span class="vs-num">+783.65%</span><span class="vs-sub">Beta 2.03</span></div>
+      <div class="vs-mid">52 周涨幅</div>
+      <div class="vs-side vs-ss"><span class="vs-num">+391.76%</span><span class="vs-sub">Beta 1.33</span></div>
+    </div>
+  </div>
+
+  <h3 class="sub-h">为什么 Samsung 估值倍数长期低于 SK Hynix？</h3>
+  <div class="threecol">
+    <div class="tc-card">
+      <div class="tc-tag">Reason 01</div>
+      <h4>HBM 杠杆系数差异</h4>
+      <p style="font-size:13.5px;line-height:1.55">SK Hynix HBM 占其 DRAM 营收 90%+，每 1% HBM ASP 变动直接传导股价。Samsung HBM 营收占比仅 ~15%，被手机、家电、Display、Foundry 稀释。</p>
+    </div>
+    <div class="tc-card">
+      <div class="tc-tag">Reason 02</div>
+      <h4>SOTP 折让</h4>
+      <p style="font-size:13.5px;line-height:1.55">Samsung 长期被打 20-30% conglomerate discount——MX 8x P/E、家电 6x、Foundry 按账面打折。SK Hynix 是 pure-play 没有这层折让。</p>
+    </div>
+    <div class="tc-card">
+      <div class="tc-tag">Reason 03</div>
+      <h4>Alpha vs Beta</h4>
+      <p style="font-size:13.5px;line-height:1.55">Samsung 是"AI 时代的现金堡垒型 beta"，SK 是"AI 时代的纯期权型 alpha"。市场愿意为 alpha 付的 P/B（7.2x）远高于 beta（3.5x）。</p>
+    </div>
+  </div>
+
+  <div class="callout data">
+    <div class="co-label">分析师共识对比</div>
+    <div class="co-body"><b>SK Hynix</b>：38 家券商目标价中位 ₩1,790,000（+6% 上行空间，已被股价基本追平）。<b>Samsung</b>：37 家券商 36 Buy / 1 Hold，目标价中位 ₩314,076（+17% 上行空间，Morgan Stanley 最高 ₩362,000）。<b>Samsung 隐含上行空间是 SK 的近 3 倍</b>——这是为什么 4 月外资从 SK 转向 Samsung 的核心理由。</div>
+  </div>
+</section>
+
+<div class="divq">
+  Forward P/E 一样的两只股票，<br>
+  代表着两种完全不同的赌注。
+</div>
+
+<section id="kospi">
+  <div class="sec-num">05 · The Index Effect</div>
+  <h2 class="sec-h">KOSPI 双雄动力学 · <em>它们已经是 KOSPI</em></h2>
+
+  <p class="lede">
+    2025 年初，Samsung + SK Hynix 合计仅占 KOSPI 22%。
+    今天 <em>47%</em>——一年之内翻倍。
+    任何买 KOSPI ETF、Korea ETF、MSCI Emerging Markets 的资金都在自动同时押注双雄。
+    这是一个被市场低估的"<em>结构性买盘</em>"。
+  </p>
+
+  <div class="vs-table">
+    <div class="vs-row head">
+      <div class="vs-side vs-sk">SK Hynix</div>
+      <div class="vs-mid">动力学指标</div>
+      <div class="vs-side vs-ss">Samsung</div>
+    </div>
+    <div class="vs-row">
+      <div class="vs-side vs-sk"><span class="vs-num">8.1%</span><span class="vs-sub">2026/04 历史新高</span></div>
+      <div class="vs-mid">国民年金<br>持股</div>
+      <div class="vs-side vs-ss"><span class="vs-num">7.8%</span><span class="vs-sub">vs 2025 末 7.3%</span></div>
+    </div>
+    <div class="vs-row">
+      <div class="vs-side vs-sk"><span class="vs-num">56%</span><span class="vs-sub">接近历史最高</span></div>
+      <div class="vs-mid">外资持股</div>
+      <div class="vs-side vs-ss"><span class="vs-num">48%</span><span class="vs-sub">3 月跌至 13 年低点<br>4 月反转净买</span></div>
+    </div>
+    <div class="vs-row">
+      <div class="vs-side vs-sk"><span class="vs-num">2.03</span></div>
+      <div class="vs-mid">Beta (5Y)</div>
+      <div class="vs-side vs-ss"><span class="vs-num">1.33</span></div>
+    </div>
+    <div class="vs-row">
+      <div class="vs-side vs-sk"><span class="vs-num">85.65</span><span class="vs-sub">极度超买</span></div>
+      <div class="vs-mid">RSI</div>
+      <div class="vs-side vs-ss"><span class="vs-num">74.48</span><span class="vs-sub">超买</span></div>
+    </div>
+  </div>
+
+  <h3 class="sub-h">市值集中度演化（KOSPI 占比）</h3>
+  <div class="callout data">
+    <div class="co-label">"被动买盘"的强迫力</div>
+    <div class="co-body">
+      • 2025 年初：双雄合计占 KOSPI <b>21.9%</b><br>
+      • 2026 年 2 月：突破 <b>40%</b>（首次合计 ₩2,000T）<br>
+      • 2026 年 4 月 27 日：<b>43.6%</b><br>
+      • 2026 年 5 月 7 日：<b>47.02%</b>（接近半数）<br>
+      • <b>2026 Q1 双雄占 NPS 股票账户增值的 62.7%</b><br>
+      • Macquarie：双雄占 <b>KOSPI 总盈利的 52%</b>
+    </div>
+  </div>
+
+  <h3 class="sub-h">双雄相关性 · 从同涨同跌到分化</h3>
+  <p>
+    历史（2018-2023）：60D rolling correlation <b>0.65-0.75</b>（典型 Korea memory pair）<br>
+    2024 H1（HBM 故事启动）：跌到 <b>~0.55</b>，SK 跑赢 Samsung 30%+<br>
+    2024 H2 - 2025（Samsung HBM 失速）：跌到 <b>~0.40-0.45</b>（历史最低）<br>
+    2025 Q4 - 2026 Q1（Samsung HBM4 追赶）：回升到 <b>~0.55-0.60</b><br>
+    <br>
+    <b>当前解读</b>：相关性正在从分化重新走向收敛，但仍未回到 0.70+。这意味着 long SK / short Samsung 的配对交易窗口正在收窄，但还没关闭——短期还有套利空间。
+  </p>
+
+  <h3 class="sub-h">韩元汇率敏感度</h3>
+  <div class="twocol">
+    <div class="tc-card sk">
+      <div class="tc-tag">SK Hynix</div>
+      <h4>对韩元相对脱敏</h4>
+      <ul>
+        <li>纯内存，CapEx 大量美元化（ASML / TEL 设备）</li>
+        <li>自然对冲度更高</li>
+        <li>韩元升贬两端中性</li>
+      </ul>
+    </div>
+    <div class="tc-card ss">
+      <div class="tc-tag">Samsung</div>
+      <h4>对韩元更敏感</h4>
+      <ul>
+        <li>成本结构（韩国劳动力、电力、SG&amp;A）韩元化程度高</li>
+        <li>Q1'26 弱韩元给 Samsung 带来 <b>+₩1.8 兆</b> 利润</li>
+        <li>韩元贬值利好 Samsung，韩元升值打压 Samsung</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="personas">
+  <div class="sec-num">06 · The Decision Framework</div>
+  <h2 class="sec-h">三类投资者 · <em>该选谁</em></h2>
+
+  <p class="lede">
+    没有"哪个更好"的客观答案——只有"<em>对你来说</em>哪个更好"。
+    把投资者画像分成三类，每一类有不同的最优配置。
+    这不是教你选哪个，而是给你一个<em>判断自己是谁</em>的框架。
+  </p>
+
+  <div class="persona">
+    <div class="persona-card cons">
+      <div class="p-tag">Conservative · 保守型</div>
+      <h4>资本保全 + 稳定股息 + 多元化</h4>
+      <div class="p-rec">推荐：Samsung 70% / SK 30%</div>
+      <p><b>核心理由</b>：Samsung 净现金 $81B 是行业最强堡垒；股息收益率 0.84% 是 SK 的 4.7×；业务多元化提供 memory 周期下行缓冲；Beta 1.33 波动小 35%；Forward P/E 5.41x 不比 SK 贵。</p>
+      <ul style="list-style:none;margin-top:14px">
+        <li><b>关键监控指标</b></li>
+        <li>① DS 部门 OPM 能否维持 60%+</li>
+        <li>② Foundry 季度盈亏切换时点（2026 H2 关键）</li>
+        <li>③ 2nm yield 突破 65% 的进度</li>
+        <li>④ 库藏股注销执行节奏（季 ~₩4 兆）</li>
+      </ul>
+    </div>
+    <div class="persona-card bal">
+      <div class="p-tag">Balanced · 平衡型</div>
+      <h4>追求 risk-adjusted return</h4>
+      <div class="p-rec">推荐：50% / 50% 等权重</div>
+      <p><b>核心理由</b>：两家 Forward P/E 几乎一样（5.31x vs 5.41x），等权重无估值偏差；SK 提供 HBM alpha + 弹性，Samsung 提供 memory + Foundry + 现金流防御；同时受益于 KOSPI 双雄被动资金动力学；相关性 0.55-0.60 提供有效分散。</p>
+      <ul style="list-style:none;margin-top:14px">
+        <li><b>微调建议</b></li>
+        <li>AI capex 加速 → 调高 SK 至 60-65%</li>
+        <li>AI capex 见顶 / 地缘动荡 → 调高 Samsung 至 60-65%</li>
+        <li>市值加权 → Samsung 59% / SK 41%</li>
+      </ul>
+    </div>
+    <div class="persona-card aggr">
+      <div class="p-tag">Aggressive · 激进型</div>
+      <h4>追求最大 alpha + AI 弹性</h4>
+      <div class="p-rec">推荐：SK Hynix 80-100%</div>
+      <p><b>核心理由</b>：ROE 61% / ROIC 52% 全球前列；纯 HBM pure-play 市占 57-62%；Q1'26 OPM 72% 是行业历史最高；Forward P/E 5.31x 不贵的纯 alpha 资产；Beta 2.03 向上时弹性最大。</p>
+      <ul style="list-style:none;margin-top:14px">
+        <li><b>风险点（不能忽视）</b></li>
+        <li>① HBM 价格 2026 H2-2027 双位数下跌（Goldman 警告）</li>
+        <li>② NVIDIA 占 HBM 营收 90% 的单点依赖</li>
+        <li>③ CapEx 强度 21.9% 下行周期 ROIC 压缩剧烈</li>
+        <li>④ RSI 85.65 已极度超买</li>
+        <li>⑤ 单只股票 100% 押注一个产品（HBM）</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="scenarios">
+  <div class="sec-num">07 · The 8 Scenarios</div>
+  <h2 class="sec-h">8 种情景 · <em>谁在哪种情景跑赢</em></h2>
+
+  <p class="lede">
+    把未来 12-24 个月可能发生的 8 个关键变量映射到双雄相对表现。
+    <em>SK Hynix 在 2 个场景大幅跑赢，Samsung 在 5 个场景跑赢，1 个场景几乎打平</em>——
+    这意味着 SK 是"非对称押注 AI 持续"，Samsung 是"分散对冲多种风险"。
+  </p>
+
+  <div class="scn-matrix">
+    <table>
+      <thead>
+        <tr>
+          <th>情景</th>
+          <th class="sk">SK Hynix 表现</th>
+          <th class="ss">Samsung 表现</th>
+          <th class="winner">相对赢家</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="scn-name">AI capex 持续超预期</span></td>
+          <td class="perf-strong-pos">强 +30~50%</td>
+          <td class="perf-pos">中 +20~30%</td>
+          <td class="winner-cell sk">SK 大幅胜</td>
+        </tr>
+        <tr>
+          <td><span class="scn-name">AI capex 见顶 / 减速</span></td>
+          <td class="perf-strong-neg">弱 −25~40%<br><span style="font-size:11px">戴维斯双杀</span></td>
+          <td class="perf-neutral">中 −10~20%<br><span style="font-size:11px">多元化缓冲</span></td>
+          <td class="winner-cell ss">Samsung 胜 15-20pp</td>
+        </tr>
+        <tr>
+          <td><span class="scn-name">韩元升值（KRW 强）</span></td>
+          <td class="perf-neutral">−5~10%</td>
+          <td class="perf-neg">−10~15%<br><span style="font-size:11px">出口利润压缩明显</span></td>
+          <td class="winner-cell sk">SK 胜</td>
+        </tr>
+        <tr>
+          <td><span class="scn-name">韩元贬值（KRW 弱）</span></td>
+          <td class="perf-pos">+5~10%</td>
+          <td class="perf-strong-pos">+10~15%<br><span style="font-size:11px">成本端韩元化</span></td>
+          <td class="winner-cell ss">Samsung 胜</td>
+        </tr>
+        <tr>
+          <td><span class="scn-name">中美贸易缓和</span></td>
+          <td class="perf-pos">强（HBM 出口确定性 +）</td>
+          <td class="perf-strong-pos">强（手机/面板/家电中国敞口大）</td>
+          <td class="winner-cell ss">Samsung 略胜</td>
+        </tr>
+        <tr>
+          <td><span class="scn-name">中美科技升级（出口管制扩大）</span></td>
+          <td class="perf-strong-neg">−20~30%<br><span style="font-size:11px">HBM entity list 重点</span></td>
+          <td class="perf-neg">−10~20%<br><span style="font-size:11px">产品组合分散</span></td>
+          <td class="winner-cell ss">Samsung 胜</td>
+        </tr>
+        <tr>
+          <td><span class="scn-name">Samsung Foundry 修复</span></td>
+          <td class="perf-neutral">中性<br><span style="font-size:11px">无直接受益</span></td>
+          <td class="perf-strong-pos">+20~30%<br><span style="font-size:11px">SOTP 折让收敛</span></td>
+          <td class="winner-cell ss">Samsung 大幅胜</td>
+        </tr>
+        <tr>
+          <td><span class="scn-name">HBM 价格双位数下跌（Goldman 情景）</span></td>
+          <td class="perf-strong-neg">−25~35%<br><span style="font-size:11px">OPM 从 72% 回落</span></td>
+          <td class="perf-neg">−10~15%<br><span style="font-size:11px">DRAM 替代效应</span></td>
+          <td class="winner-cell ss">Samsung 胜 15-20pp</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout warn">
+    <div class="co-label">关键洞察</div>
+    <div class="co-body">SK Hynix 的<b>不对称性高度集中于"AI capex 周期是否延续"这一个变量</b>——这是它的 alpha 来源，也是它的最大单一风险。Samsung 把"对一种情景大幅跑赢"换成"对多种情景的中等跑赢"——这正是 conglomerate 的本质。<b>哪种姿态更适合你，取决于你对"AI 周期是 5 年还是 15 年"的信念强度</b>。</div>
+  </div>
+</section>
+
+<section id="calendar">
+  <div class="sec-num">08 · The Catalyst Calendar</div>
+  <h2 class="sec-h">12-24 月催化剂 · <em>双雄各自的关键节点</em></h2>
+
+  <p class="lede">
+    把双雄未来 24 个月的关键事件并排放在一起，看哪些是"同步催化"（双雄一起涨/跌）、哪些是"独立催化"（一家独家受益或受损）。
+    独立催化是 alpha 来源，同步催化是 KOSPI beta 来源。
+  </p>
+
+  <div class="cal">
+    <table>
+      <thead>
+        <tr>
+          <th>时点</th>
+          <th class="sk">SK Hynix 催化剂</th>
+          <th class="ss">Samsung 催化剂</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="time">2026 Q2<br><span style="font-weight:400;color:var(--muted)">5-7 月</span></td>
+          <td class="sk-cat">M15X 新厂满产爬坡<br>Q2'26 财报（约 7 月底）</td>
+          <td class="ss-cat">Q2'26 财报<br>能否延续 ₩57T 量级是关键</td>
+        </tr>
+        <tr>
+          <td class="time">2026 Q3<br><span style="font-weight:400;color:var(--muted)">8-10 月</span></td>
+          <td class="sk-cat">HBM4 量产正式启动<br>与 TSMC 协同向 NVIDIA 出货</td>
+          <td class="ss-cat"><b>HBM4 通过 NVIDIA 验证</b><br>Galaxy S26 销售旺季</td>
+        </tr>
+        <tr>
+          <td class="time">2026 Q4<br><span style="font-weight:400;color:var(--muted)">11-12 月</span></td>
+          <td class="sk-cat">2027 CapEx 指引<br>清州先进封装新厂动工<br><b>BIS 2027 年度许可证审批</b></td>
+          <td class="ss-cat">2027 CapEx 指引<br><b>2nm yield 是否破 65%</b><br>Foundry 盈亏切换观察</td>
+        </tr>
+        <tr>
+          <td class="time">2027 Q1</td>
+          <td class="sk-cat">Yongin cluster 第一座厂启用<br>HBM4E 客户工程样品<br><b>ADR 上市可能落地</b></td>
+          <td class="ss-cat">Tesla AI6 chip 量产准备<br>Taylor 厂 2nm 大规模量产</td>
+        </tr>
+        <tr>
+          <td class="time">2027 Q2-Q3</td>
+          <td class="sk-cat">HBM4E 量产<br>HBM ASP 见顶后是否调整</td>
+          <td class="ss-cat">Foundry 月产能 +163%<br>2nm 大客户兑现</td>
+        </tr>
+        <tr>
+          <td class="time">2027 Q4</td>
+          <td class="sk-cat">HBM5 路线图首披露</td>
+          <td class="ss-cat">HBM4E 12-layer 量产<br>Exynos 2600 首批 2nm</td>
+        </tr>
+        <tr>
+          <td class="time">持续主题</td>
+          <td class="sk-cat">是否拿到 Google/Meta custom HBM<br>NVIDIA HBM4 份额是否守住 70%<br>持续回购加码</td>
+          <td class="ss-cat"><b>美国 ADR 上市</b>（机构施压）<br>₩16T 库藏股注销分批<br>是否拆分 Foundry 讨论</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <div class="co-label">独立催化 vs 同步催化</div>
+    <div class="co-body"><b>同步催化</b>（双雄一起反应）：财报季、HBM 价格走势、AI capex 指引、KOSPI 资金流向、韩元汇率。<br><b>独立催化</b>（alpha 机会）：<b class="sk">SK 独家</b>——HBM4 量产首发、ADR 上市、清州封装厂动工；<b class="ss">Samsung 独家</b>——Foundry 盈亏切换、2nm yield、ADR 美国上市、库藏股注销节奏、HBM4 NVIDIA 验证。</div>
+  </div>
+</section>
+
+<section id="verdict">
+  <div class="sec-num">09 · Final Verdict</div>
+  <h2 class="sec-h">最终判断 · <em>三句话框架</em></h2>
+
+  <div class="verdict">
+    <div class="v-title">Final Verdict</div>
+    <h3>
+      想买 AI 弹性，选 <em class="sk">SK Hynix</em>。<br>
+      想买防御性，选 <em class="ss">Samsung</em>。<br>
+      想全要——<em class="tie">50/50 等权重</em>就够了。
+    </h3>
+    <p>
+      <b style="color:#fbf9f4">SK Hynix</b>：HBM 纯 pure-play、ROE 61%、Forward P/E 5.31x 完全不贵、Q1'26 OPM 72% 半导体史最高，
+      每 1% AI capex 增量直接传导股价。代价是高度集中、Beta 2.03、RSI 85 极度超买。
+    </p>
+    <p>
+      <b style="color:#fbf9f4">Samsung</b>：净现金 $81B 堡垒资产负债表、业务多元化、HBM/Foundry/股东回报多重期权同时打开、
+      Beta 1.33 波动小 35%、股息收益率 0.84%。代价是 SOTP 折让长期存在，Foundry 修复有不确定性。
+    </p>
+    <p>
+      <b style="color:#fbf9f4">想全要</b>：双雄合计已占 KOSPI 47%，本身就是"被动 KOSPI 韩元 AI 一篮子"，
+      且双雄相关性 0.55-0.60 提供有效分散。激进者上调 SK 至 60-65%，保守者上调 Samsung 至 60-70%。
+      <b style="color:#fbf9f4">最差的选择是中途切换</b>——选定一个画像，至少持有完整 AI capex 周期的 1/2（约 18-24 个月）。
+    </p>
+  </div>
+
+  <div class="divq">
+    "故事不是仓位。<br>
+    画像才是仓位。"
+  </div>
+</section>
+
+</main>
+</div>
+
+<footer>
+  <div class="ft-grid">
+    <div>
+      <h5>Primary Sources · 双方 IR</h5>
+      <ul>
+        <li><a href="https://news.skhynix.com/q1-2026-business-results/">SK Hynix Q1 2026</a></li>
+        <li><a href="https://news.skhynix.com/sk-hynix-announces-fy25-financial-results/">SK Hynix FY25</a></li>
+        <li><a href="https://news.samsung.com/global/samsung-electronics-announces-first-quarter-2026-results">Samsung Q1 2026</a></li>
+        <li><a href="https://news.samsung.com/global/samsung-electronics-announces-fourth-quarter-and-fy-2025-results">Samsung FY25</a></li>
+        <li><a href="https://news.samsung.com/global/samsung-and-openai-announce-strategic-partnership-to-accelerate-advancements-in-global-ai-infrastructure">Samsung-OpenAI LOI</a></li>
+        <li><a href="https://stockanalysis.com/quote/krx/000660/statistics/">Stock Analysis SK Hynix</a></li>
+        <li><a href="https://stockanalysis.com/quote/krx/005930/statistics/">Stock Analysis Samsung</a></li>
+        <li><a href="https://news.samsung.com/global/samsung-unveils-hbm4e-showcasing-comprehensive-ai-solutions-nvidia-partnership-and-vision-at-nvidia-gtc-2026">Samsung HBM4E GTC 2026</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Industry &amp; Press · 行业 / 财经</h5>
+      <ul>
+        <li><a href="https://en.sedaily.com/markets/2026/05/05/samsung-sk-hynix-market-cap-share-hits-record-422-percent">Seoul Economic Daily 42.2%</a></li>
+        <li><a href="https://www.cnbc.com/2026/05/06/samsung-electronics-ai-chip-rally-kospi-record-1-trillion.html">CNBC Samsung $1T</a></li>
+        <li><a href="https://www.cnbc.com/2026/04/30/samsung-q1-earnings-ai-memory-chip-demand-profit-record.html">CNBC Samsung Q1'26</a></li>
+        <li><a href="https://www.cnbc.com/2026/04/23/sk-hynix-earnings-ai-memory-shortage-hbm-demand.html">CNBC SK Q1'26</a></li>
+        <li><a href="https://www.bloomberg.com/news/articles/2026-05-06/samsung-hits-1-trillion-valuation-joining-tsmc-in-elite-club">Bloomberg $1T Club</a></li>
+        <li><a href="https://www.bloomberg.com/news/articles/2026-03-27/fund-that-bet-big-on-samsung-pushes-for-adrs-to-raise-valuation">Bloomberg Samsung ADR</a></li>
+        <li><a href="https://www.investing.com/news/stock-market-news/sk-hynix-undervalued-as-hbm-pricing-tightens-into-2026-ms-bumps-target-4427763">MS SK Target Raise</a></li>
+        <li><a href="https://www.koreaherald.com/article/10691937">Korea Herald ₩16T 注销</a></li>
+        <li><a href="https://www.kedglobal.com/korean-chipmakers/newsView/ked202509190008">KED HBM3E 12-Hi 通过</a></li>
+        <li><a href="https://www.kedglobal.com/korean-chipmakers/newsView/ked202603080004">KED Vera Rubin HBM4</a></li>
+        <li><a href="https://www.trendforce.com/news/2026/01/28/news-sk-hynix-reportedly-to-supply-about-two-thirds-of-nvidia-hbm4-samsung-targets-early-delivery/">TrendForce HBM4 NVIDIA</a></li>
+        <li><a href="https://counterpointresearch.com/en/insights/global-dram-and-hbm-market-share/">Counterpoint Q4'25 Share</a></li>
+        <li><a href="https://en.sedaily.com/finance/2026/04/16/foreign-investors-turn-buyers-scoop-up-samsung-and-sk-hynix">Seoul Economic Daily 外资反转</a></li>
+        <li><a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/samsung-and-sk-hynix-warn-ai-driven-memory-shortages-could-last-until-2027-and-beyond-as-hbm-demand-explodes-customers-already-reserving-supply-years-ahead-while-the-wider-dram-market-begins-to-tighten">Tom's Hardware Shortage</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-meta">
+    Generated 2026-05-10 by Ray Deep Research Engine · 主报告专题深挖 · 3 sub-agents (三星全景 / 估值资金 / 双雄对比) · 单文件 HTML<br>
+    免责声明：本报告仅供研究参考，不构成投资建议。所有数字尽量标注来源；其中市场份额因统计口径不同存在差异。投资决策应结合个人财务状况、风险承受能力及独立判断。
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      document.querySelectorAll('nav.toc a').forEach(link => {
+        link.style.color = '';
+        link.style.fontWeight = '';
+      });
+      const activeLink = document.querySelector(`nav.toc a[href="#${id}"]`);
+      if (activeLink) {
+        activeLink.style.color = 'var(--accent-warn)';
+        activeLink.style.fontWeight = '600';
+      }
+    }
+  });
+}, { rootMargin: '-30% 0px -60% 0px' });
+document.querySelectorAll('section[id]').forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>

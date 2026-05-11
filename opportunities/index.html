@@ -1,0 +1,1010 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI 二线镐子 · 投资机会专题 — 涨疯了之后还能买什么</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f3ec;--bg-paper:#fbf9f4;--bg-card:#ffffff;--bg-dark:#14110d;--bg-dark2:#1f1b16;
+  --ink:#14110d;--ink-2:#2c2620;--muted:#6e6358;--light:#a39787;
+  --rule:#14110d;--rule-light:#d8d1c2;
+  --accent-warn:#a73121;--accent-data:#1c4d6b;--accent-pos:#2c5e3f;--accent-yellow:#c89a2c;
+  --serif:"Source Serif 4","Source Serif Pro","Charter","Iowan Old Style",Georgia,serif;
+  --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  --mono:"JetBrains Mono","SF Mono","Menlo","Consolas",monospace;
+  --max-w:820px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+
+.topbar{border-bottom:1px solid var(--rule-light);background:var(--bg-paper);padding:10px 32px;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.topbar .tb-left{color:var(--ink)}
+.topbar .tb-left b{color:var(--accent-warn)}
+
+.shell{display:grid;grid-template-columns:200px 1fr;gap:60px;max-width:1280px;margin:0 auto;padding:60px 40px}
+nav.toc{position:sticky;top:40px;align-self:start;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.08em;line-height:2}
+nav.toc .toc-title{color:var(--accent-warn);font-weight:600;margin-bottom:14px;border-bottom:1px solid var(--ink);padding-bottom:6px}
+nav.toc .toc-back{color:var(--muted);text-decoration:none;display:block;padding-bottom:10px;margin-bottom:6px;border-bottom:1px solid var(--rule-light);font-size:10px}
+nav.toc .toc-back:hover{color:var(--accent-warn)}
+nav.toc a{color:var(--muted);text-decoration:none;display:block;padding:3px 0;transition:color .12s}
+nav.toc a:hover{color:var(--ink)}
+.main{max-width:var(--max-w);min-width:0}
+
+.hero{display:grid;grid-template-columns:1fr 220px;gap:40px;align-items:start;padding-bottom:48px;border-bottom:2px solid var(--ink)}
+.eyebrow{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--accent-warn);font-weight:600;margin-bottom:24px;display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";display:inline-block;width:36px;height:1px;background:var(--accent-warn)}
+h1.hero-title{font-family:var(--serif);font-weight:600;font-size:74px;line-height:1.0;letter-spacing:-0.03em;margin-bottom:22px;color:var(--ink)}
+h1.hero-title em{font-style:italic;color:var(--accent-warn);font-weight:600}
+.hero-sub{font-family:var(--serif);font-style:italic;font-size:22px;line-height:1.45;color:var(--muted);max-width:640px}
+.hero-meta dl{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.06em;line-height:1.7}
+.hero-meta dt{color:var(--muted);margin-top:14px}
+.hero-meta dt:first-child{margin-top:0}
+.hero-meta dd{color:var(--ink);font-weight:600}
+
+.qf{background:var(--bg-dark);color:#f6f3ec;padding:48px 40px;margin-top:0}
+.qf-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent-yellow);margin-bottom:14px}
+.qf h2{font-family:var(--serif);font-weight:400;font-style:italic;font-size:36px;line-height:1.1;margin-bottom:36px;color:#fbf9f4}
+.qf-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:rgba(255,255,255,0.10)}
+.qf-cell{background:var(--bg-dark);padding:22px 18px;min-height:130px;display:flex;flex-direction:column;justify-content:space-between;word-break:keep-all}
+.qf-cell .qf-label{font-family:var(--mono);font-size:9.5px;text-transform:uppercase;letter-spacing:0.10em;color:#a39787;margin-bottom:8px}
+.qf-cell .qf-num{font-family:var(--serif);font-size:28px;font-weight:600;line-height:1.05;color:#fbf9f4;letter-spacing:-0.02em;word-break:keep-all}
+.qf-cell .qf-num .qf-unit{font-size:13px;font-weight:400;color:#a39787;margin-left:4px}
+.qf-cell .qf-sub{font-size:11px;color:#a39787;margin-top:6px;line-height:1.4;word-break:keep-all}
+.qf-cell.verdict{background:var(--accent-warn);color:#fff}
+.qf-cell.verdict .qf-label{color:rgba(255,255,255,0.75)}
+.qf-cell.verdict .qf-num{color:#fff;font-size:17px;line-height:1.3}
+.qf-cell.verdict .qf-sub{color:rgba(255,255,255,0.85)}
+
+section{padding-top:80px;scroll-margin-top:30px}
+.sec-num{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--accent-warn);font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:14px}
+.sec-num::before{content:"";display:inline-block;width:36px;height:1px;background:var(--accent-warn)}
+h2.sec-h{font-family:var(--serif);font-weight:600;font-size:42px;line-height:1.1;letter-spacing:-0.02em;margin-bottom:28px}
+h2.sec-h em{font-style:italic;color:var(--accent-warn)}
+h3.sub-h{font-family:var(--serif);font-weight:600;font-size:24px;line-height:1.25;margin:36px 0 14px;letter-spacing:-0.01em}
+p{margin-bottom:18px;color:var(--ink-2)}
+.lede{font-family:var(--serif);font-size:20px;line-height:1.55;color:var(--ink);margin-bottom:24px}
+.lede em{font-style:italic;color:var(--accent-warn)}
+
+.tldr{background:var(--bg-dark);color:#f6f3ec;padding:40px;margin:14px 0 24px;position:relative}
+.tldr .ribbon{position:absolute;top:-12px;left:24px;background:var(--accent-warn);color:#fff;padding:6px 14px;font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;font-weight:700}
+.tldr h3{font-family:var(--serif);font-weight:400;font-style:italic;font-size:24px;line-height:1.3;color:#fbf9f4;margin-bottom:20px}
+.tldr ol{list-style:none;counter-reset:tldr-c}
+.tldr ol li{counter-increment:tldr-c;display:flex;gap:14px;align-items:flex-start;margin-bottom:18px;color:rgba(251,249,244,0.85);font-size:15px;line-height:1.65}
+.tldr ol li::before{content:counter(tldr-c,decimal-leading-zero);font-family:var(--mono);font-size:11px;color:var(--accent-yellow);font-weight:600;letter-spacing:0.1em;padding-top:5px;flex:0 0 32px;line-height:1}
+.tldr ol li b{color:#fbf9f4;font-weight:600}
+
+.metric{border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);margin:24px 0}
+.metric .m-row{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:baseline;padding:14px 0;border-top:1px solid var(--rule-light)}
+.metric .m-row:first-child{border-top:none}
+.m-label{font-family:var(--sans);font-size:14px;color:var(--ink-2)}
+.m-label .m-src{font-size:11px;color:var(--light);margin-left:8px;font-family:var(--mono)}
+.m-val{font-family:var(--serif);font-size:22px;font-weight:600;color:var(--ink);letter-spacing:-0.01em}
+.m-val.warn{color:var(--accent-warn)}
+.m-val.pos{color:var(--accent-pos)}
+
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:24px 0}
+.threecol{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin:24px 0}
+.tc-card{background:var(--bg-card);padding:22px;border:1px solid var(--rule-light)}
+.tc-card.pos{border-top:4px solid var(--accent-pos)}
+.tc-card.warn{border-top:4px solid var(--accent-warn)}
+.tc-card.data{border-top:4px solid var(--accent-data)}
+.tc-card.yellow{border-top:4px solid var(--accent-yellow)}
+.tc-card h4{font-family:var(--serif);font-weight:600;font-size:18px;margin-bottom:12px}
+.tc-card .tc-tag{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:0.10em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;font-weight:600}
+.tc-card ul{list-style:none}
+.tc-card li{font-size:14px;color:var(--ink-2);padding:6px 0;border-top:1px solid var(--rule-light);line-height:1.5}
+.tc-card li:first-child{border-top:none}
+.tc-card li b{color:var(--ink);font-weight:600}
+
+.table-wrap{overflow-x:auto;margin:24px 0}
+table.cmp{width:100%;min-width:600px;border-collapse:collapse;font-size:14px}
+table.cmp thead th{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:0.10em;color:var(--ink);font-weight:600;text-align:left;padding:12px 14px 10px;border-bottom:2px solid var(--ink)}
+table.cmp tbody td{padding:12px 14px;border-bottom:1px solid var(--rule-light);vertical-align:top;line-height:1.5}
+table.cmp tbody tr:last-child td{border-bottom:1px solid var(--ink)}
+table.cmp .product-name{font-family:var(--serif);font-weight:700;font-size:15px}
+table.cmp .ticker{font-family:var(--mono);font-size:10px;color:var(--muted);display:block;margin-top:1px}
+table.cmp tr.highlight{background:rgba(167,49,33,0.04)}
+table.cmp tr.row-warn{background:rgba(167,49,33,0.06)}
+table.cmp tr.row-pos{background:rgba(44,94,63,0.04)}
+table.cmp .num-cell{font-family:var(--serif);font-weight:600;font-size:15px;letter-spacing:-0.01em}
+table.cmp .num-cell.warn{color:var(--accent-warn)}
+table.cmp .num-cell.pos{color:var(--accent-pos)}
+table.cmp .badge{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:0.08em;text-transform:uppercase;padding:2px 6px;border-radius:2px;font-weight:600}
+table.cmp .badge.bad{background:var(--accent-warn);color:#fff}
+table.cmp .badge.good{background:var(--accent-pos);color:#fff}
+table.cmp .badge.fair{background:var(--accent-yellow);color:var(--ink)}
+
+.callout{border-left:3px solid var(--ink);background:var(--bg-paper);padding:16px 20px;margin:18px 0}
+.callout.warn{border-color:var(--accent-warn)}
+.callout.data{border-color:var(--accent-data)}
+.callout.pos{border-color:var(--accent-pos)}
+.callout.yellow{border-color:var(--accent-yellow)}
+.callout .co-label{font-family:var(--mono);font-size:10px;letter-spacing:0.10em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;font-weight:600}
+.callout.warn .co-label{color:var(--accent-warn)}
+.callout.data .co-label{color:var(--accent-data)}
+.callout.pos .co-label{color:var(--accent-pos)}
+.callout.yellow .co-label{color:var(--accent-yellow)}
+.callout .co-quote{font-family:var(--serif);font-style:italic;font-size:17px;line-height:1.5;color:var(--ink)}
+.callout .co-quote em{font-weight:600;font-style:italic;color:var(--accent-warn)}
+.callout .co-body{font-size:14px;color:var(--ink-2);line-height:1.6}
+
+/* Temperature bar */
+.temp-bar{margin:30px 0;border:1px solid var(--rule)}
+.temp-row{display:grid;grid-template-columns:200px 1fr;border-top:1px solid var(--rule-light)}
+.temp-row:first-child{border-top:none}
+.temp-row .temp-tag{padding:18px 16px;font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;font-weight:700;border-right:1px solid var(--rule-light)}
+.temp-row.hot .temp-tag{background:var(--accent-warn);color:#fff}
+.temp-row.warm .temp-tag{background:var(--accent-yellow);color:var(--ink)}
+.temp-row.cool .temp-tag{background:var(--accent-pos);color:#fff}
+.temp-row .temp-content{padding:14px 18px;font-size:14px;line-height:1.6}
+.temp-row .temp-content b{color:var(--ink);font-weight:600}
+
+/* Persona cards */
+.persona{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:24px 0}
+.persona-card{background:var(--bg-card);border:1px solid var(--rule-light);padding:22px}
+.persona-card.cons{border-top:4px solid var(--accent-pos)}
+.persona-card.bal{border-top:4px solid var(--accent-yellow)}
+.persona-card.aggr{border-top:4px solid var(--accent-warn)}
+.persona-card .p-tag{font-family:var(--mono);font-size:11px;letter-spacing:0.10em;text-transform:uppercase;font-weight:600;margin-bottom:10px}
+.persona-card.cons .p-tag{color:var(--accent-pos)}
+.persona-card.bal .p-tag{color:var(--accent-yellow)}
+.persona-card.aggr .p-tag{color:var(--accent-warn)}
+.persona-card h4{font-family:var(--serif);font-weight:600;font-size:18px;margin-bottom:14px;letter-spacing:-0.01em}
+.persona-card .alloc{margin:0;padding:0;list-style:none}
+.persona-card .alloc li{display:grid;grid-template-columns:1fr auto;gap:8px;padding:5px 0;font-size:12.5px;border-top:1px solid var(--rule-light);line-height:1.4}
+.persona-card .alloc li:first-child{border-top:none}
+.persona-card .alloc li .pct{font-family:var(--mono);font-weight:700;color:var(--ink)}
+.persona-card .alloc li .name b{color:var(--ink);font-weight:600}
+
+/* Calendar */
+.cal{margin:24px 0;border:1px solid var(--rule);overflow-x:auto}
+.cal table{width:100%;min-width:640px;border-collapse:collapse;font-size:13px}
+.cal th{font-family:var(--mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;font-weight:700;padding:12px 14px;text-align:left;background:var(--bg-paper);border-bottom:2px solid var(--ink)}
+.cal td{padding:14px 14px;border-bottom:1px solid var(--rule-light);vertical-align:top;line-height:1.5}
+.cal tr:last-child td{border-bottom:1px solid var(--ink)}
+.cal td.time{font-family:var(--mono);font-size:11px;letter-spacing:0.06em;color:var(--ink);font-weight:700;width:130px}
+.cal td.tickers{font-family:var(--mono);font-size:11px;color:var(--muted)}
+
+.divq{text-align:center;font-family:var(--serif);font-style:italic;font-size:22px;line-height:1.45;color:var(--muted);margin:60px 0;padding:0 20px}
+.divq::before,.divq::after{content:"";display:block;width:40px;height:1px;background:var(--ink);margin:14px auto}
+
+.verdict{background:var(--bg-dark);color:#f6f3ec;padding:48px 40px;margin:30px 0}
+.verdict .v-title{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent-yellow);margin-bottom:14px;font-weight:600}
+.verdict h3{font-family:var(--serif);font-weight:400;font-style:italic;font-size:28px;line-height:1.3;color:#fbf9f4;margin-bottom:18px;letter-spacing:-0.01em}
+.verdict h3 em{font-style:italic;font-weight:600;color:var(--accent-yellow)}
+.verdict p{color:rgba(251,249,244,0.85);font-size:15px;line-height:1.65;margin-bottom:14px}
+.verdict p:last-child{margin-bottom:0}
+
+footer{background:var(--bg-dark);color:#a39787;padding:56px 40px 36px;margin-top:80px}
+footer .ft-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:40px}
+footer h5{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#fbf9f4;margin-bottom:14px;font-weight:600}
+footer ul{list-style:none;font-size:12px;line-height:1.8;font-family:var(--mono);columns:2;column-gap:24px}
+footer ul li{break-inside:avoid}
+footer a{color:#a39787;text-decoration:none;border-bottom:1px dotted rgba(163,151,135,0.4)}
+footer a:hover{color:#fbf9f4}
+footer .ft-meta{margin-top:36px;padding-top:24px;border-top:1px solid #2c2620;font-size:11px;color:#6e6358;font-family:var(--mono);letter-spacing:0.06em;line-height:1.6}
+
+/* paged-media */
+.qf-cell,.tc-card,.callout,.tldr,.verdict,.hero,.lede,.metric .m-row,.divq,table.cmp tr,.persona-card,.temp-row{
+  break-inside:avoid;page-break-inside:avoid;
+}
+h1.hero-title,h2.sec-h,h3.sub-h,.sec-num{break-after:avoid;page-break-after:avoid}
+p{orphans:3;widows:3}
+
+@media (max-width:1100px){
+  .shell{grid-template-columns:1fr;gap:0;padding:40px 24px}
+  nav.toc{position:relative;top:0;display:flex;flex-wrap:wrap;gap:6px 18px;padding-bottom:24px;margin-bottom:24px;border-bottom:1px solid var(--rule-light);line-height:1.4}
+  nav.toc .toc-title{width:100%;border-bottom:none;padding-bottom:0;margin-bottom:6px}
+  nav.toc .toc-back{width:100%;border-bottom:none}
+  .qf-grid{grid-template-columns:repeat(3,1fr)}
+  .twocol,.threecol,.persona{grid-template-columns:1fr}
+  .hero{grid-template-columns:1fr}
+  .temp-row{grid-template-columns:1fr}
+  .temp-row .temp-tag{border-right:none;border-bottom:1px solid var(--rule-light)}
+}
+@media (max-width:720px){
+  h1.hero-title{font-size:46px}
+  h2.sec-h{font-size:30px}
+  .qf-grid{grid-template-columns:repeat(2,1fr)}
+  .qf,.verdict,.tldr,footer{padding-left:24px;padding-right:24px}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="tb-left">AI 二线镐子 · 投资机会专题 — 涨疯了之后还能买什么 &nbsp;·&nbsp; <b>v1.0</b></div>
+  <div>2026 · 05 · 11 &nbsp;|&nbsp; Ray Deep Research Engine</div>
+</div>
+
+<div class="shell">
+
+<nav class="toc" aria-label="Table of contents">
+  <div class="toc-title">Contents</div>
+  <a class="toc-back" href="https://kdsz001.github.io/sk-hynix-research/">← 返回主报告</a>
+  <a href="#hero">00 · Hero</a>
+  <a href="#qf">01 · Facts</a>
+  <a href="#tldr">02 · TL;DR</a>
+  <a href="#temperature">03 · 温度图</a>
+  <a href="#power">04 · 电力链</a>
+  <a href="#cooling">05 · 冷却链</a>
+  <a href="#equipment">06 · 设备/材料</a>
+  <a href="#hidden">07 · 隐形冠军</a>
+  <a href="#framework">08 · 三档框架</a>
+  <a href="#calendar">09 · 催化剂日历</a>
+  <a href="#verdict">10 · 最终判断</a>
+</nav>
+
+<main class="main">
+
+<section id="hero">
+  <div class="hero">
+    <div>
+      <div class="eyebrow">Opportunities · 主报告专题深挖</div>
+      <h1 class="hero-title">镐子背后的<em>镐子</em></h1>
+      <p class="hero-sub">
+        NVIDIA 已涨 10 倍，SK Hynix 已涨 9 倍，Vertiv 已涨 70 倍，Hanmi 半导体已涨 20 倍。
+        但在 AI 一线全部被定价完之后，往后两层挖未被定价的镐子还有空间——
+        日韩台的小盘设备 / 检测 / 材料、估值还没失控的"垄断之地"、
+        以及 2026 才开始的冷却 M&amp;A 浪潮里的二线整合者。
+      </p>
+    </div>
+    <aside class="hero-meta">
+      <dl>
+        <dt>专题主题</dt><dd>AI 二线 / 三线<br>投资机会扫描</dd>
+        <dt>调研深度</dt><dd>4 子 Agent 并行</dd>
+        <dt>覆盖来源</dt><dd>GuruFocus / Stock Analysis<br>Bloomberg / TrendForce<br>Semianalysis / DCD</dd>
+        <dt>报告字数</dt><dd>约 16,000 字</dd>
+        <dt>主报告</dt><dd>kdsz001.github.io/<br>sk-hynix-research</dd>
+      </dl>
+    </aside>
+  </div>
+</section>
+
+<section id="qf" class="qf">
+  <div class="qf-eyebrow">The Map · at a Glance</div>
+  <h2>速览板 · 12 个最值得记住的数字</h2>
+  <div class="qf-grid">
+    <div class="qf-cell">
+      <div class="qf-label">2026 Top9 CSP</div>
+      <div><span class="qf-num">$830<span class="qf-unit">B</span></span></div>
+      <div class="qf-sub">CapEx 估算<br>HBM 锁到 2027</div>
+    </div>
+    <div class="qf-cell">
+      <div class="qf-label">全球 DC 电力</div>
+      <div><span class="qf-num">49→96<span class="qf-unit">GW</span></span></div>
+      <div class="qf-sub">2023 → 2026<br>AI 占 40GW</div>
+    </div>
+    <div class="qf-cell">
+      <div class="qf-label">大变压器交期</div>
+      <div><span class="qf-num">24→60<span class="qf-unit">月</span></span></div>
+      <div class="qf-sub">硬瓶颈<br>美国半数 DC 项目延期</div>
+    </div>
+    <div class="qf-cell">
+      <div class="qf-label">Vertiv P/E</div>
+      <div><span class="qf-num">50<span class="qf-unit">x</span></span></div>
+      <div class="qf-sub">GF Value $145<br>vs 现价 $339</div>
+    </div>
+    <div class="qf-cell">
+      <div class="qf-label">Hanmi 半导体</div>
+      <div><span class="qf-num">+405<span class="qf-unit">%</span></span></div>
+      <div class="qf-sub">52w 涨幅 + P/E 173<br>分析师目标 −50%</div>
+    </div>
+    <div class="qf-cell">
+      <div class="qf-label">Palantir P/E</div>
+      <div><span class="qf-num">111<span class="qf-unit">x</span></span></div>
+      <div class="qf-sub">Significantly Overvalued<br>极度过热</div>
+    </div>
+    <div class="qf-cell">
+      <div class="qf-label">信越化学 P/E</div>
+      <div><span class="qf-num">22<span class="qf-unit">x</span></span></div>
+      <div class="qf-sub">硅片全球第一<br>估值还没失控</div>
+    </div>
+    <div class="qf-cell">
+      <div class="qf-label">Vistra Fwd P/E</div>
+      <div><span class="qf-num">15.6<span class="qf-unit">x</span></span></div>
+      <div class="qf-sub">已回调 33%<br>Meta+AWS 双合同</div>
+    </div>
+    <div class="qf-cell">
+      <div class="qf-label">Schneider Fwd P/E</div>
+      <div><span class="qf-num">26<span class="qf-unit">x</span></span></div>
+      <div class="qf-sub">VRT 的一半<br>欧洲被低估</div>
+    </div>
+    <div class="qf-cell">
+      <div class="qf-label">Disco 切割市占</div>
+      <div><span class="qf-num">60-70<span class="qf-unit">%</span></span></div>
+      <div class="qf-sub">HBM 必须<br>16-Hi dicing 翻倍</div>
+    </div>
+    <div class="qf-cell">
+      <div class="qf-label">Lasertec EUV</div>
+      <div><span class="qf-num">90<span class="qf-unit">%+</span></span></div>
+      <div class="qf-sub">掩膜检测垄断<br>actinic inspection</div>
+    </div>
+    <div class="qf-cell verdict">
+      <div class="qf-label">My Take</div>
+      <div><span class="qf-num">挖往后<br>两层</span></div>
+      <div class="qf-sub">一线已透支半年<br>二线明星已透支 1 年</div>
+    </div>
+  </div>
+</section>
+
+<section id="tldr">
+  <div class="sec-num">02 · The bottom line</div>
+  <h2 class="sec-h">如果只有 60 秒，<em>读这段</em></h2>
+
+  <div class="tldr">
+    <div class="ribbon">TL;DR</div>
+    <h3>三层判断 · 一页纸结论</h3>
+    <ol>
+      <li><b>一线已透支半年，二线明星股已透支一年</b>。NVIDIA / SK Hynix / Samsung 反而是"被算清楚"的；真正的泡沫在 Vertiv（P/E 50x、GF Value $145 vs 现价 $339）、Hanmi 半导体（52w +405% + P/E 173 + 客户分流证据 + 分析师目标 −50%）、BESI（P/E 137）、Onto（P/E 43）、Palantir（P/E 111）这些"二线明星"。买它们 = 当接盘侠。</li>
+      <li><b>三个真正还没被市场充分挖的领域</b>。① <b>电力链中游</b>：GE Vernova 燃机锁到 2030、Vistra Fwd P/E 15.6x、NRG 17x、Digital Realty 18-21x（vs Equinix 25-28x）、变压器（Hitachi/特变电工）30+ 月交期。② <b>欧洲对冲</b>：Schneider Electric Fwd P/E 26x（VRT 一半），同样的"grid-to-chip"敞口但便宜一半。③ <b>日韩台的"垄断之地"小盘</b>：信越化学 P/E 22x（硅片全球第一）、Synopsys 30x、Linde 28x、Shinko Electric 27x、Disco（切割 60-70% 份额）、Lasertec（EUV 掩膜 90%+）、Park Systems（AFM #1）。</li>
+      <li><b>2025-2026 是冷却赛道的"M&amp;A 收割年"</b>——Eaton 收购 Boyd $95 亿、Ecolab 收购 CoolIT $47.5 亿、Schneider 收购 Motivair $8.5 亿、Trane 收购 LiquidStack。<b>纯粹液冷小盘的"独立窗口期"基本关闭了</b>。剩下能买的是"整合者"——Eaton（PE 比 VRT 低 30-40%）、Schneider（PE 26x）、Carrier（DC 增速最快 +500%）。3M Novec 2025 末停产是单点机会——Solvay Galden 几乎独家供应双相浸没式。</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===== TEMPERATURE MAP ===== -->
+<section id="temperature">
+  <div class="sec-num">03 · The Temperature Map</div>
+  <h2 class="sec-h">市场温度图 · <em>已透支 / 公允 / 低估</em></h2>
+
+  <p class="lede">
+    任何"AI 投资机会"都要先回答一个问题：<em>市场已经定价到哪一步了？</em>
+    把当前 AI 链上的主要标的按"已透支/公允/低估"三档归类——
+    这一图就告诉你<em>不要碰什么、可以盯什么、还能买什么</em>。
+  </p>
+
+  <div class="temp-bar">
+    <div class="temp-row hot">
+      <div class="temp-tag">🔴 极度过热</div>
+      <div class="temp-content">
+        <b>Palantir (PLTR)</b> Fwd P/E 111x、Significantly Overvalued · <b>Hanmi 半导体 (042700.KS)</b> 52w +405% / P/E 173 / 分析师目标 −50% / 客户分流 · <b>Camtek (CAMT)</b> P/E 196 · <b>BESI (BESI.AS)</b> P/E 137 / 已 price-in 完美 · <b>Vertiv (VRT)</b> Fwd P/E 50x / GF Value $145 vs $339 · <b>Quanta (PWR)</b> P/E 54x · <b>Ibiden (4062.T)</b> P/E 112 / 目标价 −35% · <b>Oklo (OKLO)</b> $65B 市值对应 2030 现金流 · <b>Constellation (CEG)</b> Fwd P/E 22x + TMI 延期 + Calpine 整合
+      </div>
+    </div>
+    <div class="temp-row warm">
+      <div class="temp-tag">🟡 公允估值</div>
+      <div class="temp-content">
+        <b>NVIDIA (NVDA)</b> Fwd P/E ~26x 反而是大盘里相对合理的 · <b>TSMC</b> CoWoS 已订满 2026 · <b>Onto Innovation (ONTO)</b> Fwd P/E 43 / 已贵 / 还能涨但弹性有限 · <b>Cadence (CDNS)</b> Fwd P/E 38 / <b>Synopsys (SNPS)</b> Fwd P/E 30 · <b>Equinix (EQIX)</b> 25-28x AFFO 已饱和 · <b>Eaton (ETN)</b> 比 VRT 便宜 30-40% · <b>Advantest (6857.T)</b> P/E ~50 / HBM 测试龙头 · <b>Lasertec (6920.T)</b> EUV 掩膜垄断 · <b>Carrier (CARR)</b> DC 增速 +500%
+      </div>
+    </div>
+    <div class="temp-row cool">
+      <div class="temp-tag">🟢 相对低估</div>
+      <div class="temp-content">
+        <b>信越化学 (4063.T)</b> P/E 22 / 硅片全球第一 · <b>Synopsys (SNPS)</b> Fwd P/E 30 / Ansys 整合中 · <b>Linde (LIN)</b> P/E 28 / 工业气体老大 · <b>Shinko Electric (6967.T)</b> P/E 27 / 封装板块最便宜 · <b>KLA (KLAC)</b> Fwd P/E 35 / 41% 利润率护城河 · <b>AMAT</b> Fwd P/E 32 · <b>Schneider Electric (SU.PA)</b> Fwd P/E 26 / 欧洲被低估 · <b>Vistra (VST)</b> Fwd P/E 15.6 / IPP 中最干净 · <b>NRG</b> Fwd P/E 17 / IPP 中最便宜 · <b>Digital Realty (DLR)</b> 18-21x AFFO + 股息 3.5% · <b>Disco (6146.T)</b> 切割 60-70% / 估值未充分定价 16-Hi 影响
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divq">
+  挖到二线已经晚了。<br>
+  真正的钱在三线——还没被市场喊出名字的那些。
+</div>
+
+<!-- ===== POWER CHAIN ===== -->
+<section id="power">
+  <div class="sec-num">04 · Power &amp; Real Estate</div>
+  <h2 class="sec-h">电力链 · <em>真正的硬瓶颈</em></h2>
+
+  <p class="lede">
+    全球数据中心电力需求 2023 年 49GW → 2026 年 96GW，AI 占 40GW。
+    <em>美国半数 DC 项目因电力延期或取消</em>；大型变压器交期从 24-30 个月拉长到 60 个月。
+    电力是 AI 时代最硬的瓶颈，受益者从 IPP 到燃机到 REIT 各有不同。
+  </p>
+
+  <h3 class="sub-h">IPP 独立发电公司</h3>
+  <div class="table-wrap">
+    <table class="cmp">
+      <thead>
+        <tr><th>公司</th><th>Fwd P/E</th><th>关键合同</th><th>判断</th></tr>
+      </thead>
+      <tbody>
+        <tr class="row-pos">
+          <td><span class="product-name">Vistra<span class="ticker">VST</span></span></td>
+          <td class="num-cell pos">15.6x</td>
+          <td>Meta 20 年 PPA (2.6 GW，3 座核电) + AWS Comanche Peak</td>
+          <td><span class="badge good">推荐</span> 已回调 33%，最干净</td>
+        </tr>
+        <tr class="row-pos">
+          <td><span class="product-name">NRG Energy<span class="ticker">NRG</span></span></td>
+          <td class="num-cell pos">17.2x</td>
+          <td>DC 合同 2026 5MW → 2032 445MW</td>
+          <td><span class="badge good">推荐</span> IPP 中最便宜</td>
+        </tr>
+        <tr class="row-warn">
+          <td><span class="product-name">Constellation<span class="ticker">CEG</span></span></td>
+          <td class="num-cell warn">22x</td>
+          <td>Microsoft 重启 TMI Unit 1（推迟到 2027）+ 完成 Calpine $164 亿并购</td>
+          <td><span class="badge bad">已透支</span> 整合 + 延期</td>
+        </tr>
+        <tr>
+          <td><span class="product-name">Talen<span class="ticker">TLN</span></span></td>
+          <td>—</td>
+          <td>AWS Susquehanna 协议 FERC 否决，上诉第五巡回</td>
+          <td><span class="badge fair">观察</span> 监管不确定</td>
+        </tr>
+        <tr>
+          <td><span class="product-name">PSEG<span class="ticker">PEG</span></span></td>
+          <td>17.1x</td>
+          <td>电网"大型负载查询"11,800 MW</td>
+          <td><span class="badge fair">观察</span> 受监管收益型</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="sub-h">燃气轮机 + 核能 SMR</h3>
+  <div class="twocol">
+    <div class="tc-card pos">
+      <div class="tc-tag">最干净的"全周期受益者"</div>
+      <h4>GE Vernova (GEV)</h4>
+      <ul>
+        <li>燃机积压 44 GW + 56 GW 锁位</li>
+        <li>Q1 2026 订单 $183 亿（+71% YoY）</li>
+        <li>DC 订单 $24 亿（已超 2025 全年）</li>
+        <li>2026 末目标锁位 110 GW</li>
+        <li><b>判断</b>：订单可见度最强，但已反映估值</li>
+      </ul>
+    </div>
+    <div class="tc-card warn">
+      <div class="tc-tag">SMR 已透支</div>
+      <h4>Oklo (OKLO) / NuScale (SMR)</h4>
+      <ul>
+        <li>Oklo 市值 $65B 对应 2030 现金流</li>
+        <li>Aurora 首堆 2027 末才投运</li>
+        <li>NuScale 罗马尼亚推迟到 2030</li>
+        <li>BWXT 是唯一已盈利的 SMR 玩家（积压 $73 亿）</li>
+        <li><b>判断</b>：Oklo/NuScale 已透支，BWXT 才是稳的</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="sub-h">数据中心 REIT</h3>
+  <div class="metric">
+    <div class="m-row">
+      <div class="m-label">Equinix (EQIX) <span class="m-src">25-28x Fwd AFFO 最高溢价</span></div>
+      <div class="m-val warn">已透支</div>
+    </div>
+    <div class="m-row">
+      <div class="m-label">Digital Realty (DLR) <span class="m-src">18-21x AFFO + 股息 3.5%</span></div>
+      <div class="m-val pos">推荐</div>
+    </div>
+    <div class="m-row">
+      <div class="m-label">Iron Mountain (IRM) <span class="m-src">DC 占比从 0 升至 33%，3M +29%</span></div>
+      <div class="m-val">转型套利</div>
+    </div>
+  </div>
+
+  <div class="callout warn">
+    <div class="co-label">真正最硬的瓶颈</div>
+    <div class="co-body"><b>变压器</b>——交期已从 24-30 个月拉长到 <b>60 个月</b>。Hitachi Energy 美国本土制造 South Boston VA 厂 2028 才完工；WoodMac 预测变压器供需缺口从 2025 年 100% 缩小到 2030 年 &lt;10%。<b>上市的纯变压器标的难买</b>——Hitachi Energy 在日本上市流动性差；可关注 A 股<b>特变电工 / 中国西电</b> + 韩国 HD Hyundai Electric。</div>
+  </div>
+</section>
+
+<!-- ===== COOLING ===== -->
+<section id="cooling">
+  <div class="sec-num">05 · Cooling Revolution</div>
+  <h2 class="sec-h">冷却链 · <em>M&amp;A 收割年</em></h2>
+
+  <p class="lede">
+    H100 单卡 700W → B200 1000W → Rubin 1500W+——传统风冷撑不住。
+    但<em>纯粹液冷小盘的"独立窗口期"已经关闭</em>：
+    2025-2026 巨头疯狂收购，CoolIT、Motivair、Boyd、LiquidStack 全部被买走。
+    剩下能买的是整合者。
+  </p>
+
+  <h3 class="sub-h">2025-2026 冷却 M&amp;A 浪潮</h3>
+  <div class="metric">
+    <div class="m-row">
+      <div class="m-label">Eaton 收购 Boyd Thermal <span class="m-src">22.5x EBITDA / 2026 Q2 完成</span></div>
+      <div class="m-val warn">$95 亿</div>
+    </div>
+    <div class="m-row">
+      <div class="m-label">Ecolab 收购 CoolIT Systems <span class="m-src">2026 Q3 关闭 / 8.6x sales</span></div>
+      <div class="m-val warn">$47.5 亿</div>
+    </div>
+    <div class="m-row">
+      <div class="m-label">Schneider 收购 Motivair <span class="m-src">2024 Q4</span></div>
+      <div class="m-val">$8.5 亿</div>
+    </div>
+    <div class="m-row">
+      <div class="m-label">Trane 收购 Stellar Energy <span class="m-src">2026 Q1</span></div>
+      <div class="m-val">$5.53 亿</div>
+    </div>
+    <div class="m-row">
+      <div class="m-label">Trane 收购 LiquidStack <span class="m-src">2026 Q1</span></div>
+      <div class="m-val">未披露</div>
+    </div>
+    <div class="m-row">
+      <div class="m-label">Daikin 收购 Chilldyne + DDC <span class="m-src">2025 Q3-Q4</span></div>
+      <div class="m-val">未披露</div>
+    </div>
+  </div>
+
+  <h3 class="sub-h">液冷集成商：哪个还能买</h3>
+  <div class="table-wrap">
+    <table class="cmp">
+      <thead>
+        <tr><th>公司</th><th>Fwd P/E</th><th>关键</th><th>判断</th></tr>
+      </thead>
+      <tbody>
+        <tr class="row-warn">
+          <td><span class="product-name">Vertiv<span class="ticker">VRT</span></span></td>
+          <td class="num-cell warn">50x</td>
+          <td>Backlog $150 亿；Beta 2.1；GF Value $145 vs 现价 $339</td>
+          <td><span class="badge bad">已透支</span> 已涨 +6,889% (5 年)</td>
+        </tr>
+        <tr class="row-pos">
+          <td><span class="product-name">Schneider Electric<span class="ticker">SU.PA</span></span></td>
+          <td class="num-cell pos">26x</td>
+          <td>DC 占 24%；与 NVIDIA 数字孪生合作；Motivair 子公司</td>
+          <td><span class="badge good">推荐</span> 欧洲被低估</td>
+        </tr>
+        <tr class="row-pos">
+          <td><span class="product-name">Eaton<span class="ticker">ETN</span></span></td>
+          <td class="num-cell pos">~33x</td>
+          <td>DC 订单 Q4 +200% / Q1 +240%；Boyd 2026 贡献 $14 亿</td>
+          <td><span class="badge good">推荐</span> grid-to-chip 完整</td>
+        </tr>
+        <tr>
+          <td><span class="product-name">Carrier<span class="ticker">CARR</span></span></td>
+          <td>~25x</td>
+          <td>2026 DC $15 亿 (+50% YoY)；Q1 DC 订单 +500%</td>
+          <td><span class="badge fair">公允</span> 占比仍小</td>
+        </tr>
+        <tr class="row-warn">
+          <td><span class="product-name">Supermicro<span class="ticker">SMCI</span></span></td>
+          <td>—</td>
+          <td>毛利从 17% 压缩到 9.3%</td>
+          <td><span class="badge bad">不推荐</span> 硬件商不是"镐子"</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="sub-h">台湾散热模块（NVIDIA Rubin 供应链）</h3>
+  <div class="twocol">
+    <div class="tc-card pos">
+      <div class="tc-tag">推荐</div>
+      <h4>AVC 奇宏 (3017.TW)</h4>
+      <ul>
+        <li>2025 营收 ~$45 亿（接近翻倍）</li>
+        <li>GB200/GB300 冷板市占 <b>40-50%</b></li>
+        <li><b>Vera Rubin 4 家首选冷板供应商之一</b></li>
+        <li>最干净的 NVIDIA Rubin 供应链敞口</li>
+      </ul>
+    </div>
+    <div class="tc-card yellow">
+      <div class="tc-tag">已贵但还能涨</div>
+      <h4>Auras 双鸿 (3324.TW)</h4>
+      <ul>
+        <li>2026E EPS NT$62.6（+121% YoY）</li>
+        <li>液冷营收 2026 将占 50-60%</li>
+        <li>UQD/MQD/冷板/Manifold/CDU 全栈</li>
+        <li>PE 29x 已反映乐观预期</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="sub-h">中国冷却链 + 冷却液单点机会</h3>
+  <div class="twocol">
+    <div class="tc-card pos">
+      <div class="tc-tag">中国冷却链推荐</div>
+      <h4>申菱环境 (301018.SZ)</h4>
+      <ul>
+        <li><b>华为唯一核心温控合作伙伴</b></li>
+        <li>2025 净利预期 ¥2.05-2.46 亿（+77 至 +113%）</li>
+        <li>数据服务订单 +95%</li>
+        <li>最干净的"华为概念 + 液冷"标的</li>
+        <li>英维克 Q1'26 业绩变脸蒸发 ¥160 亿市值，可等回调</li>
+      </ul>
+    </div>
+    <div class="tc-card data">
+      <div class="tc-tag">3M Novec 退出的单点机会</div>
+      <h4>Solvay Galden / Chemours Opteon</h4>
+      <ul>
+        <li>3M Novec 2025 末全系列停产</li>
+        <li><b>Solvay Galden 是唯一立即可商业获取的双相浸没式高端替代品</b></li>
+        <li>Chemours Opteon 2P50 与 Navin Fluorine 合作量产</li>
+        <li>双相浸没式只剩这两家供应</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EQUIPMENT & MATERIALS ===== -->
+<section id="equipment">
+  <div class="sec-num">06 · Equipment, Materials &amp; EDA</div>
+  <h2 class="sec-h">设备 · 材料 · EDA · <em>真正的垄断之地</em></h2>
+
+  <p class="lede">
+    半导体上游是"垄断之地"——EDA 三家、光刻 ASML 独家、关键材料信越独家。
+    它们不被 NVIDIA / TSMC 谁赢谁输直接影响，是<em>半导体行业整体扩张的纯收益者</em>。
+    但 2023-2026 三年涨幅过大，多数已透支——本节核心是把"还能买"和"不能碰"分开。
+  </p>
+
+  <h3 class="sub-h">设备一线：估值合理梯队</h3>
+  <div class="table-wrap">
+    <table class="cmp">
+      <thead>
+        <tr><th>公司</th><th>Fwd P/E</th><th>关键</th><th>判断</th></tr>
+      </thead>
+      <tbody>
+        <tr class="row-pos">
+          <td><span class="product-name">Lam Research<span class="ticker">LRCX</span></span></td>
+          <td class="num-cell pos">~40x</td>
+          <td>Q1 FY26 营收 $5.84B (+24% YoY) 创纪录；HBM/封装 &gt; $1B</td>
+          <td><span class="badge good">首选</span> HBM 最纯</td>
+        </tr>
+        <tr class="row-pos">
+          <td><span class="product-name">KLA Corp<span class="ticker">KLAC</span></span></td>
+          <td class="num-cell pos">35x</td>
+          <td>41.3% 营业利润率；先进封装翻倍至 $1B（60% 份额）</td>
+          <td><span class="badge good">推荐</span> 检测唯一龙头</td>
+        </tr>
+        <tr>
+          <td><span class="product-name">ASML<span class="ticker">ASML</span></span></td>
+          <td>41x</td>
+          <td>EUV 独家；2026 营收指引 €36-40B；High-NA HVM 进入</td>
+          <td><span class="badge fair">等回调</span> GF -38%</td>
+        </tr>
+        <tr>
+          <td><span class="product-name">Applied Materials<span class="ticker">AMAT</span></span></td>
+          <td>32x</td>
+          <td>DRAM 营收创纪录；CY2026 设备 +20%</td>
+          <td><span class="badge fair">公允</span> 综合面广</td>
+        </tr>
+        <tr>
+          <td><span class="product-name">Tokyo Electron<span class="ticker">8035.T</span></span></td>
+          <td>~25x</td>
+          <td>HBM wafer bonder 营收 3 年翻 3 倍</td>
+          <td><span class="badge good">便宜</span> 日股估值最实</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="sub-h">设备二线：隐形冠军</h3>
+  <div class="table-wrap">
+    <table class="cmp">
+      <thead>
+        <tr><th>公司</th><th>份额/角色</th><th>P/E</th><th>判断</th></tr>
+      </thead>
+      <tbody>
+        <tr class="row-pos">
+          <td><span class="product-name">Disco<span class="ticker">6146.T</span></span></td>
+          <td>切割 + 磨削 60-70% 全球份额</td>
+          <td>58 TTM</td>
+          <td><span class="badge good">推荐</span> HBM4 16-Hi 切割翻倍</td>
+        </tr>
+        <tr class="row-pos">
+          <td><span class="product-name">Advantest<span class="ticker">6857.T</span></span></td>
+          <td>ATE 50%+；HBM 测试垄断</td>
+          <td>~50</td>
+          <td><span class="badge good">推荐</span> FY26 +26% 指引</td>
+        </tr>
+        <tr class="row-pos">
+          <td><span class="product-name">Lasertec<span class="ticker">6920.T</span></span></td>
+          <td>EUV 掩膜检测 90%+</td>
+          <td>~25</td>
+          <td><span class="badge good">推荐</span> 唯一商用 actinic</td>
+        </tr>
+        <tr>
+          <td><span class="product-name">Onto Innovation<span class="ticker">ONTO</span></span></td>
+          <td>HBM TSV 检测</td>
+          <td>43</td>
+          <td><span class="badge fair">已贵</span> 弹性最大</td>
+        </tr>
+        <tr class="row-warn">
+          <td><span class="product-name">Camtek<span class="ticker">CAMT</span></span></td>
+          <td>HBM 检测 reference</td>
+          <td class="warn">196 TTM</td>
+          <td><span class="badge bad">泡沫</span> 等大回调</td>
+        </tr>
+        <tr>
+          <td><span class="product-name">Park Systems<span class="ticker">140860.KS</span></span></td>
+          <td>AFM #1 全球</td>
+          <td>—</td>
+          <td><span class="badge fair">小盘</span> Yongin 已落子</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="sub-h">关键材料：沉默赢家</h3>
+  <div class="threecol">
+    <div class="tc-card pos">
+      <div class="tc-tag">首选</div>
+      <h4>信越化学 (4063.T)</h4>
+      <ul>
+        <li>硅片全球第一 28% 市占</li>
+        <li>月产 220 万片</li>
+        <li>P/E 22 (相对最便宜)</li>
+        <li>FY26 不 guide 反而是机会</li>
+      </ul>
+    </div>
+    <div class="tc-card pos">
+      <div class="tc-tag">推荐</div>
+      <h4>Linde (LIN)</h4>
+      <ul>
+        <li>工业气体全球 32% 市占</li>
+        <li>EBITDA 利润率 28%+</li>
+        <li>P/E 28，Growth6 战略瞄准 AI</li>
+        <li>半导体气体最大 mix</li>
+      </ul>
+    </div>
+    <div class="tc-card pos">
+      <div class="tc-tag">小盘机会</div>
+      <h4>TOK (4186.T)</h4>
+      <ul>
+        <li>光刻胶日股</li>
+        <li>FY26 半导体光刻胶 +150% 预期</li>
+        <li>JSR 已退市 → TOK 是唯一纯标的</li>
+        <li>EUV 投资加速</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="sub-h">EDA 双寡头：Synopsys 比 Cadence 便宜</h3>
+  <div class="metric">
+    <div class="m-row">
+      <div class="m-label">Cadence (CDNS) <span class="m-src">Q1 营收 $1.47B +19%; $8B backlog</span></div>
+      <div class="m-val">Fwd P/E 38</div>
+    </div>
+    <div class="m-row">
+      <div class="m-label">Synopsys (SNPS) <span class="m-src">$35B Ansys 收购完成，背 $13.5B 债务</span></div>
+      <div class="m-val pos">Fwd P/E 30</div>
+    </div>
+    <div class="m-row">
+      <div class="m-label">中国 EDA（华大九天/概伦/广立微） <span class="m-src">全球市占 ~6%，与双寡头 30% 差距巨大</span></div>
+      <div class="m-val warn">政策博弈品</div>
+    </div>
+  </div>
+
+  <div class="callout warn">
+    <div class="co-label">封装上游的最大警告：Hanmi 半导体</div>
+    <div class="co-body">
+      <b>Hanmi 半导体 (042700.KS)</b>：52 周涨幅 +405%、Fwd P/E 105.9、EV/Sales 63.7、分析师共识目标价 ₩186,532 暗示 <b>−50%</b>。<br>
+      <b>客户分流证据明确</b>：SK Hynix HBM4 已让 ASMPT 拿到约一半 TC bonder 订单（50 套中 25 套）；Micron HBM4 全量转 BESI；Hanmi 自己承认 hybrid bonder 销售要等到 2027-2028。<br>
+      <b>结论</b>：业务还在挣钱但股价已 price-in 三代 HBM 完美。<b>等回调到 ₩180K-220K 区间再看</b>。
+    </div>
+  </div>
+</section>
+
+<!-- ===== HIDDEN CHAMPIONS ===== -->
+<section id="hidden">
+  <div class="sec-num">07 · Hidden Champions</div>
+  <h2 class="sec-h">15 个隐形冠军 · <em>市占高 + 估值合理 + 低 profile</em></h2>
+
+  <p class="lede">
+    标准：<em>细分市占 30%+</em>、市值合理、AI/HBM 营收占比 30%+、估值未透支。
+    把这 15 个挂在 watchlist——任何一个出现 20%+ 回调都是买点。
+  </p>
+
+  <div class="table-wrap">
+    <table class="cmp">
+      <thead>
+        <tr><th>#</th><th>公司</th><th>细分品类</th><th>份额/角色</th><th>推荐理由</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td><b>Disco</b> <span class="ticker">6146.T</span></td><td>晶圆切割+磨削</td><td>60-70%</td><td>HBM4 16-Hi 切割翻倍</td></tr>
+        <tr><td>2</td><td><b>Camtek</b> <span class="ticker">CAMT</span></td><td>HBM 先进封装检测</td><td>reference tool</td><td>HBM4 都用 Hawk（但 PE 已 196，等回调）</td></tr>
+        <tr><td>3</td><td><b>Lasertec</b> <span class="ticker">6920.T</span></td><td>EUV 掩膜检测</td><td>90%+</td><td>唯一商用 actinic inspection</td></tr>
+        <tr><td>4</td><td><b>Onto Innovation</b> <span class="ticker">ONTO</span></td><td>HBM TSV 检测</td><td>主供</td><td>Dragonfly G5 拿到 HBM4 订单</td></tr>
+        <tr><td>5</td><td><b>Advantest</b> <span class="ticker">6857.T</span></td><td>HBM/SoC 测试仪</td><td>ATE 50%+</td><td>FY26 +26% 指引</td></tr>
+        <tr><td>6</td><td><b>Hanmi 半导体</b> <span class="ticker">042700.KS</span></td><td>HBM TC bonder</td><td>71%</td><td><b>⚠️ 已透支</b>，等回调</td></tr>
+        <tr><td>7</td><td><b>BE Semiconductor</b> <span class="ticker">BESI.AS</span></td><td>hybrid bonding</td><td>双寡头</td><td>SK Hynix 首单已下（但估值高）</td></tr>
+        <tr><td>8</td><td><b>信越化学</b> <span class="ticker">4063.T</span></td><td>硅片+光刻胶</td><td>top 1</td><td>P/E 22 估值未失控</td></tr>
+        <tr><td>9</td><td><b>东京电子</b> <span class="ticker">8035.T</span></td><td>半导体设备</td><td>top 5</td><td>HBM wafer bonder +3x</td></tr>
+        <tr><td>10</td><td><b>MKS Instruments</b> <span class="ticker">MKSI</span></td><td>真空/光子/材料</td><td>多品类领先</td><td>Q1 营收 +15% YoY</td></tr>
+        <tr><td>11</td><td><b>Entegris</b> <span class="ticker">ENTG</span></td><td>CMP/超纯化学品</td><td>多品类领先</td><td>HBM 工艺步骤翻倍带量</td></tr>
+        <tr><td>12</td><td><b>Park Systems</b> <span class="ticker">140860.KS</span></td><td>AFM 原子力显微镜</td><td>#1 全球</td><td>26% CAGR；SK Hynix Yongin 已落子</td></tr>
+        <tr><td>13</td><td><b>Kokusai Electric</b> <span class="ticker">6525.T</span></td><td>沉积/热处理</td><td>利基</td><td>2023 才上市，flow under radar</td></tr>
+        <tr><td>14</td><td><b>Modine</b> <span class="ticker">MOD</span></td><td>数据中心液冷</td><td>高端</td><td>DC 占比 4% → 25%</td></tr>
+        <tr><td>15</td><td><b>AIXTRON</b> <span class="ticker">AIXXF</span></td><td>MOCVD/光通信 InP</td><td>利基</td><td>GaN+AI 光通信 2026 转折</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===== FRAMEWORK ===== -->
+<section id="framework">
+  <div class="sec-num">08 · Three Personas</div>
+  <h2 class="sec-h">三档投资框架 · <em>不同风险偏好</em></h2>
+
+  <p class="lede">
+    AI 投资没有"一个组合所有人都用"。
+    分三类风险画像，每一档给出 5-8 个推荐 + 配置比例。
+    这不是教你买什么，是给你<em>判断自己是谁</em>的框架。
+  </p>
+
+  <div class="persona">
+    <div class="persona-card cons">
+      <div class="p-tag">Conservative · 保守型</div>
+      <h4>资本保全 + 0.5-1x AI 弹性</h4>
+      <ul class="alloc">
+        <li><span class="name"><b>KLA (KLAC)</b> · 检测唯一龙头</span><span class="pct">15%</span></li>
+        <li><span class="name"><b>TSMC (TSM)</b> · AI 必配</span><span class="pct">15%</span></li>
+        <li><span class="name"><b>信越化学 (4063)</b> · 硅片垄断</span><span class="pct">10%</span></li>
+        <li><span class="name"><b>AMAT</b> · 估值反映短期弱势</span><span class="pct">10%</span></li>
+        <li><span class="name"><b>MKS Instruments</b> · 底层零件</span><span class="pct">8%</span></li>
+        <li><span class="name">现金/短债</span><span class="pct">30%</span></li>
+        <li><span class="name">黄金/防御</span><span class="pct">12%</span></li>
+      </ul>
+    </div>
+    <div class="persona-card bal">
+      <div class="p-tag">Balanced · 平衡型</div>
+      <h4>risk-adjusted + 1-2x AI 弹性</h4>
+      <ul class="alloc">
+        <li><span class="name"><b>NVIDIA</b> · AI alpha 核心</span><span class="pct">12%</span></li>
+        <li><span class="name"><b>TSMC</b> · CoWoS 垄断</span><span class="pct">10%</span></li>
+        <li><span class="name"><b>Disco (6146)</b> · HBM4 切割</span><span class="pct">8%</span></li>
+        <li><span class="name"><b>Advantest (6857)</b> · HBM 测试</span><span class="pct">7%</span></li>
+        <li><span class="name"><b>Schneider Electric</b> · 欧洲对冲</span><span class="pct">8%</span></li>
+        <li><span class="name"><b>Vistra (VST)</b> · IPP 最干净</span><span class="pct">5%</span></li>
+        <li><span class="name"><b>Synopsys</b> · EDA 折扣</span><span class="pct">7%</span></li>
+        <li><span class="name"><b>Lasertec / Shin-Etsu / TEL</b></span><span class="pct">10%</span></li>
+        <li><span class="name"><b>Linde / Entegris</b> · 材料</span><span class="pct">8%</span></li>
+        <li><span class="name">现金</span><span class="pct">25%</span></li>
+      </ul>
+    </div>
+    <div class="persona-card aggr">
+      <div class="p-tag">Aggressive · 激进型</div>
+      <h4>最大 alpha + 3-5x AI 弹性</h4>
+      <ul class="alloc">
+        <li><span class="name"><b>NVIDIA</b> · 龙头</span><span class="pct">15%</span></li>
+        <li><span class="name"><b>Disco (6146)</b> · 镐子</span><span class="pct">12%</span></li>
+        <li><span class="name"><b>Advantest (6857)</b> · 测试</span><span class="pct">10%</span></li>
+        <li><span class="name"><b>AVC (3017.TW)</b> · Rubin 冷板</span><span class="pct">8%</span></li>
+        <li><span class="name"><b>GE Vernova</b> · 燃机锁 2030</span><span class="pct">8%</span></li>
+        <li><span class="name"><b>Modine</b> · 液冷纯标的</span><span class="pct">7%</span></li>
+        <li><span class="name"><b>Park Systems / Kokusai</b> · 小盘</span><span class="pct">10%</span></li>
+        <li><span class="name"><b>Lasertec</b> · 逢低介入</span><span class="pct">5%</span></li>
+        <li><span class="name"><b>SEMCO / Amkor</b> · 封装</span><span class="pct">10%</span></li>
+        <li><span class="name">现金/对冲</span><span class="pct">15%</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout warn">
+    <div class="co-label">三档共同的禁忌</div>
+    <div class="co-body">
+      <b>三档都不应该碰的</b>：Palantir 111x、Hanmi 半导体 173x（已透支 + 客户分流）、Camtek 196x、BESI 137x、Vertiv 50x、Ibiden 112x、Oklo（市值对应 2030 现金流）、Constellation（整合 + 延期）、Equinix（25-28x AFFO 最高溢价）、Supermicro（毛利压缩）、Lennox（与 AI 无关）。
+    </div>
+  </div>
+</section>
+
+<!-- ===== CALENDAR ===== -->
+<section id="calendar">
+  <div class="sec-num">09 · The Catalyst Calendar</div>
+  <h2 class="sec-h">12-24 月催化剂日历 · <em>盯什么</em></h2>
+
+  <div class="cal">
+    <table>
+      <thead><tr><th>时点</th><th>事件</th><th>影响标的</th></tr></thead>
+      <tbody>
+        <tr><td class="time">2026 · 05-13</td><td>Hanmi 半导体 Q1 财报</td><td class="tickers">042700.KS — 客户分流影响落地</td></tr>
+        <tr><td class="time">2026 · 05-20</td><td>NVIDIA Q1 FY27 + Q2 指引</td><td class="tickers">全产业链</td></tr>
+        <tr><td class="time">2026 · Q2</td><td>Eaton 完成 Boyd Thermal 收购</td><td class="tickers">ETN —— +$14 亿收入</td></tr>
+        <tr><td class="time">2026 · Q3</td><td>Ecolab 完成 CoolIT 收购</td><td class="tickers">ECL —— 重新定位冷却</td></tr>
+        <tr><td class="time">2026 · H2</td><td>NVIDIA Vera Rubin 首批样品</td><td class="tickers">AVC / Auras / Vertiv / Eaton / HBM4 链</td></tr>
+        <tr><td class="time">2026 · Q3</td><td>MSFT/GOOG/AMZN/META Q2 capex 指引</td><td class="tickers">全 hyperscaler 供应链 — 任一家下修 = HBM 重估</td></tr>
+        <tr><td class="time">2026 · 末</td><td>3M Novec 完全断供</td><td class="tickers">Solvay Galden / Chemours Opteon 2P50</td></tr>
+        <tr><td class="time">2026 · 末</td><td>GE Vernova 燃机锁位达 110 GW</td><td class="tickers">GEV</td></tr>
+        <tr><td class="time">2026 · Q4</td><td>BIS 2027 年度许可证审批</td><td class="tickers">SK Hynix / Samsung 中国厂</td></tr>
+        <tr><td class="time">2027 · Q1</td><td>NVIDIA Vera Rubin 全面量产</td><td class="tickers">CoWoS 链 / HBM4 / 电力</td></tr>
+        <tr><td class="time">2027 · Q1</td><td>TMI Unit 1 投运 (Constellation)</td><td class="tickers">CEG / Microsoft</td></tr>
+        <tr><td class="time">2027 · 末</td><td>Oklo Aurora 首堆商业化</td><td class="tickers">OKLO（已透支但里程碑）</td></tr>
+        <tr><td class="time">2028 · 2H</td><td>SK Hynix Indiana 厂量产</td><td class="tickers">SK / Amkor</td></tr>
+        <tr><td class="time">2028-2029</td><td>TSMC CoPoS 玻璃基板 ramp</td><td class="tickers">Corning / Ibiden / TSMC</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="divq">
+  "故事不是仓位。<br>
+  画像才是仓位。<br>
+  时机才是回报。"
+</div>
+
+<!-- ===== VERDICT ===== -->
+<section id="verdict">
+  <div class="sec-num">10 · Final Verdict</div>
+  <h2 class="sec-h">最终判断 · <em>三句话框架</em></h2>
+
+  <div class="verdict">
+    <div class="v-title">Final Verdict</div>
+    <h3>
+      一线已透支半年。<br>
+      二线明星股已透支一年。<br>
+      <em>真正的钱在"还没被市场喊出名字"的三线</em>。
+    </h3>
+    <p>
+      <b style="color:#fbf9f4">不要碰的（11 个）</b>：Palantir、Hanmi 半导体、Camtek、BESI、Vertiv、Quanta、Onto、Ibiden、Oklo、Constellation、Equinix。这些"二线明星"已经把 2027-2030 的故事都定价完了，回撤时跌 30-40% 起步。
+    </p>
+    <p>
+      <b style="color:#fbf9f4">真正能买的三类机会</b>：
+      ① <b>"垄断之地"+ 估值未失控</b>——信越化学（PE 22）、Synopsys（PE 30）、Linde（PE 28）、Shinko Electric（PE 27）、KLA（PE 35）、LRCX；
+      ② <b>欧洲对冲</b>——Schneider Electric（PE 26x，VRT 一半的估值）、Eaton（grid-to-chip 完整）；
+      ③ <b>日韩台的二线/三线小盘</b>——Disco、Lasertec、Advantest、AVC（NVIDIA Rubin 冷板供应商）、Park Systems、Kokusai Electric、TOK（光刻胶）。
+    </p>
+    <p>
+      <b style="color:#fbf9f4">逻辑成立的前提</b>：hyperscaler 2026 capex $830B 不见顶。<b>一旦 Q3 财报出现 capex 下修信号，二线先于一线砍 30%+</b>。
+      把 hyperscaler 季度 capex 指引上调次数挂在监控板顶端——这是整个论点的"开关"。
+    </p>
+  </div>
+</section>
+
+</main>
+</div>
+
+<footer>
+  <div class="ft-grid">
+    <div>
+      <h5>Primary Sources · 估值数据</h5>
+      <ul>
+        <li><a href="https://www.gurufocus.com/term/forward-pe-ratio/PLTR">GuruFocus Palantir 111x</a></li>
+        <li><a href="https://www.gurufocus.com/term/forward-pe-ratio/VRT">GuruFocus Vertiv 53x</a></li>
+        <li><a href="https://stockanalysis.com/quote/krx/042700/statistics/">Stock Analysis Hanmi 半导体</a></li>
+        <li><a href="https://stockanalysis.com/stocks/vst/">Stock Analysis Vistra</a></li>
+        <li><a href="https://simplywall.st/stocks/us/capital-goods/nyse-vrt/vertiv-holdings-co/news/a-look-at-vertiv-holdings-vrt-valuation-after-strong-q1-2026">Simply Wall St VRT</a></li>
+        <li><a href="https://www.macrotrends.net/stocks/charts/NVDA/nvidia/pe-ratio">Macrotrends NVDA PE</a></li>
+        <li><a href="https://investors.vertiv.com/news/news-details/2026/Vertiv-Reports-Strong-First-Quarter-with-Diluted-EPS-Growth-of-136-Adjusted-Diluted-EPS-Growth-of-83-Raises-Full-Year-Guidance/default.aspx">Vertiv Q1 2026</a></li>
+        <li><a href="https://news.alphastreet.com/eaton-etn-posts-record-q1-revenue-as-electrical-backlog-surges-48-on-data-center-demand/amp/">Eaton Q1 2026</a></li>
+        <li><a href="https://www.shinetsu.co.jp/wp-content/uploads/2025/07/Financial-Section.pdf">信越化学 2025 年报</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Industry &amp; Press · 行业 / 财经</h5>
+      <ul>
+        <li><a href="https://newsletter.semianalysis.com/p/ai-datacenter-energy-dilemma-race">Semianalysis AI 数据中心电力</a></li>
+        <li><a href="https://www.datacenterfrontier.com/cooling/article/55328396/chip-to-grid-gets-bought-eaton-vertiv-and-daikin-deals-imply-a-new-thermal-capital-cycle">DCF Chip-to-Grid M&amp;A 浪潮</a></li>
+        <li><a href="https://www.datacenterdynamics.com/en/news/eaton-acquires-boyd-thermal-for-95bn-to-further-liquid-cooling-portfolio/">DCD Eaton-Boyd $95B</a></li>
+        <li><a href="https://www.ecolab.com/news/2026/03/ecolab-to-acquire-coolit-systems-a-global-leader-in-advanced-liquid-cooling-for-next-gen-ai-data-ce">Ecolab-CoolIT 公告</a></li>
+        <li><a href="https://www.datacenterdynamics.com/en/news/two-phase-cooling-will-be-hit-by-epa-rules-and-3ms-exit-from-pfas-forever-chemicals/">DCD 3M PFAS 退出影响</a></li>
+        <li><a href="https://www.trendforce.com/news/2025/12/12/news-sk-hynix-reportedly-places-hbm4-tc-bonder-order-with-asmpt-as-hanmi-hanwha-patent-clash-heats-up/">TrendForce SK Hynix 转 ASMPT</a></li>
+        <li><a href="https://www.cnbc.com/2025/11/18/trump-nuclear-three-mile-island-crane-loan-constellation-ceg.html">CNBC Constellation TMI</a></li>
+        <li><a href="https://www.world-nuclear-news.org/articles/us-reactor-restart-project-ahead-of-schedule">World Nuclear News TMI</a></li>
+        <li><a href="https://asia.nikkei.com/business/energy/wait-times-for-hitachi-energy-transformers-hit-more-than-30-months">Nikkei Hitachi 变压器交期</a></li>
+        <li><a href="https://www.bloomberg.com/features/2025-bottlenecks-gas-turbines/">Bloomberg 燃机瓶颈</a></li>
+        <li><a href="https://semianalysis.com/2022/07/19/disco-corporation-the-world-leader/">Semianalysis Disco 深度</a></li>
+        <li><a href="https://www.tomshardware.com/tech-industry/big-tech/big-techs-ai-spending-plans-reach-725-billion">Tom's Hardware $725B Capex</a></li>
+        <li><a href="https://www.digitimes.com/news/a20260318PD231/nvidia-rubin-liquid-cooling-ai-server-launch.html">Digitimes Rubin 冷板 4 家</a></li>
+        <li><a href="https://www.koreaherald.com/article/10498737">Korea Herald 韩国半导体</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-meta">
+    Generated 2026-05-11 by Ray Deep Research Engine · 主报告系列第 5 篇 · 4 sub-agents (电力 / 冷却 / 设备材料 / 框架) · 单文件 HTML<br>
+    免责声明：本报告仅供研究参考，不构成投资建议。所有估值数据均为基于公开来源的研究汇编，存在时点差异；具体投资决策应结合个人财务状况、风险承受能力及独立判断。
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      document.querySelectorAll('nav.toc a').forEach(link => {
+        link.style.color = '';
+        link.style.fontWeight = '';
+      });
+      const activeLink = document.querySelector(`nav.toc a[href="#${id}"]`);
+      if (activeLink) {
+        activeLink.style.color = 'var(--accent-warn)';
+        activeLink.style.fontWeight = '600';
+      }
+    }
+  });
+}, { rootMargin: '-30% 0px -60% 0px' });
+document.querySelectorAll('section[id]').forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
